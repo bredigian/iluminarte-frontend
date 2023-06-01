@@ -1,5 +1,6 @@
 import "./index.scss"
 import "@fontsource/montserrat"
+import "@fontsource-variable/roboto-slab"
 
 import App from "./App.jsx"
 import React from "react"

@@ -5,7 +5,16 @@ export default {
     extend: {
       width: {
         1: "150px",
-        logo: "200px",
+        logo: "300px",
+      },
+      height: {
+        1: "800px",
+      },
+      maxHeight: {
+        1: "800px",
+      },
+      translate: {
+        1: "174px",
       },
     },
     colors: {
@@ -19,7 +28,7 @@ export default {
     },
     fontFamily: {
       sans: ["Montserrat", "sans-serif"],
-      serif: ["Roboto Slab", "sans-serif"],
+      serif: ["Roboto Slab Variable", "sans-serif"],
     },
   },
   plugins: [],
