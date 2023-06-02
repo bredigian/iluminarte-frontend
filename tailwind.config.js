@@ -13,9 +13,11 @@ export default {
       },
       maxWidth: {
         4: "400px",
+        7: "700px",
       },
       height: {
         1: "800px",
+        about: "550px",
       },
       maxHeight: {
         1: "800px",
