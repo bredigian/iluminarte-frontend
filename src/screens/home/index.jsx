@@ -14,7 +14,7 @@ const Home = () => {
         <HeaderSlider />
         <AnimatedText />
       </section>
-      <section className="home-categories px-8 pb-12">
+      <section className="home-categories p-8 pb-12">
         <Categories />
       </section>
       <section className="home-about w-full pb-8 bg-white">
@@ -86,7 +86,7 @@ const Home = () => {
             </p>
             <button
               type="button"
-              className="text-3xl text-white font-bold bg-tertiary px-16 py-2 rounded-full cursor-pointer"
+              className="text-3xl text-white font-bold bg-tertiary px-16 py-2 mt-4 rounded-full cursor-pointer"
             >
               Ver más
             </button>

@@ -7,7 +7,7 @@ const AnimatedText = () => {
   }
   return (
     <div
-      className={`-translate-y-1 w-full text-center animated-text ${
+      className={`-translate-y-1 absolute w-full text-center animated-text ${
         isVisible ? "fade-in" : "fade-out"
       }`}
       //   onAnimationEnd={hanldeAnimationEnd}
