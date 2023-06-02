@@ -15,7 +15,7 @@ const Home = () => {
         <HeaderSlider />
         <AnimatedText textAreVisible={textAreVisible} />
       </section>
-      <section className="home-categories xs:p-4 sm:p-8">
+      <section className="home-categories xs:p-4 sm:p-8 bg-white">
         <Categories />
       </section>
       <section className="home-about w-full pb-8 bg-white">
