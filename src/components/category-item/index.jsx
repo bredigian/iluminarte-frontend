@@ -17,9 +17,12 @@ const CategoryItem = ({ category }) => {
           isHover ? "opacity-1" : "opacity-0"
         }`}
       >
-        <h3 className="px-6 py-3 bg-primary text-white font-bold text-3xl rounded-full cursor-pointer">
+        <button
+          type="button"
+          className="px-6 py-3 bg-primary text-white font-bold text-3xl rounded-full cursor-pointer"
+        >
           Ver más
-        </h3>
+        </button>
       </div>
       <div className="categories-item__img relative z-1 overflow-hidden">
         <img

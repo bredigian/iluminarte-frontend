@@ -5,6 +5,7 @@ import aboutImg from "../../assets/images/about/nosotros.png"
 import blogImg from "../../assets/images/blog/fabricadasVelas.png"
 import monthImg1 from "../../assets/images/month/velaMonthBackground.png"
 import monthImg2 from "../../assets/images/month/velaMonthProduct.png"
+import productsImg from "../../assets/images/products/homeProducts.png"
 
 const Home = () => {
   return (
@@ -26,9 +27,12 @@ const Home = () => {
               Nuestro negocio inició en el patio de una casa
             </p>
           </div>
-          <h3 className="bg-tertiary text-4xl text-white font-bold px-10 py-3 rounded-full">
+          <button
+            type="button"
+            className="bg-tertiary text-4xl text-white font-bold px-10 py-3 rounded-full"
+          >
             Conocer más
-          </h3>
+          </button>
         </div>
         <div className="home-about__img h-about w-full">
           <img
@@ -51,9 +55,12 @@ const Home = () => {
             artesanos que mezclan métodos ancestrales y modernos, dando paso a
             productos de alta calidad y precio justo.
           </p>
-          <h3 className="bg-tertiary text-white font-bold text-3xl px-16 py-3 rounded-full cursor-pointer">
+          <button
+            type="button"
+            className="bg-tertiary text-white font-bold text-3xl px-16 py-3 rounded-full cursor-pointer"
+          >
             Ver más
-          </h3>
+          </button>
         </div>
       </section>
       <section className="home-month flex items-center w-full bg-light overflow-hidden">
@@ -77,11 +84,28 @@ const Home = () => {
               <br />
               con y sin caja
             </p>
-            <h3 className="text-3xl text-white font-bold bg-tertiary px-16 py-3 rounded-full cursor-pointer">
+            <button
+              type="button"
+              className="text-3xl text-white font-bold bg-tertiary px-16 py-3 rounded-full cursor-pointer"
+            >
               Ver más
-            </h3>
+            </button>
           </div>
         </div>
+      </section>
+      <section className="home-products flex flex-col items-center gap-8 w-full py-8 bg-secondary-light">
+        <h1 className="font-serif text-dark text-7xl font-bold">
+          Nuestros productos
+        </h1>
+        <div className="home-products__img">
+          <img src={productsImg} alt="" />
+        </div>
+        <button
+          type="button"
+          className="text-white font-bold text-3xl bg-primary py-2 px-16 rounded-full"
+        >
+          Ver más productos
+        </button>
       </section>
     </main>
   )

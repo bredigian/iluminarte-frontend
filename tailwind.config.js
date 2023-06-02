@@ -40,6 +40,7 @@ export default {
       primary: "#503966",
       primary_transparent: "#50396680",
       secondary: "#7a6b88",
+      "secondary-light": "#e6e2fe",
       tertiary: "#ad6845",
       white: "#fef3e7",
       light: "#e8cfc5",
