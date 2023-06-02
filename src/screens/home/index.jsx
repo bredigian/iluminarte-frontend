@@ -1,6 +1,6 @@
 import { AnimatedText, Categories, HeaderSlider } from "../../components"
+import React, { useState } from "react"
 
-import React from "react"
 import aboutImg from "../../assets/images/about/nosotros.png"
 import blogImg from "../../assets/images/blog/fabricadasVelas.png"
 import monthImg1 from "../../assets/images/month/velaMonthBackground.png"
@@ -8,11 +8,12 @@ import monthImg2 from "../../assets/images/month/velaMonthProduct.png"
 import productsImg from "../../assets/images/products/homeProducts.png"
 
 const Home = () => {
+  const [textAreVisible, setTextAreVisible] = useState(true)
   return (
     <main className="home">
       <section className="home-slider">
         <HeaderSlider />
-        <AnimatedText />
+        <AnimatedText textAreVisible={textAreVisible} />
       </section>
       <section className="home-categories xs:p-4 sm:p-8">
         <Categories />
@@ -42,11 +43,15 @@ const Home = () => {
           />
         </div>
       </section>
-      <section className="home-blog p-8 flex xs:flex-col xs:items-center xxl:flex-row xxl:items-start xxl:justify-center w-full bg-white">
+      <section className="home-blog p-8 flex xs:flex-col xs:items-center xl:flex-row xl:items-start xxl:justify-center w-full bg-white">
         <div className="home-blog__img">
           <img className="w-7.5" src={blogImg} alt="Creacion de velas" />
         </div>
-        <div className="home-blog__info flex flex-col xs:items-center items-start xs:gap-6 gap-20 p-4 max-w-7">
+        <div
+          className={`home-blog__info flex flex-col xs:items-center items-start xs:gap-6 gap-20 p-4 max-w-7 animated-text ${
+            textAreVisible ? "fade-in" : "fade-out"
+          }`}
+        >
           <h1 className="font-serif font-bold xs:text-3xl sm:text-6xl xl:text-8xl text-dark xl:-translate-x-1">
             Fabricadas Responsablemente
           </h1>
@@ -71,7 +76,11 @@ const Home = () => {
             alt="Fondo de Vela del mes"
           />
         </div>
-        <div className="home-month__product xs:w-full xs:p-4 w-mid flex flex-col items-center gap-10">
+        <div
+          className={`home-month__product xs:w-full xs:p-4 w-mid flex flex-col items-center gap-10 animated-text ${
+            textAreVisible ? "fade-in" : "fade-out"
+          }`}
+        >
           <h1 className="font-serif text-dark xs:text-3xl sm:text-5xl xl:text-7xl font-bold">
             Vela del mes
           </h1>

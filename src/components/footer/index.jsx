@@ -41,7 +41,7 @@ const Footer = () => {
           tradición, y el deseo de iluminar cada momento de tu vida.
         </p>
       </div>
-      <ul className="footer-sections flex flex-col items-start xs:gap-4 gap-8">
+      <ul className="footer-sections flex flex-col items-start xs:gap-4 xl:gap-8">
         {sections.map((section) => {
           return (
             <li
@@ -59,7 +59,7 @@ const Footer = () => {
             className="text-white xs:text-xs lg:text-base xl:text-2xl"
             href="tel:+50222264600"
             target="_blank"
-          >{`(tel) +502 2226-46000`}</a>
+          >{`(Tel) +502 2226-46000`}</a>
           <a
             className="text-white xs:text-xs lg:text-base xl:text-2xl"
             href="https://www.waze.com/es-419/live-map/directions?to=ll.14.638746%2C-90.558522"
