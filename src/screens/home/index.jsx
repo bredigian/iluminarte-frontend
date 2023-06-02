@@ -29,7 +29,7 @@ const Home = () => {
           </div>
           <button
             type="button"
-            className="bg-tertiary text-4xl text-white font-bold px-10 py-3 rounded-full"
+            className="bg-tertiary text-4xl text-white font-bold px-10 py-2 rounded-full"
           >
             Conocer más
           </button>
@@ -57,7 +57,7 @@ const Home = () => {
           </p>
           <button
             type="button"
-            className="bg-tertiary text-white font-bold text-3xl px-16 py-3 rounded-full cursor-pointer"
+            className="bg-tertiary text-white font-bold text-3xl px-16 py-2 rounded-full cursor-pointer"
           >
             Ver más
           </button>
@@ -86,7 +86,7 @@ const Home = () => {
             </p>
             <button
               type="button"
-              className="text-3xl text-white font-bold bg-tertiary px-16 py-3 rounded-full cursor-pointer"
+              className="text-3xl text-white font-bold bg-tertiary px-16 py-2 rounded-full cursor-pointer"
             >
               Ver más
             </button>

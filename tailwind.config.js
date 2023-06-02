@@ -4,10 +4,12 @@ export default {
   theme: {
     extend: {
       width: {
+        "0-3": "30px",
         1: "150px",
         2: "200px",
         3: "300px",
         4: "400px",
+        "4-5": "450px",
         5: "500px",
         6: "600px",
         7: "700px",
@@ -34,6 +36,9 @@ export default {
       },
       scale: {
         zoom: "1.2",
+      },
+      padding: {
+        xxl: "200px",
       },
     },
     colors: {
