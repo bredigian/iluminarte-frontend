@@ -51,7 +51,7 @@ const Header = ({ handleNavigator }) => {
                       scrolled
                         ? "bg-transparent text-primary"
                         : "bg-transparent text-white"
-                    } text-white font-bold px-6 py-2 rounded-full text-center lg:w-1-3 xl:w-1 ${
+                    } font-bold px-6 py-2 rounded-full text-center lg:w-1-3 xl:w-1 ${
                       scrolled
                         ? "hover:bg-primary hover:text-white"
                         : "hover:bg-primary hover:text-white"
