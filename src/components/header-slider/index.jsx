@@ -11,20 +11,33 @@ const HeaderSlider = () => {
     <div className="slider relative z-1">
       <Glider
         className="glider-container"
-        draggable={false}
-        hasDots
+        draggable={true}
+        hasDots={false}
         slidesToShow={1}
         slidesToScroll={1}
         scrollLock
+        dragVelocity={1}
       >
-        <div className="pb-4">
-          <img className="max-h-1 w-full object-cover" src={img1} alt="" />
+        <div className="max-h-1">
+          <img
+            className="xs:h-full xl:h-6-5 w-full object-cover"
+            src={img1}
+            alt=""
+          />
         </div>
-        <div className="pb-4">
-          <img className="max-h-1 w-full object-cover" src={img2} alt="" />
+        <div className="max-h-1">
+          <img
+            className="xs:h-full xl:h-6-5 w-full object-cover"
+            src={img2}
+            alt=""
+          />
         </div>
-        <div className="pb-4">
-          <img className="max-h-1 w-full object-cover" src={img3} alt="" />
+        <div className="max-h-1">
+          <img
+            className="xs:h-full xl:h-6-5 w-full object-cover"
+            src={img3}
+            alt=""
+          />
         </div>
       </Glider>
     </div>

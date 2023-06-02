@@ -19,7 +19,7 @@ const CategoryItem = ({ category }) => {
       >
         <button
           type="button"
-          className="px-6 py-2 bg-primary text-white font-bold text-3xl rounded-full cursor-pointer"
+          className="px-6 py-2 bg-primary text-white font-bold xs:text-base sm:text-xl lg:text-3xl rounded-full cursor-pointer"
         >
           Ver más
         </button>
@@ -33,9 +33,13 @@ const CategoryItem = ({ category }) => {
           alt={name}
         />
       </div>
-      <div className="categories-item__info absolute bottom-8 ml-8">
-        <h3 className="font-serif text-white text-4xl font-bold">{name}</h3>
-        <p className="text-white text-2xl">{description}</p>
+      <div className="categories-item__info absolute xs:bottom-4 xs:ml-4 lg:bottom-8 lg:ml-8">
+        <h3 className="font-serif text-white xs:text-sm sm:text-2xl lg:text-4xl font-bold">
+          {name}
+        </h3>
+        <p className="text-white xs:text-xs sm:text-base lg:text-2xl">
+          {description}
+        </p>
       </div>
     </div>
   )

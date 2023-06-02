@@ -1,13 +1,21 @@
-import { Footer, Header } from "./components"
+import { Footer, Header, NavNavigation } from "./components"
+import React, { useState } from "react"
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 
 import { Home } from "./screens"
-import React from "react"
 
 const App = () => {
+  const [showNavigator, setShowNavigator] = useState(false)
+  const handleNavigator = () => {
+    setShowNavigator(!showNavigator)
+  }
   return (
     <Router>
-      <Header />
+      <NavNavigation
+        handleNavigator={handleNavigator}
+        showNavigator={showNavigator}
+      />
+      <Header handleNavigator={handleNavigator} />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/about" element={<h1>AboutScreen</h1>} />
