@@ -1,13 +1,12 @@
 import "glider-js/glider.min.css"
 
-import React, { useCallback, useEffect, useRef } from "react"
-
 import Glider from "react-glider"
+import React from "react"
 import img1 from "../../assets/images/header/1.png"
 import img2 from "../../assets/images/header/2.png"
 import img3 from "../../assets/images/header/3.png"
 
-const Slider = () => {
+const HeaderSlider = () => {
   return (
     <div className="slider relative z-1">
       <Glider
@@ -32,4 +31,4 @@ const Slider = () => {
   )
 }
 
-export default Slider
+export default HeaderSlider

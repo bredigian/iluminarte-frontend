@@ -13,7 +13,7 @@ const Header = () => {
               ? "pending"
               : isActive
               ? "text-base bg-primary text-white font-bold px-6 py-2 rounded-full text-center w-1"
-              : "text-base text-white font-bold px-6 py-2 rounded-full text-center w-1"
+              : "text-base text-white font-bold px-6 py-2 rounded-full text-center w-1 hover:bg-primary hover:text-white"
           }
           to={"/"}
         >
@@ -25,7 +25,7 @@ const Header = () => {
               ? "pending"
               : isActive
               ? "text-base bg-primary text-white font-bold px-6 py-2 rounded-full text-center w-1"
-              : "text-base text-white font-bold px-6 py-2 rounded-full text-center w-1"
+              : "text-base text-white font-bold px-6 py-2 rounded-full text-center w-1 hover:bg-primary hover:text-white"
           }
           to={"/about"}
         >
@@ -37,7 +37,7 @@ const Header = () => {
               ? "pending"
               : isActive
               ? "text-base bg-primary text-white font-bold px-6 py-2 rounded-full text-center w-1"
-              : "text-base text-white font-bold px-6 py-2 rounded-full text-center w-1"
+              : "text-base text-white font-bold px-6 py-2 rounded-full text-center w-1 hover:bg-primary hover:text-white"
           }
           to={"/products"}
         >
@@ -49,7 +49,7 @@ const Header = () => {
               ? "pending"
               : isActive
               ? "text-base bg-primary text-white font-bold px-6 py-2 rounded-full text-center w-1"
-              : "text-base text-white font-bold px-6 py-2 rounded-full text-center w-1"
+              : "text-base text-white font-bold px-6 py-2 rounded-full text-center w-1 hover:bg-primary hover:text-white"
           }
           to={"/blog"}
         >
@@ -61,7 +61,7 @@ const Header = () => {
               ? "pending"
               : isActive
               ? "text-base bg-primary text-white font-bold px-6 py-2 rounded-full text-center w-1"
-              : "text-base text-white font-bold px-6 py-2 rounded-full text-center w-1"
+              : "text-base text-white font-bold px-6 py-2 rounded-full text-center w-1 hover:bg-primary hover:text-white"
           }
           to={"/contact"}
         >

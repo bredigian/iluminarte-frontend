@@ -5,7 +5,14 @@ export default {
     extend: {
       width: {
         1: "150px",
+        2: "200px",
+        3: "300px",
+        4: "400px",
+        5: "500px",
         logo: "300px",
+      },
+      maxWidth: {
+        4: "400px",
       },
       height: {
         1: "800px",
@@ -16,9 +23,13 @@ export default {
       translate: {
         1: "174px",
       },
+      scale: {
+        zoom: "1.2",
+      },
     },
     colors: {
       primary: "#503966",
+      primary_transparent: "#50396680",
       secondary: "#7a6b88",
       tertiary: "#ad6845",
       white: "#fef3e7",
