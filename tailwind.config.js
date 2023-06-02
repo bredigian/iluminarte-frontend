@@ -56,6 +56,9 @@ export default {
         xl: "100px",
         xxl: "200px",
       },
+      transitionProperty: {
+        bg: "background-color",
+      },
     },
     colors: {
       primary: "#503966",
