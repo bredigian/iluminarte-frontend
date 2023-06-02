@@ -9,6 +9,10 @@ export default {
         3: "300px",
         4: "400px",
         5: "500px",
+        6: "600px",
+        7: "700px",
+        7.5: "750px",
+        8: "800px",
         logo: "300px",
       },
       maxWidth: {
@@ -37,7 +41,7 @@ export default {
       white: "#fef3e7",
       light: "#e8cfc5",
       gray: "#e6e2fe",
-      dark: "#2d1f3a",
+      dark: "#292929",
     },
     fontFamily: {
       sans: ["Montserrat", "sans-serif"],
