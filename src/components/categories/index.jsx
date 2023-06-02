@@ -1,5 +1,3 @@
-import "react-slideshow-image/dist/styles.css"
-
 import Carousel from "nuka-carousel"
 import CategoryItem from "../category-item"
 import React from "react"

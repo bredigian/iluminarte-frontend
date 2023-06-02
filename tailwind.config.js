@@ -13,14 +13,17 @@ export default {
         7: "700px",
         7.5: "750px",
         8: "800px",
+        mid: "50%",
         logo: "300px",
       },
       maxWidth: {
         4: "400px",
+        5: "500px",
         7: "700px",
       },
       height: {
         1: "800px",
+        mid: "50%",
         about: "550px",
       },
       maxHeight: {
