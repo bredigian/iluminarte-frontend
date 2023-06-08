@@ -37,8 +37,10 @@ export default {
       },
       height: {
         1: "800px",
+        2: "400px",
         "6-5": "650px",
         mid: "50%",
+        product: "500px",
         about: "550px",
       },
       maxHeight: {
