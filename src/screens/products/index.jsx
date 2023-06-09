@@ -10,7 +10,7 @@ const Products = () => {
   }, [getProducts])
   return (
     <div className="bg-white p-8">
-      {products ? (
+      {products.lenght > 0 ? (
         products.map((product) => {
           return <ProductItem key={product.ID} data={product} />
         })

@@ -4,7 +4,7 @@ import fbIcon from "../../assets/images/icons/fb-icon.png"
 import igIcon from "../../assets/images/icons/ig-icon.png"
 import pIcon from "../../assets/images/icons/pinterest-icon.png"
 import { sections } from "../../constants"
-import svgLogo from "../../assets/images/logos/logo_blanco.svg"
+import svgLogo from "../../assets/images/logos/logo_cafe.svg"
 import wazeIcon from "../../assets/images/icons/waze-icon.png"
 
 const Footer = () => {
@@ -31,12 +31,12 @@ const Footer = () => {
     },
   ]
   return (
-    <footer className="footer bg-primary flex xs:flex-col xs:items-start xs:gap-8 lg:flex-row lg:items-center justify-evenly w-full xs:py-10 xs:px-4 xl:py-xxl">
-      <div className="footer-logo flex flex-col items-start gap-8 max-w-7">
-        <div className="footer-logo__img xs:w-3 xl:w-4-5">
+    <footer className="footer bg-white flex xs:flex-col xs:items-start xs:gap-8 lg:flex-row lg:items-center justify-evenly w-full xs:py-10 xs:px-4 xl:py-xl">
+      <div className="footer-logo flex flex-col items-start gap-8 max-w-4">
+        <div className="footer-logo__img xs:w-3 xl:w-3">
           <img className="w-full" src={svgLogo} alt="logo" />
         </div>
-        <p className="text-white xs:text-base xl:text-3xl">
+        <p className="text-dark xs:text-base xl:text-xl">
           Detrás de nuestras marcas, hay mucho más que velas, hay historia y
           tradición, y el deseo de iluminar cada momento de tu vida.
         </p>
@@ -46,7 +46,7 @@ const Footer = () => {
           return (
             <li
               key={section.id}
-              className="footer-sections__item text-white font-bold xs:text-base xl:text-2xl"
+              className="footer-sections__item text-dark hover:text-tertiary font-bold xs:text-base xl:text-lg"
             >
               <Link to={section.path}>{section.title}</Link>
             </li>
@@ -56,12 +56,12 @@ const Footer = () => {
       <aside className="footer-contact flex flex-col items-start gap-4">
         <div className="footer-contact__info flex flex-col items-start">
           <a
-            className="text-white xs:text-xs lg:text-base xl:text-2xl"
+            className="text-dark xs:text-xs lg:text-sm xl:text-lg font-bold"
             href="tel:+50222264600"
             target="_blank"
           >{`(Tel) +502 2226-46000`}</a>
           <a
-            className="text-white xs:text-xs lg:text-base xl:text-2xl"
+            className="text-dark xs:text-xs lg:text-sm xl:text-lg font-bold"
             href="https://www.waze.com/es-419/live-map/directions?to=ll.14.638746%2C-90.558522"
             target="_blank"
           >{`(Ubicación) 14 Calle 34-24 Zona 7`}</a>

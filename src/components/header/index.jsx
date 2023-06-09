@@ -27,7 +27,9 @@ const Header = ({ handleNavigator }) => {
             ? "sm:bg-white sm:fixed sm:ease-out sm:duration-150"
             : "sm:bg-transparent sm:fixed sm:ease-out sm:duration-150"
           : "sm:bg-white"
-      } z-10 header sm:flex items-center sm:justify-around w-full sm:px-4 sm:py-10 }`}
+      } z-10 header sm:flex items-center sm:justify-around w-full sm:px-4 ${
+        scrolled ? "sm:py-4" : "sm:py-10"
+      } }`}
     >
       <Bars3Icon
         onClick={handleNavigator}
@@ -43,29 +45,34 @@ const Header = ({ handleNavigator }) => {
           return (
             <NavLink
               key={section.id}
-              className={({ isActive, isPending }) =>
-                isPending
-                  ? "pending"
-                  : isActive
-                  ? `ease-in-out duration-150 sm:text-sm lg:text-base ${
-                      route === "/"
-                        ? scrolled
-                          ? "bg-primary text-white"
-                          : "bg-primary text-white"
-                        : "bg-primary text-white"
-                    }  font-bold px-6 py-2 rounded-full text-center lg:w-1-3 xl:w-1`
-                  : `ease-in-out duration-150 sm:text-sm lg:text-base ${
-                      route === "/"
-                        ? scrolled
-                          ? "bg-transparent text-primary"
-                          : "bg-transparent text-white"
-                        : ""
-                    } font-bold px-6 py-2 rounded-full text-center lg:w-1-3 xl:w-1 ${
-                      (route === "/") & scrolled
-                        ? "hover:bg-primary hover:text-white"
-                        : "hover:bg-primary hover:text-white"
-                    }`
-              }
+              className={`ease-in-out duration-150 sm:text-sm lg:text-base font-bold px-6 py-2 rounded-full text-center lg:w-1-3 xl:w-1 border-2 border-transparent ${
+                scrolled
+                  ? "text-primary hover:border-primary"
+                  : "text-white hover:bg-primary"
+              }`}
+              // className={({ isActive, isPending }) =>
+              //   isPending
+              //     ? "pending"
+              //     : isActive
+              //     ? `ease-in-out duration-150 sm:text-sm lg:text-base ${
+              //         route === "/"
+              //           ? scrolled
+              //             ? "bg-primary text-white"
+              //             : "bg-primary text-white"
+              //           : "bg-primary text-white"
+              //       }  font-bold px-6 py-2 rounded-full text-center lg:w-1-3 xl:w-1`
+              //     : `ease-in-out duration-150 sm:text-sm lg:text-base ${
+              //         route === "/"
+              //           ? scrolled
+              //             ? "bg-transparent text-primary"
+              //             : "bg-transparent text-white"
+              //           : ""
+              //       } font-bold px-6 py-2 rounded-full text-center lg:w-1-3 xl:w-1 ${
+              //         (route === "/") & scrolled
+              //           ? "hover:bg-primary hover:text-white"
+              //           : "hover:bg-primary hover:text-white"
+              //       }`
+              // }
               to={section.path}
             >
               {section.title}

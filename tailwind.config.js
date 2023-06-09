@@ -38,6 +38,7 @@ export default {
       height: {
         1: "800px",
         2: "400px",
+        5: "500px",
         "6-5": "650px",
         mid: "50%",
         product: "500px",
@@ -58,21 +59,35 @@ export default {
         xl: "100px",
         xxl: "200px",
       },
+      margin: {
+        xl: "100px",
+      },
       transitionProperty: {
         bg: "background-color",
       },
+      borderWidth: {
+        2: "2px",
+      },
+      borderColor: {
+        primary: "#503966",
+        white: "#fef3e7",
+        transparent: "transparent",
+      },
     },
     colors: {
+      fff: "#fff",
       primary: "#503966",
       primary_transparent: "#50396680",
-      secondary: "#7a6b88",
+      secondary: "#978ab8 ",
       "secondary-light": "#e6e2fe",
-      tertiary: "#ad6845",
-      white: "#fef3e7",
-      light: "#e8cfc5",
+      tertiary: "#a87061",
+      white: "#f4e5e1",
+      "white-transparent": "#f4e5e164",
+      light: "#fbf4f0",
       gray: "#e6e2fe",
       dark: "#292929",
       transparent: "transparent",
+      "white-light": "#efdbc761",
     },
     fontFamily: {
       sans: ["Montserrat", "sans-serif"],
