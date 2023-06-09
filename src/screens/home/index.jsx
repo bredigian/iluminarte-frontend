@@ -4,6 +4,7 @@ import {
   HeaderSlider,
   InfiniteSlider,
 } from "../../components"
+import { Background, Parallax } from "react-parallax"
 import React, { useEffect } from "react"
 import { motion, useAnimation } from "framer-motion"
 
@@ -34,8 +35,8 @@ const Home = () => {
       <section className="home-categories xs:p-4 sm:p-8">
         <Categories />
       </section>
-      <section className="home-about w-full grid place-items-center pb-8">
-        <div className="home_about__info absolute flex xs:flex-col xs:px-4 lg:flex-row items-center justify-center gap-8 w-full">
+      <Parallax bgImage={aboutImg} bgImageAlt="Nosotros" strength={500}>
+        <div className="home_about__info flex xs:flex-col xs:px-4 lg:p-[125px] lg:flex-row items-center justify-center gap-8 w-full">
           <div className="home_about__info-title flex flex-col items-start gap-4 max-w-7">
             <h1 className="text-white font-serif font-bold xs:text-3xl sm:text-4xl lg:text-6xl">
               Nuestra historia
@@ -51,14 +52,7 @@ const Home = () => {
             Conocer más
           </button>
         </div>
-        <div className="home-about__img h-2 w-full">
-          <img
-            className="h-full w-full object-cover"
-            src={aboutImg}
-            alt="Acerca de nosotros"
-          />
-        </div>
-      </section>
+      </Parallax>
       <section className="home-blog pt-8 mt-xl flex xs:flex-col xs:items-start xl:flex-row xxl:justify-center xxl:gap-8 h-6-5 w-full bg-white-transparent">
         <div className="home-blog__img w-4-5 -translate-y-28">
           <img className="w-full" src={blogImg} alt="Creacion de velas" />
