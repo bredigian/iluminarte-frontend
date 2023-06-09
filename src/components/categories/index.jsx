@@ -30,25 +30,27 @@ const Categories = () => {
     />
   )
   return (
-    <Carousel
-      slidesToShow={width >= widthData.xl ? 3 : 2}
-      slidesToScroll={width >= widthData.xl ? 2 : 1}
-      wrapAround
-      renderCenterLeftControls={
-        width >= widthData.xl ? customLeftButton : false
-      }
-      renderCenterRightControls={
-        width >= widthData.xl ? customRightButton : false
-      }
-      renderBottomCenterControls={false}
-      pauseOnHover={false}
-      speed={250}
-      className="lg:max-w-[1000px] mx-auto"
-    >
-      {categories.map((category) => (
-        <CategoryItem key={category.id} category={category} />
-      ))}
-    </Carousel>
+    <section className="home-categories xs:p-4 sm:p-8">
+      <Carousel
+        slidesToShow={width >= widthData.xl ? 3 : 2}
+        slidesToScroll={width >= widthData.xl ? 2 : 1}
+        wrapAround
+        renderCenterLeftControls={
+          width >= widthData.xl ? customLeftButton : false
+        }
+        renderCenterRightControls={
+          width >= widthData.xl ? customRightButton : false
+        }
+        renderBottomCenterControls={false}
+        pauseOnHover={false}
+        speed={250}
+        className="lg:max-w-[1000px] mx-auto"
+      >
+        {categories.map((category) => (
+          <CategoryItem key={category.id} category={category} />
+        ))}
+      </Carousel>
+    </section>
   )
 }
 
