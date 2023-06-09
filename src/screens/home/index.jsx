@@ -1,16 +1,19 @@
-import { AnimatedText, Categories, HeaderSlider } from "../../components"
-import React, { useEffect, useState } from "react"
+import {
+  AnimatedText,
+  Categories,
+  HeaderSlider,
+  InfiniteSlider,
+} from "../../components"
+import React, { useEffect } from "react"
 import { motion, useAnimation } from "framer-motion"
 
 import aboutImg from "../../assets/images/about/nosotros.png"
 import blogImg from "../../assets/images/blog/fabricadasVelas.png"
 import monthImg1 from "../../assets/images/month/velaMonthBackground.png"
 import monthImg2 from "../../assets/images/month/velaMonthProduct.png"
-import productsImg from "../../assets/images/products/homeProducts.png"
 import { useInView } from "react-intersection-observer"
 
 const Home = () => {
-  const [isInView, setIsInView] = useState(false)
   const controls = useAnimation()
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -19,16 +22,14 @@ const Home = () => {
 
   useEffect(() => {
     if (inView) {
-      setIsInView(true)
       controls.start("visible")
     }
   }, [controls, inView])
-  const [textAreVisible, setTextAreVisible] = useState(true)
   return (
     <main className="home flex flex-col w-full gap-20">
       <section className="home-slider">
         <HeaderSlider />
-        <AnimatedText textAreVisible={textAreVisible} />
+        <AnimatedText />
       </section>
       <section className="home-categories xs:p-4 sm:p-8">
         <Categories />
@@ -102,9 +103,7 @@ const Home = () => {
           />
         </div>
         <div
-          className={`home-month__product xs:p-4 flex flex-col items-center gap-4 animated-text ${
-            textAreVisible ? "fade-in" : "fade-out"
-          }`}
+          className={`home-month__product xs:p-4 flex flex-col items-center gap-4 animated-text fade-in`}
         >
           <h1 className="font-serif text-dark xs:text-xl sm:text-3xl xl:text-5xl font-bold">
             Vela del mes
@@ -131,13 +130,11 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="home-products flex flex-col items-center gap-8 w-full xs:px-8 py-8 bg-light">
-        <h1 className="font-serif text-dark xs:text-2xl sm:text-5xl lg:text-7xl font-bold">
+      <section className="home-products flex flex-col items-center gap-8 w-full py-8 bg-light">
+        <h1 className="font-serif text-dark xs:text-2xl sm:text-4xl lg:text-6xl font-bold">
           Nuestros productos
         </h1>
-        <div className="home-products__img w-full">
-          <img className="w-full" src={productsImg} alt="" />
-        </div>
+        <InfiniteSlider />
         <button
           type="button"
           className="text-fff font-bold xs:text-sm sm:text-base lg:text-2xl bg-tertiary py-2 xs:px-10 px-16 rounded-full"

@@ -19,7 +19,7 @@ const CategoryItem = ({ category }) => {
       >
         <button
           type="button"
-          className="px-6 py-2 bg-primary text-fff font-bold xs:text-base sm:text-lg lg:text-2xl rounded-full cursor-pointer"
+          className="px-6 py-2 bg-primary text-fff font-bold xs:text-base sm:text-lg lg:text-2xl rounded-full cursor-pointer select-none"
         >
           Ver más
         </button>
