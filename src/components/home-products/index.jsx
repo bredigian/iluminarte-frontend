@@ -10,7 +10,7 @@ const HomeProducts = () => {
       <InfiniteSlider />
       <button
         type="button"
-        className="text-fff font-bold xs:text-sm sm:text-base lg:text-2xl bg-tertiary py-2 xs:px-10 px-16 rounded-full"
+        className="text-white font-bold xs:text-sm sm:text-base lg:text-2xl bg-tertiary py-2 xs:px-10 px-16 rounded-full"
       >
         Ver más productos
       </button>

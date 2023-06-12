@@ -9,7 +9,7 @@ const Products = () => {
     getProducts()
   }, [getProducts])
   return (
-    <div className="products flex items-center gap-4 w-full bg-fff p-8">
+    <div className="products flex items-center gap-4 w-full bg-white p-8">
       {products.length > 0 ? (
         products.map((product) => {
           return <ProductItem key={product.ID} data={product} />

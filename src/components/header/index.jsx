@@ -47,7 +47,7 @@ const Header = ({ handleNavigator }) => {
                 route === "/"
                   ? scrolled
                     ? "text-primary hover:border-primary"
-                    : "text-fff hover:bg-primary"
+                    : "text-white hover:bg-primary"
                   : "text-primary hover:border-primary"
               }`}
               to={section.path}

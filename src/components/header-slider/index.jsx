@@ -1,8 +1,5 @@
-import "glider-js/glider.min.css"
-
-import React, { useEffect } from "react"
-
-import Glider from "react-glider"
+import Carousel from "nuka-carousel"
+import React from "react"
 import img1 from "../../assets/images/header/1.png"
 import img2 from "../../assets/images/header/2.png"
 import img3 from "../../assets/images/header/3.png"
@@ -12,23 +9,38 @@ import img6 from "../../assets/images/header/6.png"
 
 const HeaderSlider = () => {
   const images = [img1, img2, img3, img4, img5, img6]
-  const dots = document.getElementsByClassName("glider-dots")
-  useEffect(() => {
-    dots[0].style.transform = "translateY(-50px)"
-    dots[0].classList.add("absolute")
-    dots[0].classList.add("w-full")
-  }, [])
+  const renderBottomCenterControls = ({
+    currentSlide,
+    slideCount,
+    goToSlide,
+  }) => {
+    const circles = Array.from({ length: slideCount }, (_, index) => (
+      <div
+        key={index}
+        className={`w-[20px] h-[20px] rounded-full cursor-pointer ${
+          index === currentSlide ? "bg-primary" : "bg-[#ffffff65]"
+        }`}
+        onClick={() => goToSlide(index)}
+      />
+    ))
+
+    return (
+      <div className="custom-bottom-controls flex items-center gap-2 mb-6">
+        {circles}
+      </div>
+    )
+  }
   return (
     <div className="slider relative z-1">
-      <Glider
+      <Carousel
         className="glider-container"
-        draggable={true}
-        hasDots={true}
-        slidesToShow={1}
-        slidesToScroll={1}
-        scrollLock
-        dragVelocity={1}
-        dots={null}
+        renderCenterLeftControls={false}
+        renderCenterRightControls={false}
+        renderBottomCenterControls={renderBottomCenterControls}
+        wrapAround
+        autoplay
+        autoplayInterval={10000}
+        pauseOnHover={false}
       >
         {images.map((image, index) => {
           return (
@@ -41,7 +53,7 @@ const HeaderSlider = () => {
             </div>
           )
         })}
-      </Glider>
+      </Carousel>
     </div>
   )
 }

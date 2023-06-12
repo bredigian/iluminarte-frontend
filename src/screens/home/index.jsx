@@ -31,7 +31,7 @@ const Home = () => {
           </div>
           <button
             type="button"
-            className="bg-secondary xs:text-lg sm:text-1xl lg:text-3xl text-white font-bold px-10 py-2 rounded-full"
+            className="bg-secondary xs:text-lg sm:text-1xl lg:text-2xl text-white font-bold px-10 py-2 rounded-full"
           >
             Conocer más
           </button>
