@@ -9,7 +9,6 @@
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
-  "homepage": "http://azulmarinogt.com/",
   "dependencies": {
     "@fontsource-variable/roboto-slab": "^5.0.2",
     "@fontsource/montserrat": "^5.0.2",
