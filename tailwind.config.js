@@ -75,6 +75,7 @@ export default {
       },
       backgroundImage: {
         "about-section": "url('/src/assets/images/about/logo-fondo.png')",
+        "contact-section": "url('/src/assets/images/contact/fondo.png')",
       },
     },
     colors: {
@@ -91,6 +92,7 @@ export default {
       gray: "#e6e2fe",
       "gray-light": "#c5c5c5",
       dark: "#292929",
+      "dark-transparent": "#29292995",
       transparent: "transparent",
       "white-light": "#efdbc761",
     },
