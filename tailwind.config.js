@@ -73,6 +73,9 @@ export default {
         white: "#fef3e7",
         transparent: "transparent",
       },
+      backgroundImage: {
+        "about-section": "url('/src/assets/images/about/logo-fondo.png')",
+      },
     },
     colors: {
       primary: "#503966",
@@ -80,10 +83,13 @@ export default {
       secondary: "#978ab8 ",
       "secondary-light": "#e6e2fe",
       tertiary: "#a87061",
+      "tertiary-light": "#eacdc5",
+      "tertiary-dark": "#935c4e",
       white: "#ffffff",
       "white-transparent": "#f4e5e164",
       light: "#fbf4f0",
       gray: "#e6e2fe",
+      "gray-light": "#c5c5c5",
       dark: "#292929",
       transparent: "transparent",
       "white-light": "#efdbc761",

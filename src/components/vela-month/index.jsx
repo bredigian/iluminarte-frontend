@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 
-import monthImg1 from "../../assets/images/month/velaMonthBackground.png"
-import monthImg2 from "../../assets/images/month/velaMonthProduct.png"
+import monthImg1 from "../../assets/images/home/month/velaMonthBackground.png"
+import monthImg2 from "../../assets/images/home/month/velaMonthProduct.png"
 import { motion } from "framer-motion"
 import { useAnimation } from "framer-motion"
 import { useInView } from "react-intersection-observer"

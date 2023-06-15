@@ -9,7 +9,7 @@ import {
 
 import { Parallax } from "react-parallax"
 import React from "react"
-import aboutImg from "../../assets/images/about/nosotros.png"
+import aboutImg from "../../assets/images/home/about/nosotros.png"
 
 const Home = () => {
   return (

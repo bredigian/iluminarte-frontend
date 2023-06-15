@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick-theme.css"
 
 import React from "react"
 import Slider from "react-slick"
-import productsImg from "../../assets/images/products/homeProducts.png"
+import productsImg from "../../assets/images/home/products/homeProducts.png"
 
 const InfiniteSlider = () => {
   const images = [productsImg, productsImg]

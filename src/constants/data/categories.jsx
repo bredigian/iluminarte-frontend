@@ -1,7 +1,7 @@
-import decorativas from "../../assets/images/categories/decorativas.png"
-import otras from "../../assets/images/categories/otras.png"
-import paraRegalar from "../../assets/images/categories/paraRegalar.png"
-import religiosas from "../../assets/images/categories/religiosas.png"
+import decorativas from "../../assets/images/home/categories/decorativas.png"
+import otras from "../../assets/images/home/categories/otras.png"
+import paraRegalar from "../../assets/images/home/categories/paraRegalar.png"
+import religiosas from "../../assets/images/home/categories/religiosas.png"
 
 export const categories = [
   {

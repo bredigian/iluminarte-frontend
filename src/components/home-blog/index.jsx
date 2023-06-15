@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { motion, useAnimation } from "framer-motion"
 
-import blogImg from "../../assets/images/blog/fabricadasVelas.png"
+import blogImg from "../../assets/images/home/blog/fabricadasVelas.png"
 import { useInView } from "react-intersection-observer"
 
 const HomeBlog = () => {
