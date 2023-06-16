@@ -9,6 +9,7 @@ export default {
         lg: "970px",
         xl: "1200px",
         xxl: "1400px",
+        "2xxl": "1600px",
       },
       width: {
         "0-2": "20px",

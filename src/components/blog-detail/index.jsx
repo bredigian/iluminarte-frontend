@@ -21,7 +21,7 @@ const BlogDetail = ({
           <p className="text-sm">Regresar</p>
         </button>
         <h1 className="font-bold text-3xl">{data?.TITULO}</h1>
-        <p className="text-[10px]">{data?.DESCRIPCION}</p>
+        <p className="sm:text-[10px] 2xxl:text-xs">{data?.DESCRIPCION}</p>
         <div className="flex items-end justify-between flex-grow w-full">
           {slideIndex > 0 && (
             <button
@@ -49,7 +49,7 @@ const BlogDetail = ({
         <img
           className="w-full h-full object-cover object-center"
           src={data?.IMG_DETAIL}
-          alt={`Imagen de posteo ${IMG_DETAIL}`}
+          alt={`Imagen de posteo ${data?.IMG_DETAIL}`}
         />
       </div>
     </div>
