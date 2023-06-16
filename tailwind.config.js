@@ -70,21 +70,26 @@ export default {
       },
       borderColor: {
         primary: "#503966",
+        secondary: "#978ab8",
         white: "#fef3e7",
         transparent: "transparent",
       },
       backgroundImage: {
         "about-section": "url('/src/assets/images/about/logo-fondo.png')",
         "contact-section": "url('/src/assets/images/contact/fondo.png')",
+        "products-section":
+          "url('/src/assets/images/products/header/fondo.png')",
       },
     },
     colors: {
       primary: "#503966",
       primary_transparent: "#50396680",
-      secondary: "#978ab8 ",
+      secondary: "#978ab8",
       "secondary-light": "#e6e2fe",
       tertiary: "#a87061",
+      "tertiary-lighter": "#faf2ee",
       "tertiary-light": "#eacdc5",
+      "tertiary-light-transparent": "#eacdc559",
       "tertiary-dark": "#935c4e",
       white: "#ffffff",
       "white-transparent": "#f4e5e164",

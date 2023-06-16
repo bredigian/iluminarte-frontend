@@ -1,40 +1,43 @@
 import React, { useState } from "react"
 
+import Modal from "../modal"
+import ProductDetail from "../product-detail"
+
 const ProductItem = ({ data }) => {
-  const [selectedImage, setSelectedImage] = useState(data.IMAGENES[0])
-  const handleSelectedImage = (image) => {
-    setSelectedImage(image)
+  const [isHovered, setIsHovered] = useState(false)
+  const handleHover = () => {
+    setIsHovered(!isHovered)
   }
+  const [showModal, setShowModal] = useState(false)
+
+  const openModal = () => {
+    setShowModal(true)
+  }
+
+  const closeModal = () => {
+    setShowModal(false)
+  }
+
   return (
-    <div className="item flex flex-col items-start gap-4 w-3 h-5 justify-between border-2 border-tertiary p-8">
-      <h3 className="font-serif text-dark text-center font-bold  w-full">
-        {data.NOMBRE}
-      </h3>
-      <img
-        style={{ backgroundColor: "transparent" }}
-        src={selectedImage.url}
-        alt={`Vela de color ${selectedImage.color}, imagen ${selectedImage.url}`}
-      />
-      <div className="item-colors flex items-center flex-wrap gap-4">
-        {data.IMAGENES.map((image, index) => {
-          return (
-            <div
-              key={index}
-              onClick={() => handleSelectedImage(image)}
-              className={
-                "w-[20px] h-[20px] rounded-full border-[1px] border-dark cursor-pointer"
-              }
-              style={
-                image.color !== "multicolor"
-                  ? { backgroundColor: image.color }
-                  : {
-                      backgroundColor: "black",
-                    }
-              }
-            ></div>
-          )
-        })}
+    <div className="product-item relative flex flex-col items-center gap-4 flex-wrap h-[420px]">
+      <div className="product-item__img w-3">
+        <img
+          className="w-full"
+          src={data?.IMAGENES[0]?.url}
+          alt={`Imagen de la vela ${data?.IMAGENES[0]?.color}`}
+        />
       </div>
+      <h2 className="product-item__name text-dark text-lg font-bold max-w-xs text-center">
+        {data?.NOMBRE}
+      </h2>
+      <button
+        type="button"
+        className="z-10 absolute w-full h-full bg-transparent cursor-pointer hover:bg-tertiary-light-transparent duration-150 ease-in-out"
+        onClick={openModal}
+      ></button>
+      <Modal show={showModal}>
+        <ProductDetail data={data} closeModal={closeModal} />
+      </Modal>
     </div>
   )
 }
