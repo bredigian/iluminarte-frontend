@@ -1,6 +1,6 @@
 import React from "react"
 
-const Modal = ({ children, show }) => {
+const Modal = ({ children, show, minWidth }) => {
   return (
     <div
       className={
@@ -17,7 +17,7 @@ const Modal = ({ children, show }) => {
         <div
           className={
             show
-              ? "modal-content absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4 overflow-auto rounded-3xl h-[600px] min-w-[600px]"
+              ? `modal-content absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4 overflow-auto rounded-3xl ${minWidth}`
               : "hidden"
           }
         >

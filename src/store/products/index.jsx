@@ -1,11 +1,11 @@
+import { API_URL } from "../../constants"
 import { create } from "zustand"
 
-const url = "http://localhost:3001"
 export const useProductsStore = create((set) => ({
   products: [],
 
   getProducts: async () => {
-    const result = await fetch(`${url}/products`, {
+    const result = await fetch(`${API_URL}/products`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const useProductsStore = create((set) => ({
   categories: [],
 
   getCategories: async () => {
-    const result = await fetch(`${url}/categories`, {
+    const result = await fetch(`${API_URL}/categories`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

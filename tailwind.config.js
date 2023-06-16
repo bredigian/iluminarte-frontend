@@ -79,6 +79,10 @@ export default {
         "contact-section": "url('/src/assets/images/contact/fondo.png')",
         "products-section":
           "url('/src/assets/images/products/header/fondo.png')",
+        "blog-section": "url('/src/assets/images/blog/fondo.png')",
+      },
+      fontSize: {
+        "2xs": "0.5rem",
       },
     },
     colors: {
