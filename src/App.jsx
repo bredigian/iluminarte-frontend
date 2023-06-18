@@ -1,5 +1,5 @@
 import { About, Blog, Contact, Home, Products } from "./screens"
-import { Footer, Header, NavNavigation } from "./components"
+import { Footer, Header, NavNavigation, RouteNotFound } from "./components"
 import React, { useState } from "react"
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 
@@ -21,6 +21,7 @@ const App = () => {
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/blog" element={<Blog />} />
         <Route exact path="/contact" element={<Contact />} />
+        <Route path="*" element={<RouteNotFound />} />
       </Routes>
       <Footer />
     </Router>
