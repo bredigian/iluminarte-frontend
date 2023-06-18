@@ -10,6 +10,7 @@ const BlogDetail = ({
   slideIndex,
   slideMax,
 }) => {
+  const DESCRIPCION_FORMATED = data?.DESCRIPCION.replace(/\\n/g, "\n")
   return (
     <div className="blog-container__item-detail flex w-full h-full bg-white">
       <div className="information w-[60%] h-full flex flex-col items-start gap-4 py-8 px-16">
@@ -21,7 +22,7 @@ const BlogDetail = ({
           <p className="text-sm">Regresar</p>
         </button>
         <h1 className="font-bold text-3xl">{data?.TITULO}</h1>
-        <p className="sm:text-[10px] 2xxl:text-xs">{data?.DESCRIPCION}</p>
+        <p className="sm:text-[9px] 2xxl:text-xs">{DESCRIPCION_FORMATED}</p>
         <div className="flex items-end justify-between flex-grow w-full">
           {slideIndex > 0 && (
             <button

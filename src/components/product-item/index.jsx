@@ -19,7 +19,7 @@ const ProductItem = ({ data }) => {
   }
 
   return (
-    <div className="product-item relative flex flex-col items-center gap-4 flex-wrap h-[420px]">
+    <div className="product-item relative flex flex-col items-center gap-4 flex-wrap h-[420px] rounded-xl">
       <div className="product-item__img w-3">
         <img
           className="w-full"
@@ -27,12 +27,12 @@ const ProductItem = ({ data }) => {
           alt={`Imagen de la vela ${data?.IMAGENES[0]?.color}`}
         />
       </div>
-      <h2 className="product-item__name text-dark text-lg font-bold max-w-xs text-center">
+      <h2 className="product-item__name text-dark text-lg font-bold max-w-xs text-center px-1">
         {data?.NOMBRE}
       </h2>
       <button
         type="button"
-        className="z-10 absolute w-full h-full bg-transparent cursor-pointer hover:bg-tertiary-light-transparent duration-150 ease-in-out"
+        className="z-9 absolute w-full h-full bg-transparent cursor-pointer rounded-xl hover:bg-tertiary-light-transparent duration-150 ease-in-out"
         onClick={openModal}
       ></button>
       <Modal show={showModal}>

@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 
+import { CheckIcon } from "@heroicons/react/24/solid"
 import { XMarkIcon } from "@heroicons/react/24/outline"
 
 const ProductDetail = ({ data, closeModal }) => {
@@ -80,7 +81,8 @@ const ProductDetail = ({ data, closeModal }) => {
                     image.color !== "multicolor"
                       ? { backgroundColor: image.color }
                       : {
-                          backgroundColor: "black",
+                          background:
+                            "linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,146,0,1) 12%, rgba(215,255,0,1) 24%, rgba(0,255,239,1) 36%, rgba(0,229,255,1) 52%, rgba(64,0,255,1) 68%, rgba(255,0,147,1) 85%, rgba(255,0,0,1) 100%)",
                         }
                   }
                 ></div>
@@ -91,47 +93,55 @@ const ProductDetail = ({ data, closeModal }) => {
         <div className="flex flex-col items-start gap-2">
           <h2>Mecha</h2>
           <div className="flex items-center gap-4">
-            <span
-              className={`w-[100px] ${
+            <div
+              className={`w-[105px] ${
                 data.MECHA_ECOLOGICA === 1
                   ? "bg-tertiary text-white"
                   : "bg-gray-light text-dark"
-              } text-center rounded-full text-xs px-3 py-1 font-bold`}
+              } flex items-center justify-between rounded-full text-xs px-3 py-1 font-bold`}
             >
-              Ecólogica
-            </span>
-            <span
-              className={`w-[100px] ${
+              <p className="flex-grow text-center">Ecólogica</p>
+              {data.MECHA_ECOLOGICA === 1 && (
+                <CheckIcon className="w-[15px] h-[15px]" />
+              )}
+            </div>
+            <div
+              className={`w-[105px] ${
                 data?.MECHA_LED === 1
                   ? "bg-tertiary text-white"
                   : "bg-gray-light text-dark"
-              } text-center rounded-full text-xs px-3 py-1 font-bold`}
+              } flex items-center justify-between rounded-full text-xs px-3 py-1 font-bold`}
             >
-              LED
-            </span>
+              <p className="flex-grow text-center">LED</p>
+              {data.MECHA_LED === 1 && (
+                <CheckIcon className="w-[15px] h-[15px]" />
+              )}
+            </div>
           </div>
         </div>
         <div className="flex flex-col items-start gap-2">
           <h2>Aroma</h2>
           <div className="flex items-center gap-4">
-            <span
-              className={`w-[100px] ${
+            <div
+              className={`w-[105px] ${
                 data.AROMA > 0
                   ? "bg-tertiary text-white"
                   : "bg-gray-light text-dark"
-              } text-center rounded-full text-xs px-3 py-1 font-bold`}
+              } flex items-center justify-between rounded-full text-xs px-3 py-1 font-bold`}
             >
-              Con aroma
-            </span>
-            <span
-              className={`w-[100px] ${
+              <p className="flex-grow text-center">Con aroma</p>
+              {data.AROMA > 0 && <CheckIcon className="w-[15px] h-[15px]" />}
+            </div>
+            <div
+              className={`w-[105px] ${
                 data.AROMA === 0
                   ? "bg-tertiary text-white"
                   : "bg-gray-light text-dark"
-              } text-center rounded-full text-xs px-3 py-1 font-bold`}
+              } flex items-center justify-between rounded-full text-xs px-3 py-1 font-bold`}
             >
-              Sin aroma
-            </span>
+              <p className="flex-grow text-center">Sin aroma</p>
+              {data.AROMA === 0 && <CheckIcon className="w-[15px] h-[15px]" />}
+            </div>
           </div>
         </div>
       </div>

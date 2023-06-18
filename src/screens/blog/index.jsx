@@ -2,6 +2,7 @@ import { BlogDetail, BlogItem, Modal } from "../../components"
 import React, { useState } from "react"
 
 import Carousel from "nuka-carousel"
+import { Pulsar } from "@uiball/loaders"
 import { useBlogStore } from "../../store"
 import { useEffect } from "react"
 
@@ -54,11 +55,7 @@ const Blog = () => {
             )
           })
         ) : (
-          <div className="w-full h-2 grid place-items-center">
-            <h1 className="font-serif text-dark text-5xl">
-              No se encontraron posteos.
-            </h1>
-          </div>
+          <Pulsar color="#292929" size={50} />
         )}
       </div>
       <Modal show={modalIsOpen} minWidth={"min-w-[600px]"}>
