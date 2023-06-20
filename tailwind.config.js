@@ -98,6 +98,7 @@ export default {
       "tertiary-dark": "#935c4e",
       white: "#ffffff",
       "white-transparent": "#f4e5e164",
+      "white-light": "#f4e5e1",
       light: "#fbf4f0",
       gray: "#e6e2fe",
       "gray-light": "#c5c5c5",

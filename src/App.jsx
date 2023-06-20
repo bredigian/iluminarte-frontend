@@ -1,6 +1,8 @@
 import {
   About,
   Administration,
+  AdministrationBlog,
+  AdministrationProducts,
   Auth,
   Blog,
   Contact,
@@ -45,6 +47,24 @@ const App = () => {
           element={
             <RoutePrivate>
               <Administration />
+            </RoutePrivate>
+          }
+        />
+        <Route
+          exact
+          path="/administration/products"
+          element={
+            <RoutePrivate>
+              <AdministrationProducts />
+            </RoutePrivate>
+          }
+        />
+        <Route
+          exact
+          path="/administration/blog"
+          element={
+            <RoutePrivate>
+              <AdministrationBlog />
             </RoutePrivate>
           }
         />

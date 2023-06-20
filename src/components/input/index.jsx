@@ -1,10 +1,12 @@
 import React from "react"
 
-const Input = ({ data, styles }) => {
+const Input = ({ data, styles, value, onChangeValue }) => {
   if (data.type !== "textarea") {
     return (
       <input
         key={data.id}
+        onChange={onChangeValue && onChangeValue}
+        value={value && value}
         autoComplete={(data.type === "email") & "true"}
         className={`bg-[#FFFFFF65] px-4 py-2 text-base ${styles} rounded-full outline-none ${
           data.type === "tel"
