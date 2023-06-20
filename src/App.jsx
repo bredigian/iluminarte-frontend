@@ -1,7 +1,23 @@
-import { About, Blog, Contact, Home, Products } from "./screens"
-import { Footer, Header, NavNavigation, RouteNotFound } from "./components"
+import {
+  About,
+  Administration,
+  Auth,
+  Blog,
+  Contact,
+  Home,
+  Products,
+} from "./screens"
+import {
+  Footer,
+  Header,
+  NavNavigation,
+  RouteNotFound,
+  RoutePrivate,
+} from "./components"
 import React, { useState } from "react"
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
+
+import { Toaster } from "sonner"
 
 const App = () => {
   const [showNavigator, setShowNavigator] = useState(false)
@@ -10,6 +26,7 @@ const App = () => {
   }
   return (
     <Router>
+      <Toaster />
       <NavNavigation
         handleNavigator={handleNavigator}
         showNavigator={showNavigator}
@@ -21,6 +38,16 @@ const App = () => {
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/blog" element={<Blog />} />
         <Route exact path="/contact" element={<Contact />} />
+        <Route exact path="/authentication" element={<Auth />} />
+        <Route
+          exact
+          path="/administration"
+          element={
+            <RoutePrivate>
+              <Administration />
+            </RoutePrivate>
+          }
+        />
         <Route path="*" element={<RouteNotFound />} />
       </Routes>
       <Footer />
