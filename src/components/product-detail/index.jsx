@@ -70,6 +70,7 @@ const ProductDetail = ({ data, closeModal }) => {
           <h2 className="font-bold text-xs text-dark">Colores</h2>
           <div className="item-colors__container flex items-center flew-wrap gap-2">
             {data.IMAGENES.map((image, index) => {
+              const color = Object.values(image)[0]
               return (
                 <div
                   key={index}
@@ -78,8 +79,8 @@ const ProductDetail = ({ data, closeModal }) => {
                     "w-[20px] h-[20px] rounded-full border-2 border-[#00000075] cursor-pointer"
                   }
                   style={
-                    image.color !== "multicolor"
-                      ? { backgroundColor: image.color }
+                    color !== "multicolor"
+                      ? { backgroundColor: color }
                       : {
                           background:
                             "linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,146,0,1) 12%, rgba(215,255,0,1) 24%, rgba(0,255,239,1) 36%, rgba(0,229,255,1) 52%, rgba(64,0,255,1) 68%, rgba(255,0,147,1) 85%, rgba(255,0,0,1) 100%)",

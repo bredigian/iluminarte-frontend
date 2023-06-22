@@ -56,7 +56,7 @@ const Products = () => {
           <Pulsar color="#292929" size={50} />
         ) : filteredProducts.length > 0 ? (
           filteredProducts.map((product) => {
-            return <ProductItem key={product.ID} data={product} />
+            return <ProductItem key={product.CODIGO} data={product} />
           })
         ) : (
           <p className="font-serif text-4xl text-dark">

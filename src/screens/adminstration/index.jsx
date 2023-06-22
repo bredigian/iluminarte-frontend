@@ -66,7 +66,10 @@ const Administration = () => {
       <div className="administration-items flex items-start justify-center gap-12 p-8">
         {administrationItems.map((item) => {
           return (
-            <div className="administration-items__item relative flex items-center justify-center rounded-[33px] overflow-hidden">
+            <div
+              key={`${item.path}-${item.name}`}
+              className="administration-items__item relative flex items-center justify-center rounded-[33px] overflow-hidden"
+            >
               <Link
                 to={item?.path}
                 onClick={null}

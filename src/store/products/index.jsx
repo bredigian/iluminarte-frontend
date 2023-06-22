@@ -1,7 +1,7 @@
 import { API_URL } from "../../constants"
 import { create } from "zustand"
 
-export const useProductsStore = create((set) => ({
+export const useProductsStore = create((set, get) => ({
   products: [],
 
   getProducts: async () => {
@@ -16,6 +16,25 @@ export const useProductsStore = create((set) => ({
     } else {
       const data = await result.json()
       set({ products: data })
+    }
+  },
+
+  addProduct: async (product) => {
+    const formData = new FormData()
+    formData.append("product", JSON.stringify(product))
+    product.imagenes.forEach((imagen, index) => {
+      formData.append(`images`, imagen)
+    })
+    const result = await fetch(`${API_URL}/products`, {
+      method: "POST",
+      body: formData,
+    })
+    if (!result.ok) {
+      const { message } = await result.json()
+      throw new Error(message)
+    } else {
+      await result.json()
+      get().getProducts()
     }
   },
 

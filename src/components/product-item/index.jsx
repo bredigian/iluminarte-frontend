@@ -7,7 +7,6 @@ import { XMarkIcon } from "@heroicons/react/24/solid"
 
 const ProductItem = ({ data, edit }) => {
   const [showModal, setShowModal] = useState(false)
-
   const [modalConfirmFavourite, setModalConfirmFavourite] = useState(false)
 
   const [modalConfirmDelete, setModalConfirmDelete] = useState(false)
@@ -29,7 +28,7 @@ const ProductItem = ({ data, edit }) => {
   }
 
   return (
-    <div className="product-item relative flex flex-col items-center gap-4 flex-wrap h-[420px] rounded-xl">
+    <div className="product-item relative flex flex-col items-center gap-4 flex-wrap h-[420px] w-[300px] rounded-xl">
       <div className="product-item__img w-3">
         <img
           className="w-full"

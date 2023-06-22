@@ -15,16 +15,16 @@ export const useUserStore = create((set, get) => ({
         },
         body: JSON.stringify({ token }),
       })
-      if (!result.ok) {
-        throw new Error("Invalid token")
-      }
-      const data = await result?.json()
-      if (data.tokenIsValid) {
-        const userData = JSON.parse(localStorage.getItem("user"))
-        set({ user: userData, token: token })
-      } else {
+      try {
+        const data = await result?.json()
+        if (data.tokenIsValid) {
+          const userData = JSON.parse(localStorage.getItem("user"))
+          set({ user: userData, token: token })
+        }
+      } catch (error) {
         localStorage.setItem("user", null)
         localStorage.setItem("token", null)
+        throw new Error("Invalid token")
       }
     }
   },
