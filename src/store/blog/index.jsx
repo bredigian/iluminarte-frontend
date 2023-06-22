@@ -1,7 +1,7 @@
 import { API_URL } from "../../constants"
 import { create } from "zustand"
 
-export const useBlogStore = create((set) => ({
+export const useBlogStore = create((set, get) => ({
   blog: [],
 
   getBlog: async () => {
@@ -15,8 +15,26 @@ export const useBlogStore = create((set) => ({
       throw new Error("Error fetching blog")
     } else {
       const data = await response.json()
-      console.log(data)
       set({ blog: data })
+    }
+  },
+
+  addPost: async (post) => {
+    const formData = new FormData()
+    formData.append("post", JSON.stringify(post))
+    post.imagenes.forEach((imagen, index) => {
+      formData.append(`images`, imagen)
+    })
+    const response = await fetch(`${API_URL}/blog`, {
+      method: "POST",
+      body: formData,
+    })
+    if (!response.ok) {
+      const { message } = await response.json()
+      throw new Error(message)
+    } else {
+      await response.json()
+      get().getBlog()
     }
   },
 }))
