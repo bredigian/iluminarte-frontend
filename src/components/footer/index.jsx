@@ -3,8 +3,10 @@ import React from "react"
 import { sections } from "../../constants"
 import { social } from "../../constants"
 import svgLogo from "../../assets/images/logos/logo_cafe.svg"
+import { useUserStore } from "../../store"
 
 const Footer = () => {
+  const { token } = useUserStore()
   return (
     <footer className="footer bg-[#f4e5e1] flex xs:flex-col xs:items-start xs:gap-8 lg:flex-row lg:items-center justify-evenly w-full xs:py-10 xs:px-4 xl:py-xl">
       <div className="footer-logo flex flex-col items-start gap-8 max-w-4">
@@ -27,6 +29,19 @@ const Footer = () => {
             </li>
           )
         })}
+        {token && (
+          <li>
+            <Link
+              key={"adminKey"}
+              className={
+                "footer-sections__item text-dark hover:text-tertiary font-bold xs:text-base xl:text-lg"
+              }
+              to={"/administration"}
+            >
+              Administracion
+            </Link>
+          </li>
+        )}
       </ul>
       <aside className="footer-contact flex flex-col items-start gap-4">
         <div className="footer-contact__info flex flex-col items-start">

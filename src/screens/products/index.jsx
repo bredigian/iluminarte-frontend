@@ -51,7 +51,7 @@ const Products = () => {
           )
         })}
       </div>
-      <div className="products-container flex items-center gap-4 flex-wrap p-8">
+      <div className="products-container flex items-center justify-center gap-4 flex-wrap p-8">
         {filteredProducts.length === 0 && categories.length === 0 ? (
           <Pulsar color="#292929" size={50} />
         ) : filteredProducts.length > 0 ? (

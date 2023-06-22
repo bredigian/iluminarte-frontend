@@ -24,7 +24,7 @@ const Administration = () => {
     { name: "Blog", path: "/administration/blog", img: blogBg },
   ]
   return (
-    <section className="administration p-8">
+    <section className="flex flex-col p-8">
       <div className="administracion-header flex justify-around items-start">
         <h1 className="font-serif text-4xl text-dark">
           Bienvenido a la Administracíon de Iluminarte

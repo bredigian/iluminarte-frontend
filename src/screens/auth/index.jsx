@@ -28,7 +28,7 @@ const Auth = () => {
     }
     try {
       await logIn(userCredentials)
-      toast.success("Sesión iniciada")
+      toast.success("Inicio de sesión exitoso")
       setTimeout(() => {
         navigate("/administration")
       }, 1500)

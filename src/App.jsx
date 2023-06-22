@@ -45,7 +45,7 @@ const App = () => {
           exact
           path="/administration"
           element={
-            <RoutePrivate>
+            <RoutePrivate route={"/authentication"}>
               <Administration />
             </RoutePrivate>
           }
@@ -54,7 +54,7 @@ const App = () => {
           exact
           path="/administration/products"
           element={
-            <RoutePrivate>
+            <RoutePrivate route={"/authentication"}>
               <AdministrationProducts />
             </RoutePrivate>
           }
@@ -63,7 +63,7 @@ const App = () => {
           exact
           path="/administration/blog"
           element={
-            <RoutePrivate>
+            <RoutePrivate route={"/authentication"}>
               <AdministrationBlog />
             </RoutePrivate>
           }
