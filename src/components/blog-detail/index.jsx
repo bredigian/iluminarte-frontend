@@ -22,7 +22,9 @@ const BlogDetail = ({
           <p className="text-sm">Regresar</p>
         </button>
         <h1 className="font-bold text-3xl">{data?.TITULO}</h1>
-        <p className="sm:text-[9px] 2xxl:text-xs">{DESCRIPCION_FORMATED}</p>
+        <p className="sm:text-xs 2xxl:text-sm max-h-[500px] overflow-auto">
+          {DESCRIPCION_FORMATED}
+        </p>
         <div className="flex items-end justify-between flex-grow w-full">
           {slideIndex > 0 && (
             <button

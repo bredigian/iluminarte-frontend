@@ -58,13 +58,14 @@ const Blog = () => {
           <Pulsar color="#292929" size={50} />
         )}
       </div>
-      <Modal show={modalIsOpen} minWidth={"min-w-[600px]"}>
+      <Modal show={modalIsOpen} width={"w-[820px]"}>
         <Carousel
           slideIndex={slideIndex}
           renderCenterLeftControls={false}
           renderCenterRightControls={false}
           renderBottomCenterControls={false}
           renderTopCenterControls={false}
+          speed={0}
           dragging={false}
           className="h-full"
         >
