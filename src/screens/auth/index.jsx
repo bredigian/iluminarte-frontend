@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 
 import { AuthForm } from "../../components"
 import { toast } from "sonner"
@@ -8,6 +8,7 @@ import { useUserStore } from "../../store"
 const Auth = () => {
   const { logIn, verifyToken, token } = useUserStore()
   const navigate = useNavigate()
+  const [isLogging, setIsLogging] = useState(false)
   const labels = [
     {
       id: "label_email",
@@ -22,6 +23,7 @@ const Auth = () => {
   ]
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsLogging(true)
     const userCredentials = {
       email: e.target[0].value,
       password: e.target[1].value,
@@ -34,6 +36,7 @@ const Auth = () => {
       }, 1500)
     } catch {
       toast.error("Usuario o contraseña incorrectos")
+      setIsLogging(false)
     }
   }
   useEffect(() => {
@@ -44,7 +47,11 @@ const Auth = () => {
     <div className="auth grid place-items-center p-8">
       <div className="auth-container flex flex-col items-center gap-6 bg-[#f4e5e1] rounded-[33px] w-5 h-[300px] p-8">
         <h1 className="font-serif text-4xl text-dark">Autenticación</h1>
-        <AuthForm labels={labels} handleSubmit={handleSubmit} />
+        <AuthForm
+          labels={labels}
+          handleSubmit={handleSubmit}
+          isLogging={isLogging}
+        />
       </div>
     </div>
   )
