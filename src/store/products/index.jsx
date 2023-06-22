@@ -38,6 +38,23 @@ export const useProductsStore = create((set, get) => ({
     }
   },
 
+  deleteProduct: async (codigo) => {
+    const result = await fetch(`${API_URL}/products`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ codigo }),
+    })
+    if (!result.ok) {
+      const { message } = await result.json()
+      throw new Error(message)
+    } else {
+      await result.json()
+      get().getProducts()
+    }
+  },
+
   categories: [],
 
   getCategories: async () => {

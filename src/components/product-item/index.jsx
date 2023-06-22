@@ -4,8 +4,12 @@ import Modal from "../modal"
 import ProductDetail from "../product-detail"
 import { StarIcon } from "@heroicons/react/24/outline"
 import { XMarkIcon } from "@heroicons/react/24/solid"
+import { toast } from "sonner"
+import { useProductsStore } from "../../store"
 
 const ProductItem = ({ data, edit }) => {
+  const { deleteProduct } = useProductsStore()
+
   const [showModal, setShowModal] = useState(false)
   const [modalConfirmFavourite, setModalConfirmFavourite] = useState(false)
 
@@ -25,6 +29,16 @@ const ProductItem = ({ data, edit }) => {
 
   const closeModal = () => {
     setShowModal(false)
+  }
+
+  const handleDelete = async () => {
+    try {
+      await deleteProduct(data?.CODIGO)
+      toast.success("Producto eliminado correctamente")
+      handleModalDelete()
+    } catch (error) {
+      toast.error("Error al eliminar el producto")
+    }
   }
 
   return (
@@ -75,7 +89,7 @@ const ProductItem = ({ data, edit }) => {
               <button
                 className="border-2 border-dark px-4 py-2 rounded-full w-0-8 text-dark font-bold hover:bg-dark hover:text-white duration-150 ease-in-out"
                 type="button"
-                onClick={null}
+                onClick={handleDelete}
               >
                 Sí
               </button>
