@@ -1,14 +1,15 @@
 import React, { useState } from "react"
+import { useProductsStore, useUserStore } from "../../store"
 
 import Modal from "../modal"
 import ProductDetail from "../product-detail"
 import { StarIcon } from "@heroicons/react/24/outline"
 import { XMarkIcon } from "@heroicons/react/24/solid"
 import { toast } from "sonner"
-import { useProductsStore } from "../../store"
 
 const ProductItem = ({ data, edit }) => {
   const { deleteProduct, setProductOfTheMonth } = useProductsStore()
+  const { token } = useUserStore()
 
   const [showModal, setShowModal] = useState(false)
   const [modalConfirmFavourite, setModalConfirmFavourite] = useState(false)
@@ -82,7 +83,7 @@ const ProductItem = ({ data, edit }) => {
       <Modal show={showModal}>
         <ProductDetail data={data} closeModal={closeModal} />
       </Modal>
-      {edit && (
+      {token && edit && (
         <Modal show={modalConfirmDelete} minWidth={"min-w-"}>
           <div className="modal-delete flex flex-col items-center gap-8 bg-white p-8">
             <h1 className="font-serif text-3xl text-center">
@@ -107,8 +108,8 @@ const ProductItem = ({ data, edit }) => {
           </div>
         </Modal>
       )}
-      {edit && (
-        <Modal show={modalConfirmFavourite} minWidth={"min-w-"}>
+      {token && edit && (
+        <Modal show={modalConfirmFavourite}>
           <div className="modal-fav flex flex-col items-center gap-8 bg-white p-8">
             <h1 className="font-serif text-3xl text-center">
               ¿Estás seguro que desea marcar como "Vela del mes" a este

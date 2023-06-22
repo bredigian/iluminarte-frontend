@@ -37,4 +37,21 @@ export const useBlogStore = create((set, get) => ({
       get().getBlog()
     }
   },
+
+  deletePost: async (id) => {
+    const response = await fetch(`${API_URL}/blog`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    })
+    if (!response.ok) {
+      const { message } = await response.json()
+      throw new Error(message)
+    } else {
+      await response.json()
+      get().getBlog()
+    }
+  },
 }))
