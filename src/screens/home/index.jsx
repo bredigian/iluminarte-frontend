@@ -10,8 +10,10 @@ import {
 import { Parallax } from "react-parallax"
 import React from "react"
 import aboutImg from "../../assets/images/home/about/nosotros.png"
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
+  const navigate = useNavigate()
   return (
     <main className="home flex flex-col w-full gap-20">
       <section className="home-slider">
@@ -30,6 +32,7 @@ const Home = () => {
             </p>
           </div>
           <button
+            onClick={() => navigate("/about")}
             type="button"
             className="bg-secondary xs:text-lg sm:text-1xl lg:text-2xl text-white font-bold px-10 py-2 rounded-full"
           >
@@ -37,9 +40,9 @@ const Home = () => {
           </button>
         </div>
       </Parallax>
-      <HomeBlog />
-      <VelaMonth />
-      <HomeProducts />
+      <HomeBlog navigate={navigate} />
+      <VelaMonth navigate={navigate} />
+      <HomeProducts navigate={navigate} />
     </main>
   )
 }

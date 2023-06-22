@@ -4,7 +4,7 @@ import { motion, useAnimation } from "framer-motion"
 import blogImg from "../../assets/images/home/blog/fabricadasVelas.png"
 import { useInView } from "react-intersection-observer"
 
-const HomeBlog = () => {
+const HomeBlog = ({ navigate }) => {
   const controls = useAnimation()
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -44,6 +44,7 @@ const HomeBlog = () => {
           </motion.p>
         </motion.div>
         <button
+          onClick={() => navigate("/blog")}
           type="button"
           className="bg-tertiary text-white font-bold xs:text-lg sm:text-xl text-3xl px-16 py-2 rounded-full cursor-pointer"
         >

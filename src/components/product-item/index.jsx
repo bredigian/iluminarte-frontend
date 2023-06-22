@@ -8,7 +8,7 @@ import { toast } from "sonner"
 import { useProductsStore } from "../../store"
 
 const ProductItem = ({ data, edit }) => {
-  const { deleteProduct } = useProductsStore()
+  const { deleteProduct, setProductOfTheMonth } = useProductsStore()
 
   const [showModal, setShowModal] = useState(false)
   const [modalConfirmFavourite, setModalConfirmFavourite] = useState(false)
@@ -29,6 +29,16 @@ const ProductItem = ({ data, edit }) => {
 
   const closeModal = () => {
     setShowModal(false)
+  }
+
+  const handleUpdate = async () => {
+    try {
+      await setProductOfTheMonth(data?.CODIGO)
+      toast.success("Producto actualizado correctamente")
+      handleModalFavourite()
+    } catch {
+      toast.error("Error al actualizar el producto")
+    }
   }
 
   const handleDelete = async () => {
@@ -56,10 +66,10 @@ const ProductItem = ({ data, edit }) => {
       {edit ? (
         <div className="product-item__edit flex items-center justify-center gap-4 z-0 absolute w-full h-full bg-transparent rounded-xl opacity-0 hover:opacity-100 hover:bg-dark-transparent duration-150 ease-in-out">
           <button type="button" onClick={handleModalFavourite}>
-            <StarIcon width={40} color="white" />
+            <StarIcon width={40} className="text-white hover:text-[#FFEF40]" />
           </button>
           <button type="button" onClick={handleModalDelete}>
-            <XMarkIcon width={40} color="white" />
+            <XMarkIcon width={40} className="text-white hover:text-[#FF2E00]" />
           </button>
         </div>
       ) : (
@@ -115,7 +125,7 @@ const ProductItem = ({ data, edit }) => {
               <button
                 className="border-2 border-dark px-4 py-2 rounded-full w-0-8 text-dark font-bold hover:bg-dark hover:text-white duration-150 ease-in-out"
                 type="button"
-                onClick={null}
+                onClick={handleUpdate}
               >
                 Sí
               </button>
