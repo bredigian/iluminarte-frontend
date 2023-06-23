@@ -1,8 +1,11 @@
 import React, { useState } from "react"
 
+import { useNavigate } from "react-router-dom"
+
 const CategoryItem = ({ category }) => {
   const { img, name, description } = category
   const [isHover, setIsHover] = useState(false)
+  const navigate = useNavigate()
   const handleHover = () => {
     setIsHover(!isHover)
   }
@@ -19,6 +22,7 @@ const CategoryItem = ({ category }) => {
       >
         <button
           type="button"
+          onClick={() => navigate("/products")}
           className="px-6 py-2 bg-primary text-white font-bold xs:text-base sm:text-lg lg:text-2xl rounded-full cursor-pointer select-none"
         >
           Ver más

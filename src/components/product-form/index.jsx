@@ -14,6 +14,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
     diametro_superior: "",
     diametro_inferior: "",
     mecha_ecologica: false,
+    mecha_led: false,
     con_aroma: false,
     sin_aroma: false,
     tiempo_quemado: "",
@@ -202,6 +203,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
           Mecha ecológica
         </label>
       </div>
+
       <div className="col-span-6 flex gap-3 items-start">
         <div className="flex items-center gap-3">
           <input
@@ -227,6 +229,18 @@ const ProductForm = ({ showMessage, handleModal }) => {
             Sin aroma
           </label>
         </div>
+      </div>
+      <div className="flex items-center gap-3 col-span-12">
+        <input
+          type="checkbox"
+          id="mecha_led"
+          name="mecha_led"
+          checked={productData.mecha_led}
+          onChange={handleChange}
+        />
+        <label className="text-dark text-xs" htmlFor="mecha_led">
+          Mecha LED
+        </label>
       </div>
       <div className="flex flex-col items-start gap-3 col-span-6">
         <label className="text-xs text-dark font-bold" htmlFor="imagenes">

@@ -39,7 +39,7 @@ const ProductDetail = ({ data, closeModal }) => {
           </div>
           <div className="item-info__detail-item flex flex-col items-start gap-2 w-[125px]">
             <h2 className="font-bold text-xs text-dark">Ancho</h2>
-            <p className="text-dark text-xs">{data.ANCHO === null && "N/A"}</p>
+            <p className="text-dark text-xs">{data.ANCHO || "N/A"}</p>
           </div>
           <div className="item-info__detail-item flex flex-col items-start gap-2 w-[125px]">
             <h2 className="font-bold text-xs text-dark">Duracion aprox (h)</h2>
@@ -48,12 +48,14 @@ const ProductDetail = ({ data, closeModal }) => {
           <div className="item-info__detail-item flex flex-col items-start gap-2 w-[125px]">
             <h2 className="font-bold text-xs text-dark">Diámetro Inf. (cm)</h2>
             <p className="text-dark text-xs">
-              {data.DIAMETRO_INFERIOR === null && "N/A"}
+              {data.DIAMETRO_INFERIOR || "N/A"}
             </p>
           </div>
           <div className="item-info__detail-item flex flex-col items-start gap-2 w-[125px]">
             <h2 className="font-bold text-xs text-dark">Diámetro Sup . (cm)</h2>
-            <p className="text-dark text-xs">{data.DIAMETRO_SUPERIOR}</p>
+            <p className="text-dark text-xs">
+              {data.DIAMETRO_SUPERIOR || "N/A"}
+            </p>
           </div>
           <div className="item-info__detail-item flex flex-col items-start gap-2 w-[125px]">
             <h2 className="font-bold text-xs text-dark">Altura (cm)</h2>
@@ -61,9 +63,7 @@ const ProductDetail = ({ data, closeModal }) => {
           </div>
           <div className="item-info__detail-item flex flex-col items-start gap-2 w-[125px]">
             <h2 className="font-bold text-xs text-dark">Etiqueta</h2>
-            <p className="text-dark text-xs">
-              {data.ETIQUETAS === null && "N/A"}
-            </p>
+            <p className="text-dark text-xs">{data.ETIQUETAS || "N/A"}</p>
           </div>
         </div>
         <div className="item-colors flex items-center flex-wrap gap-4">
@@ -92,14 +92,14 @@ const ProductDetail = ({ data, closeModal }) => {
           </div>
         </div>
         <div className="flex flex-col items-start gap-2">
-          <h2>Mecha</h2>
+          <h2 className="text-dark text-xs font-bold">Mecha</h2>
           <div className="flex items-center gap-4">
             <div
               className={`w-[105px] ${
                 data.MECHA_ECOLOGICA === 1
                   ? "bg-tertiary text-white"
                   : "bg-gray-light text-dark"
-              } flex items-center justify-between rounded-full text-xs px-3 py-1 font-bold`}
+              } flex items-center justify-between rounded-full text-xs px-3 py-1 w-[120px] font-bold`}
             >
               <p className="flex-grow text-center">Ecólogica</p>
               {data.MECHA_ECOLOGICA === 1 && (
@@ -111,7 +111,7 @@ const ProductDetail = ({ data, closeModal }) => {
                 data?.MECHA_LED === 1
                   ? "bg-tertiary text-white"
                   : "bg-gray-light text-dark"
-              } flex items-center justify-between rounded-full text-xs px-3 py-1 font-bold`}
+              } flex items-center justify-between rounded-full text-xs px-3 py-1 w-[120px] font-bold`}
             >
               <p className="flex-grow text-center">LED</p>
               {data.MECHA_LED === 1 && (
@@ -121,14 +121,14 @@ const ProductDetail = ({ data, closeModal }) => {
           </div>
         </div>
         <div className="flex flex-col items-start gap-2">
-          <h2>Aroma</h2>
+          <h2 className="text-dark text-xs font-bold">Aroma</h2>
           <div className="flex items-center gap-4">
             <div
               className={`w-[105px] ${
                 data.AROMA > 0
                   ? "bg-tertiary text-white"
                   : "bg-gray-light text-dark"
-              } flex items-center justify-between rounded-full text-xs px-3 py-1 font-bold`}
+              } flex items-center justify-between rounded-full text-xs px-3 py-1 w-[120px] font-bold`}
             >
               <p className="flex-grow text-center">Con aroma</p>
               {data.AROMA > 0 && <CheckIcon className="w-[15px] h-[15px]" />}
@@ -138,7 +138,7 @@ const ProductDetail = ({ data, closeModal }) => {
                 data.AROMA === 0
                   ? "bg-tertiary text-white"
                   : "bg-gray-light text-dark"
-              } flex items-center justify-between rounded-full text-xs px-3 py-1 font-bold`}
+              } flex items-center justify-between rounded-full text-xs px-3 py-1 w-[120px] font-bold`}
             >
               <p className="flex-grow text-center">Sin aroma</p>
               {data.AROMA === 0 && <CheckIcon className="w-[15px] h-[15px]" />}
