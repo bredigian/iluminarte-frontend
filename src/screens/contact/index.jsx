@@ -56,7 +56,12 @@ const Contact = () => {
           </h1>
           <form className="grid grid-cols-3 gap-8 max-w-[600px]">
             {fields.map((field) => {
-              return <Input data={field} />
+              return (
+                <Input
+                  styles={"placeholder:text-white text-white"}
+                  data={field}
+                />
+              )
             })}
           </form>
           <button

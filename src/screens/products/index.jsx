@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 
+import { ChevronUpIcon } from "@heroicons/react/24/solid"
 import { ProductItem } from "../../components"
 import { Pulsar } from "@uiball/loaders"
 import { useProductsStore } from "../../store"
@@ -9,6 +10,11 @@ const Products = () => {
     useProductsStore()
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [filteredProducts, setFilteredProducts] = useState([])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
   const filterProducts = async (category) => {
     if (category === "all") return products
     return products.filter((product) => {
@@ -64,6 +70,34 @@ const Products = () => {
           </p>
         )}
       </div>
+      <div className="products-footer flex flex-col items-center gap-8 w-full p-8">
+        <h1 className="font-serif text-[50px] font-bold">
+          Descubre otros modelos
+        </h1>
+        <div className="products-footer__items flex items-center justify-center gap-24 w-full">
+          {categories.map((category) => {
+            return (
+              <button
+                onClick={() => handleCategory(category.VALOR)}
+                type="button"
+                className={`${
+                  selectedCategory === category.VALOR
+                    ? "bg-secondary"
+                    : "bg-[#e8cdd8]"
+                } hover:bg-secondary text-white text-2xl px-4 py-2 rounded-full duration-150 w-2 text-center`}
+              >
+                {category.NOMBRE}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+      <button
+        onClick={scrollToTop}
+        className="fixed right-10 top-[50%] rounded-full border-[3px] p-4 border-primary w-fit"
+      >
+        <ChevronUpIcon className="w-[50px] text-primary" />
+      </button>
     </section>
   )
 }
