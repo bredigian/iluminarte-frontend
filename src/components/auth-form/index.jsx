@@ -2,7 +2,14 @@ import Input from "../input"
 import { Pulsar } from "@uiball/loaders"
 import React from "react"
 
-const AuthForm = ({ labels, handleSubmit, isLogging }) => {
+const AuthForm = ({
+  labels,
+  handleSubmit,
+  isLogging,
+  onHandleChangeInput,
+  formState,
+}) => {
+  const isValid = !formState.email.hasError && !formState.password.hasError
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6">
       {labels?.map((label) => {
@@ -10,7 +17,14 @@ const AuthForm = ({ labels, handleSubmit, isLogging }) => {
           <Input
             key={label.id}
             data={label}
-            styles={"text-dark placeholder:text-dark w-3"}
+            onChangeValue={(e) =>
+              onHandleChangeInput(e.target.value, label.type)
+            }
+            value={formState[label.type].value}
+            hasError={formState[label.type].hasError}
+            clicked={formState[label.type].clicked}
+            styles={`text-dark placeholder:text-dark w-3`}
+            isAuth={true}
           />
         )
       })}
@@ -20,7 +34,16 @@ const AuthForm = ({ labels, handleSubmit, isLogging }) => {
         ) : (
           <button
             type="submit"
-            className="text-dark px-4 py-2 border-[2px] border-dark font-bold rounded-full bg-transparent duration-150 ease-in-out hover:bg-dark hover:text-white"
+            disabled={
+              !isValid ||
+              !formState.email.clicked ||
+              !formState.password.clicked
+            }
+            className={`text-dark px-4 py-2 border-[2px] font-bold rounded-full bg-transparent duration-150 ease-in-out ${
+              isValid && formState.email.clicked && formState.password.clicked
+                ? "border-dark hover:bg-dark hover:text-white"
+                : "border-transparent"
+            }`}
           >
             Iniciar sesión
           </button>

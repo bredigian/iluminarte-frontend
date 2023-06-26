@@ -1,3 +1,4 @@
+import { ExclamationCircleIcon } from "@heroicons/react/24/outline"
 import React from "react"
 
 const Input = ({
@@ -8,28 +9,61 @@ const Input = ({
   step,
   onChangeValue,
   required,
+  isAuth,
+  hasError,
+  clicked,
 }) => {
   if (data.type !== "textarea") {
-    return (
-      <input
-        name={name}
-        required={required}
-        key={data.id}
-        onChange={onChangeValue}
-        value={value}
-        step={step}
-        autoComplete={(data.type === "email") & "true"}
-        className={`bg-[#FFFFFF65] px-4 py-2 text-base ${styles} rounded-full outline-none ${
-          data.type === "tel"
-            ? "col-span-1"
-            : data.type === "email"
-            ? "col-span-2"
-            : "col-span-3"
-        }`}
-        type={data.type}
-        placeholder={data.placeholder}
-      />
-    )
+    if (!isAuth) {
+      return (
+        <input
+          name={name}
+          required={required}
+          key={data.id}
+          onChange={onChangeValue}
+          value={value}
+          step={step}
+          autoComplete={(data.type === "email") & "true"}
+          className={`bg-[#FFFFFF65] px-4 py-2 text-base ${styles} rounded-full outline-none ${
+            data.type === "tel"
+              ? "col-span-1"
+              : data.type === "email"
+              ? "col-span-2"
+              : "col-span-3"
+          }`}
+          type={data.type}
+          placeholder={data.placeholder}
+        />
+      )
+    } else {
+      return (
+        <div className="input-container flex flex-col justify-center items-end">
+          <input
+            name={name}
+            required={required}
+            key={data.id}
+            onChange={onChangeValue}
+            value={value}
+            step={step}
+            autoComplete={(data.type === "email") & "true"}
+            className={`bg-[#FFFFFF65] px-4 py-2 text-base ${styles} rounded-full outline-none ${
+              data.type === "tel"
+                ? "col-span-1"
+                : data.type === "email"
+                ? "col-span-2"
+                : "col-span-3"
+            }`}
+            type={data.type}
+            placeholder={data.placeholder}
+          />
+          {hasError && (
+            <div className="absolute mr-2">
+              <ExclamationCircleIcon width={30} color="#292929" />
+            </div>
+          )}
+        </div>
+      )
+    }
   } else {
     return (
       <textarea

@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react"
+import { formStore, initialState } from "../../store/auth"
 
 import { AuthForm } from "../../components"
+import { onInputChange } from "../../utils/authForm"
 import { toast } from "sonner"
 import { useNavigate } from "react-router-dom"
+import { useReducer } from "react"
 import { useUserStore } from "../../store"
 
 const Auth = () => {
   const { logIn, verifyToken, token } = useUserStore()
   const navigate = useNavigate()
   const [isLogging, setIsLogging] = useState(false)
+
+  const [formState, dispatchFormState] = useReducer(formStore, initialState)
+  const onHandleChangeInput = (value, type) => {
+    onInputChange(type, value, dispatchFormState, formState)
+  }
+
   const labels = [
     {
       id: "label_email",
@@ -21,6 +30,7 @@ const Auth = () => {
       placeholder: "Contraseña",
     },
   ]
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsLogging(true)
@@ -39,6 +49,7 @@ const Auth = () => {
       setIsLogging(false)
     }
   }
+
   useEffect(() => {
     verifyToken()
     if (token) navigate("/administration")
@@ -51,6 +62,8 @@ const Auth = () => {
           labels={labels}
           handleSubmit={handleSubmit}
           isLogging={isLogging}
+          onHandleChangeInput={onHandleChangeInput}
+          formState={formState}
         />
       </div>
     </div>
