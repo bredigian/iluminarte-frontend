@@ -4,7 +4,7 @@ import { CheckIcon } from "@heroicons/react/24/solid"
 import { XMarkIcon } from "@heroicons/react/24/outline"
 
 const ProductDetail = ({ data, closeModal }) => {
-  const [selectedImage, setSelectedImage] = useState(data.IMAGENES[0])
+  const [selectedImage, setSelectedImage] = useState(data?.IMAGENES[0])
   const handleSelectedImage = (image) => {
     setSelectedImage(image)
   }
@@ -14,8 +14,8 @@ const ProductDetail = ({ data, closeModal }) => {
         <img
           className="w-full h-full object-cover"
           style={{ backgroundColor: "transparent" }}
-          src={selectedImage.url}
-          alt={`Vela de color ${selectedImage.color}, imagen ${selectedImage.url}`}
+          src={selectedImage?.url}
+          alt={`Vela de color ${selectedImage?.color}, imagen ${selectedImage?.url}`}
         />
       </div>
       <div className="item-info flex flex-col items-start gap-4 w-mid h-full p-8 overflow-y-auto overflow-x-hidden bg-tertiary-lighter">
@@ -70,7 +70,7 @@ const ProductDetail = ({ data, closeModal }) => {
           <h2 className="font-bold text-xs text-dark">Colores</h2>
           <div className="item-colors__container flex items-center flew-wrap gap-2">
             {data.IMAGENES.map((image, index) => {
-              const color = Object.values(image)[0]
+              const color = Object.keys(image)[0]
               return (
                 <div
                   key={index}

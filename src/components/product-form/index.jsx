@@ -51,7 +51,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
     const { value } = e.target
     setProductData((prevData) => ({
       ...prevData,
-      etiquetas: value.split(",").map((tag) => tag.trim()),
+      etiquetas: value.split(","),
     }))
   }
 

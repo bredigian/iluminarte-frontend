@@ -46,6 +46,7 @@ const AdministrationProducts = () => {
   useEffect(() => {
     setFilteredProducts(products)
   }, [products])
+  console.log(products)
   return (
     <section className="adminstration-products flex flex-col items-center p-8 w-full">
       <div className="administration-products__items flex flex-col items-center w-full">
