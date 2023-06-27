@@ -12,11 +12,13 @@ const Input = ({
   isAuth,
   hasError,
   clicked,
+  id,
 }) => {
   if (data.type !== "textarea") {
     if (!isAuth) {
       return (
         <input
+          id={id}
           name={name}
           required={required}
           key={data.id}
@@ -39,6 +41,7 @@ const Input = ({
       return (
         <div className="input-container flex flex-col justify-center items-end">
           <input
+            id={id}
             name={name}
             required={required}
             key={data.id}
@@ -67,6 +70,7 @@ const Input = ({
   } else {
     return (
       <textarea
+        id={id}
         key={data.id}
         className={`${styles} bg-[#FFFFFF65] p-4 rounded-xl outline-none col-span-3 min-h-[150px] text-base resize-none`}
         placeholder={data.placeholder}

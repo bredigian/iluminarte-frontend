@@ -1,29 +1,78 @@
+import { API_URL, contact } from "../../constants"
+
 import { Input } from "../../components"
 import React from "react"
-import { contact } from "../../constants"
 import { social } from "../../constants"
+import { toast } from "sonner"
+import { useState } from "react"
 
 const Contact = () => {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [message, setMessage] = useState("")
+
+  const handleChange = (e) => {
+    if (e.target.id === "name") setName(e.target.value)
+    if (e.target.id === "email") setEmail(e.target.value)
+    if (e.target.id === "phone") setPhone(e.target.value)
+    if (e.target.id === "message") setMessage(e.target.value)
+  }
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    const dataForm = {
+      name,
+      email,
+      phone,
+      message,
+    }
+    try {
+      const result = await fetch(`${API_URL}/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataForm),
+      })
+      if (!result.ok) {
+        throw new Error(result.json())
+      }
+      const data = await result.json()
+      toast.success(data.json())
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   const fields = [
     {
-      id: 1,
+      id: "name",
       type: "text",
       placeholder: "Nombre completo",
+      name: "name",
+      value: name,
     },
     {
-      id: 2,
+      id: "phone",
       type: "tel",
       placeholder: "Teléfono",
+      name: "phone",
+      value: phone,
     },
     {
-      id: 3,
+      id: "email",
       type: "email",
       placeholder: "Correo electrónico",
+      name: "email",
+      value: email,
     },
     {
-      id: 4,
+      id: "message",
       type: "textarea",
       placeholder: "Mensaje",
+      name: "message",
+      value: message,
     },
   ]
   return (
@@ -54,22 +103,29 @@ const Contact = () => {
           <h1 className="text-6xl text-white font-bold font-serif">
             Contáctanos
           </h1>
-          <form className="grid grid-cols-3 gap-8 max-w-[600px]">
+          <form
+            onSubmit={onSubmit}
+            className="grid grid-cols-3 gap-8 max-w-[600px]"
+          >
             {fields.map((field) => {
               return (
                 <Input
+                  key={field.id + field.name}
                   styles={"placeholder:text-white text-white"}
                   data={field}
+                  value={field.value}
+                  id={field.id}
+                  onChangeValue={(e) => handleChange(e)}
                 />
               )
             })}
+            <button
+              className="bg-secondary w-fit place-self-center col-span-3 text-white text-lg font-bold px-20 py-1 rounded-full"
+              type="submit"
+            >
+              Enviar
+            </button>
           </form>
-          <button
-            className="bg-secondary text-white text-lg font-bold px-20 py-1 rounded-full"
-            type="submit"
-          >
-            Enviar
-          </button>
         </div>
       </div>
       <div className="contact-social w-full flex items-center justify-center gap-8 p-8">
