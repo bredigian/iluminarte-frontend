@@ -145,6 +145,23 @@ const ProductDetail = ({ data, closeModal }) => {
             </div>
           </div>
         </div>
+        <div className="flex flex-col items-start gap-2">
+          <h2 className="text-dark text-xs font-bold">Otras caracteristicas</h2>
+          <div className="flex items-center gap-4">
+            <div
+              className={`w-[105px] ${
+                data?.PARA_NAVIDAD > 0
+                  ? "bg-tertiary text-white"
+                  : "bg-gray-light text-dark"
+              } flex items-center justify-between rounded-full text-xs px-3 py-1 w-[120px] font-bold`}
+            >
+              <p className="flex-grow text-center">Para navidad</p>
+              {data?.PARA_NAVIDAD > 0 && (
+                <CheckIcon className="w-[15px] h-[15px]" />
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

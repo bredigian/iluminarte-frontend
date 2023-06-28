@@ -8,7 +8,7 @@ import { useProductsStore } from "../../store"
 const Products = () => {
   const { products, getProducts, categories, getCategories } =
     useProductsStore()
-  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [selectedCategory, setSelectedCategory] = useState(null)
   const [filteredProducts, setFilteredProducts] = useState([])
 
   const scrollToTop = () => {
@@ -16,9 +16,8 @@ const Products = () => {
   }
 
   const filterProducts = async (category) => {
-    if (category === "all") return products
     return products.filter((product) => {
-      if (product.CATEGORIA === category) {
+      if (product.CATEGORIAS.includes(category)) {
         return product
       }
     })
@@ -35,6 +34,7 @@ const Products = () => {
   useEffect(() => {
     setFilteredProducts(products)
   }, [products])
+
   return (
     <section
       id="products"

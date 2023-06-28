@@ -5,6 +5,7 @@ import { useProductsStore } from "../../store/products"
 
 const ProductForm = ({ showMessage, handleModal }) => {
   const { categories, getCategories, addProduct } = useProductsStore()
+  const [selectedCategories, setSelectedCategories] = useState([])
   const initialState = {
     codigo: "",
     nombre: "",
@@ -15,13 +16,14 @@ const ProductForm = ({ showMessage, handleModal }) => {
     diametro_inferior: "",
     mecha_ecologica: false,
     mecha_led: false,
+    mecha_tradicional: false,
+    para_navidad: false,
     con_aroma: false,
     sin_aroma: false,
     tiempo_quemado: "",
     imagenes: [],
     colores: [],
     etiquetas: [],
-    categoria: "",
   }
   const [productData, setProductData] = useState(initialState)
   const handleChange = (e) => {
@@ -63,10 +65,28 @@ const ProductForm = ({ showMessage, handleModal }) => {
     }))
   }
 
+  const handleChangeCategory = (e) => {
+    const { value, checked } = e.target
+    if (checked) {
+      setSelectedCategories((prevSelectedCategories) => [
+        ...prevSelectedCategories,
+        value,
+      ])
+    } else {
+      setSelectedCategories((prevSelectedCategories) =>
+        prevSelectedCategories.filter((category) => category !== value)
+      )
+    }
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault()
+    const data = {
+      ...productData,
+      categorias: selectedCategories,
+    }
     try {
-      await addProduct(productData)
+      await addProduct(data)
       showMessage("Producto agregado correctamente", "success")
       handleModal()
       setProductData(initialState)
@@ -82,7 +102,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
   return (
     <form
       onSubmit={onSubmit}
-      className="w-full grid grid-cols-12 gap-3 max-w-lg"
+      className="w-full grid grid-cols-12 gap-2 max-w-lg"
     >
       <Input
         styles={"bg-white-transparent text-xs col-span-6"}
@@ -203,34 +223,43 @@ const ProductForm = ({ showMessage, handleModal }) => {
           Mecha ecológica
         </label>
       </div>
-
-      <div className="col-span-6 flex gap-3 items-start">
-        <div className="flex items-center gap-3">
-          <input
-            type="checkbox"
-            id="con_aroma"
-            name="con_aroma"
-            checked={productData.con_aroma}
-            onChange={handleChange}
-          />
-          <label className="text-dark text-xs" htmlFor="con_aroma">
-            Con aroma
-          </label>
-        </div>
-        <div className="flex items-center gap-3">
-          <input
-            type="checkbox"
-            id="sin_aroma"
-            name="sin_aroma"
-            checked={productData.sin_aroma}
-            onChange={handleChange}
-          />
-          <label className="text-dark text-xs" htmlFor="sin_aroma">
-            Sin aroma
-          </label>
-        </div>
+      <div className="flex items-center gap-3 col-span-6">
+        <input
+          type="checkbox"
+          id="con_aroma"
+          name="con_aroma"
+          checked={productData.con_aroma}
+          onChange={handleChange}
+        />
+        <label className="text-dark text-xs" htmlFor="con_aroma">
+          Con aroma
+        </label>
       </div>
-      <div className="flex items-center gap-3 col-span-12">
+      <div className="flex items-center gap-3 col-span-6">
+        <input
+          type="checkbox"
+          id="mecha_tradicional"
+          name="mecha_tradicional"
+          checked={productData.mecha_tradicional}
+          onChange={handleChange}
+        />
+        <label className="text-dark text-xs" htmlFor="mecha_tradicional">
+          Mecha tradicional
+        </label>
+      </div>
+      <div className="flex items-center gap-3 col-span-6">
+        <input
+          type="checkbox"
+          id="sin_aroma"
+          name="sin_aroma"
+          checked={productData.sin_aroma}
+          onChange={handleChange}
+        />
+        <label className="text-dark text-xs" htmlFor="sin_aroma">
+          Sin aroma
+        </label>
+      </div>
+      <div className="flex items-center gap-3 col-span-6">
         <input
           type="checkbox"
           id="mecha_led"
@@ -240,6 +269,18 @@ const ProductForm = ({ showMessage, handleModal }) => {
         />
         <label className="text-dark text-xs" htmlFor="mecha_led">
           Mecha LED
+        </label>
+      </div>
+      <div className="flex items-center gap-3 col-span-6">
+        <input
+          type="checkbox"
+          id="para_navidad"
+          name="para_navidad"
+          checked={productData.para_navidad}
+          onChange={handleChange}
+        />
+        <label className="text-dark text-xs" htmlFor="para_navidad">
+          Para navidad
         </label>
       </div>
       <div className="flex flex-col items-start gap-3 col-span-6">
@@ -279,9 +320,28 @@ const ProductForm = ({ showMessage, handleModal }) => {
       </div>
       <div className="flex flex-col items-start gap-3 col-span-6">
         <label className="text-xs text-dark font-bold" htmlFor="categoria">
-          Categoría
+          Categorías
         </label>
-        <select
+        <div className="grid grid-cols-6 gap-1 w-full">
+          {categories?.map((category) => {
+            return (
+              <div className="flex items-center gap-3 col-span-3">
+                <input
+                  type="checkbox"
+                  id={category.VALOR}
+                  name={category.VALOR}
+                  value={category.VALOR}
+                  checked={selectedCategories.includes(category.VALOR)}
+                  onChange={handleChangeCategory}
+                />
+                <label className="text-dark text-xs" htmlFor={category.VALOR}>
+                  {category.NOMBRE}
+                </label>
+              </div>
+            )
+          })}
+        </div>
+        {/* <select
           className="appearance-none bg-white-transparent rounded-full w-full text-xs py-2 px-4 text-dark leading-tight focus:outline-none focus:shadow-outline"
           id="categoria"
           name="categoria"
@@ -295,7 +355,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
               {category?.NOMBRE}
             </option>
           ))}
-        </select>
+        </select> */}
       </div>
       <div className="flex items-end gap-4 justify-end col-span-6">
         <button
