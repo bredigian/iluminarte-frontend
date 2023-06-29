@@ -9,7 +9,8 @@ const BlogForm = ({ handleModal }) => {
   const initialState = {
     titulo: "",
     descripcion: "",
-    imagenes: [],
+    imagen_principal: null,
+    imagen_detalle: null,
   }
   const [blogData, setBlogData] = useState(initialState)
   const handleChange = (e) => {
@@ -22,16 +23,18 @@ const BlogForm = ({ handleModal }) => {
     }))
   }
   const handleImageChange = (e) => {
-    const files = e.target.files
-    let newImagenes = []
-    Object.keys(files).forEach((key) => {
-      const file = files[key]
-      newImagenes[key] = file
-    })
-    setBlogData((prevData) => ({
-      ...prevData,
-      imagenes: [...newImagenes],
-    }))
+    const file = e.target.files[0]
+    if (e.target.id === "imagen_principal") {
+      setBlogData((prevData) => ({
+        ...prevData,
+        imagen_principal: file,
+      }))
+    } else {
+      setBlogData((prevData) => ({
+        ...prevData,
+        imagen_detalle: file,
+      }))
+    }
   }
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -73,16 +76,34 @@ const BlogForm = ({ handleModal }) => {
         onChangeValue={handleChange}
         name={"descripcion"}
       />
-      <input
-        className="bg-white-transparent grid place-self-end rounded-full w-full py-2 px-4 text-dark text-xs leading-tight focus:outline-none focus:shadow-outline col-span-4 row-span-1"
-        type="file"
-        id="imagen_principal"
-        name="imagen_principal"
-        accept="image/*"
-        onChange={handleImageChange}
-        multiple
-        required
-      />
+      <div className="col-span-8 flex flex-col gap-2 justify-between">
+        <label htmlFor="imagen_principal" className="text-xs text-dark">
+          Imagen principal
+        </label>
+        <input
+          className="bg-white-transparent grid place-self-end rounded-full w-full py-2 px-4 text-dark text-xs leading-tight focus:outline-none focus:shadow-outline row-span-1"
+          type="file"
+          id="imagen_principal"
+          name="imagen_principal"
+          accept="image/*"
+          onChange={handleImageChange}
+          required
+        />
+      </div>
+      <div className="col-span-4 flex flex-col gap-2 justify-between">
+        <label htmlFor="imagen_detalle" className="text-xs text-dark">
+          Imagen de detalle
+        </label>
+        <input
+          className="bg-white-transparent grid place-self-end rounded-full w-full py-2 px-4 text-dark text-xs leading-tight focus:outline-none focus:shadow-outline row-span-1"
+          type="file"
+          id="imagen_detalle"
+          name="imagen_detalle"
+          accept="image/*"
+          onChange={handleImageChange}
+          required
+        />
+      </div>
       <div className="flex items-end gap-4 justify-end w-full col-span-4">
         <button
           onClick={() => setBlogData(initialState)}

@@ -22,9 +22,8 @@ export const useBlogStore = create((set, get) => ({
   addPost: async (post) => {
     const formData = new FormData()
     formData.append("post", JSON.stringify(post))
-    post.imagenes.forEach((imagen, index) => {
-      formData.append(`images`, imagen)
-    })
+    formData.append("images", post.imagen_principal)
+    formData.append("images", post.imagen_detalle)
     const response = await fetch(`${API_URL}/blog`, {
       method: "POST",
       body: formData,
