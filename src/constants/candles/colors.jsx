@@ -72,8 +72,12 @@ export const candlesColors = [
     valor: "#66ff33",
   },
   {
-    nombre: "Amarillo oscuro",
+    nombre: "Amarillo claro",
     valor: "#fef2cb",
+  },
+  {
+    nombre: "Verde oscuro",
+    valor: "#2d572c",
   },
   {
     nombre: "Cristalino",
