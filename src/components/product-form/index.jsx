@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react"
 
 import Input from "../input"
 import { Pulsar } from "@uiball/loaders"
+import { candlesColors } from "../../constants/candles/colors"
 import { useProductsStore } from "../../store/products"
 
 const ProductForm = ({ showMessage, handleModal }) => {
   const { categories, getCategories, addProduct } = useProductsStore()
   const [selectedCategories, setSelectedCategories] = useState([])
+  const [selectedColors, setSelectedColors] = useState([])
   const [isUploading, setIsUploading] = useState(false)
   const initialState = {
     codigo: "",
@@ -59,12 +61,15 @@ const ProductForm = ({ showMessage, handleModal }) => {
     }))
   }
 
-  const handleColorChange = (e) => {
-    const { value } = e.target
-    setProductData((prevData) => ({
-      ...prevData,
-      colores: value.split(",").map((color) => color.trim()),
-    }))
+  const handleChangeColor = (e) => {
+    const { value, checked } = e.target
+    if (checked) {
+      setSelectedColors((prevSelectedColors) => [...prevSelectedColors, value])
+    } else {
+      setSelectedColors((prevSelectedColors) =>
+        prevSelectedColors.filter((color) => color !== value)
+      )
+    }
   }
 
   const handleChangeCategory = (e) => {
@@ -86,6 +91,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
     setIsUploading(true)
     const data = {
       ...productData,
+      colores: selectedColors,
       categorias: selectedCategories,
     }
     try {
@@ -289,7 +295,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
           Para navidad
         </label>
       </div>
-      <div className="flex flex-col items-start gap-3 col-span-6">
+      <div className="flex flex-col items-start gap-3 col-span-12">
         <label className="text-xs text-dark font-bold" htmlFor="imagenes">
           Imágenes
         </label>
@@ -304,25 +310,32 @@ const ProductForm = ({ showMessage, handleModal }) => {
           required
         />
       </div>
-      <div className="flex flex-col items-start gap-3 col-span-6">
+      <div className="flex flex-col items-start gap-3 col-span-12">
         <label className="text-xs text-dark font-bold" htmlFor="colores">
           Colores
         </label>
-        <Input
-          styles={"bg-white-transparent text-xs w-full"}
-          value={productData.colores}
-          data={{
-            type: "text",
-            placeholder: "Colores",
-          }}
-          required
-          onChangeValue={handleColorChange}
-          name={"colores"}
-        />
-        <p className="italic text-dark text-[0.7rem]">
-          Ingrese los colores separados por una coma y en formato hexadecimal
-          [ej. #FFFFFF (blanco), #000000 (negro)]
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          {candlesColors.map((color) => {
+            return (
+              <div
+                key={color.nombre + color.valor}
+                className="flex items-center gap-3 col-span-6 w-[120px]"
+              >
+                <input
+                  type="checkbox"
+                  id={color.valor}
+                  name={color.valor}
+                  value={color.valor}
+                  checked={selectedColors.includes(color.valor)}
+                  onChange={handleChangeColor}
+                />
+                <label className="text-dark text-xs" htmlFor={color.valor}>
+                  {color.nombre}
+                </label>
+              </div>
+            )
+          })}
+        </div>
       </div>
       <div className="flex flex-col items-start gap-3 col-span-6">
         <label className="text-xs text-dark font-bold" htmlFor="categoria">

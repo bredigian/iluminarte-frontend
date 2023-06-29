@@ -20,7 +20,7 @@ const ProductDetail = ({ data, closeModal }) => {
       </div>
       <div className="item-info flex flex-col items-start gap-4 w-mid h-full p-8 overflow-y-auto overflow-x-hidden bg-tertiary-lighter">
         <div className="flex items-start justify-between w-full">
-          <h3 className="text-dark font-bold text-3xl 2xxl:text-4xl">
+          <h3 className="text-dark font-bold text-2xl 2xxl:text-4xl">
             {data.NOMBRE}
           </h3>
           <button

@@ -98,9 +98,9 @@ const AdministrationProducts = () => {
       <Modal show={showModal}>
         <div className="modal-addProduct flex flex-col items-center gap-4 bg-white p-8">
           <div className="flex items-start justify-between w-full p-2">
-            <h1 className="font-serif text-3xl text-dark">Agregar producto</h1>
+            <h1 className="font-serif text-2xl text-dark">Agregar producto</h1>
             <button type="button" onClick={handleModal}>
-              <XMarkIcon width={40} color="#292929" />
+              <XMarkIcon width={30} color="#292929" />
             </button>
           </div>
           <ProductForm showMessage={showMessage} handleModal={handleModal} />
