@@ -96,8 +96,8 @@ const AdministrationProducts = () => {
         )}
       </div>
       <Modal show={showModal}>
-        <div className="modal-addProduct flex flex-col items-center gap-4 bg-white p-8">
-          <div className="flex items-start justify-between w-full p-2">
+        <div className="modal-addProduct flex flex-col items-center gap-4 bg-white py-6 px-6">
+          <div className="flex items-start justify-between w-full">
             <h1 className="font-serif text-2xl text-dark">Agregar producto</h1>
             <button type="button" onClick={handleModal}>
               <XMarkIcon width={30} color="#292929" />

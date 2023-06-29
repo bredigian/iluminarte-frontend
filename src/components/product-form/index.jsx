@@ -311,10 +311,16 @@ const ProductForm = ({ showMessage, handleModal }) => {
         />
       </div>
       <div className="flex flex-col items-start gap-3 col-span-12">
-        <label className="text-xs text-dark font-bold" htmlFor="colores">
-          Colores
-        </label>
-        <div className="flex flex-wrap items-center justify-between gap-2">
+        <div className="flex items-center justify-between w-full">
+          <label className="text-xs text-dark font-bold" htmlFor="colores">
+            Colores
+          </label>
+          <p className="italic text-dark text-[0.7rem]">
+            Seleccione los colores en el orden en el que se encuentran en su
+            computadora
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center justify-start gap-2">
           {candlesColors.map((color) => {
             return (
               <div
