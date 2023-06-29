@@ -79,4 +79,8 @@ export const candlesColors = [
     nombre: "Cristalino",
     valor: "#256d7b",
   },
+  {
+    nombre: "Multicolor",
+    valor: "multicolor",
+  },
 ]
