@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
 
 import Input from "../input"
+import { Pulsar } from "@uiball/loaders"
 import { useProductsStore } from "../../store/products"
 
 const ProductForm = ({ showMessage, handleModal }) => {
   const { categories, getCategories, addProduct } = useProductsStore()
   const [selectedCategories, setSelectedCategories] = useState([])
+  const [isUploading, setIsUploading] = useState(false)
   const initialState = {
     codigo: "",
     nombre: "",
@@ -81,6 +83,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault()
+    setIsUploading(true)
     const data = {
       ...productData,
       categorias: selectedCategories,
@@ -90,8 +93,11 @@ const ProductForm = ({ showMessage, handleModal }) => {
       showMessage("Producto agregado correctamente", "success")
       handleModal()
       setProductData(initialState)
+      setSelectedCategories([])
+      setIsUploading(false)
     } catch (error) {
       showMessage(error.message, "error")
+      setIsUploading(false)
     }
   }
 
@@ -341,35 +347,26 @@ const ProductForm = ({ showMessage, handleModal }) => {
             )
           })}
         </div>
-        {/* <select
-          className="appearance-none bg-white-transparent rounded-full w-full text-xs py-2 px-4 text-dark leading-tight focus:outline-none focus:shadow-outline"
-          id="categoria"
-          name="categoria"
-          value={productData.categoria}
-          onChange={handleChange}
-          required
-        >
-          <option value="">Seleccione una categoría</option>
-          {categories?.map((category) => (
-            <option key={category?.ID} value={category?.VALOR}>
-              {category?.NOMBRE}
-            </option>
-          ))}
-        </select> */}
       </div>
-      <div className="flex items-end gap-4 justify-end col-span-6">
+      <div className="flex items-end w-full gap-4 justify-end col-span-6">
         <button
           onClick={() => setProductData(initialState)}
-          className="bg-white-transparent text-sm hover:bg-dark hover:text-white text-dark font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+          className="bg-white-transparent text-sm hover:bg-dark hover:text-white text-dark font-bold py-2 px-4 w-[100px] rounded-full focus:outline-none focus:shadow-outline"
         >
           Limpiar
         </button>
-        <button
-          className="bg-white-transparent text-sm hover:bg-dark hover:text-white text-dark font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Guardar
-        </button>
+        {!isUploading ? (
+          <button
+            className="bg-white-transparent text-sm hover:bg-dark hover:text-white text-dark font-bold py-2 px-4 w-[100px] rounded-full focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Guardar
+          </button>
+        ) : (
+          <div className="grid place-items-center w-[100px]">
+            <Pulsar color="#292929" size={35} />
+          </div>
+        )}
       </div>
     </form>
   )

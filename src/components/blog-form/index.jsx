@@ -1,11 +1,13 @@
 import React, { useState } from "react"
 
 import Input from "../input"
+import { Pulsar } from "@uiball/loaders"
 import { toast } from "sonner"
 import { useBlogStore } from "../../store"
 
 const BlogForm = ({ handleModal }) => {
   const { addPost } = useBlogStore()
+  const [isUploading, setIsUploading] = useState(false)
   const initialState = {
     titulo: "",
     descripcion: "",
@@ -38,13 +40,16 @@ const BlogForm = ({ handleModal }) => {
   }
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setIsUploading(true)
     try {
       await addPost(blogData)
       toast.success("Post agregado correctamente")
       setBlogData(initialState)
       handleModal()
+      setIsUploading(false)
     } catch (error) {
       toast.error("Ocurrió un error al agregar el post")
+      setIsUploading(false)
     }
   }
   return (
@@ -107,16 +112,22 @@ const BlogForm = ({ handleModal }) => {
       <div className="flex items-end gap-4 justify-end w-full col-span-4">
         <button
           onClick={() => setBlogData(initialState)}
-          className="bg-white-transparent text-sm duration-150 ease-in-out hover:bg-dark hover:text-white text-dark font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+          className="w-[100px] bg-white-transparent text-sm duration-150 ease-in-out hover:bg-dark hover:text-white text-dark font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
         >
           Limpiar
         </button>
-        <button
-          className="bg-white-transparent text-sm duration-150 ease-in-out hover:bg-dark hover:text-white text-dark font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Guardar
-        </button>
+        {!isUploading ? (
+          <button
+            className="w-[100px] bg-white-transparent text-sm duration-150 ease-in-out hover:bg-dark hover:text-white text-dark font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Guardar
+          </button>
+        ) : (
+          <div className="grid place-items-center w-[100px]">
+            <Pulsar color="#292929" size={35} />
+          </div>
+        )}
       </div>
     </form>
   )
