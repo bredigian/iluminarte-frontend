@@ -24,4 +24,9 @@ export const sections = [
     title: "Contacto",
     path: "/contact",
   },
+  {
+    id: 6,
+    title: "Administrador",
+    path: "/administration",
+  },
 ]

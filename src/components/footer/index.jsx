@@ -20,28 +20,28 @@ const Footer = () => {
       </div>
       <ul className="footer-sections flex flex-col items-start xs:gap-4 xl:gap-8">
         {sections.map((section) => {
-          return (
-            <li
-              key={section.id}
-              className="footer-sections__item text-dark hover:text-tertiary font-bold xs:text-base xl:text-lg"
-            >
-              <Link to={section.path}>{section.title}</Link>
-            </li>
-          )
+          if (token) {
+            return (
+              <li
+                key={section.id}
+                className="footer-sections__item text-dark hover:text-tertiary font-bold xs:text-base xl:text-lg"
+              >
+                <Link to={section.path}>{section.title}</Link>
+              </li>
+            )
+          } else {
+            if (section.title !== "Administrador") {
+              return (
+                <li
+                  key={section.id}
+                  className="footer-sections__item text-dark hover:text-tertiary font-bold xs:text-base xl:text-lg"
+                >
+                  <Link to={section.path}>{section.title}</Link>
+                </li>
+              )
+            }
+          }
         })}
-        {token && (
-          <li>
-            <Link
-              key={"adminKey"}
-              className={
-                "footer-sections__item text-dark hover:text-tertiary font-bold xs:text-base xl:text-lg"
-              }
-              to={"/administration"}
-            >
-              Administracion
-            </Link>
-          </li>
-        )}
       </ul>
       <aside className="footer-contact flex flex-col items-start gap-4">
         <div className="footer-contact__info flex flex-col items-start">

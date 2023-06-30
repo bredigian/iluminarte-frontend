@@ -2,12 +2,15 @@ import { NavLink, useLocation } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 
 import { Bars3Icon } from "@heroicons/react/24/solid"
+import { UserIcon } from "@heroicons/react/24/outline"
 import { sections } from "../../constants"
 import svgLogo from "../../assets/images/logos/logo_blanco.svg"
 import svgLogoDark from "../../assets/images/logos/logo_morado.svg"
+import { useUserStore } from "../../store"
 
 const Header = ({ handleNavigator }) => {
   const route = useLocation().pathname
+  const { token } = useUserStore()
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
     const handleScroll = () => {
@@ -40,21 +43,41 @@ const Header = ({ handleNavigator }) => {
       />
       <nav className="xs:hidden header-navbar sm:flex sm:gap-2 lg:gap-4">
         {sections.map((section) => {
-          return (
-            <NavLink
-              key={section.id}
-              className={`ease-in-out duration-150 sm:text-sm lg:text-base font-bold px-6 py-2 rounded-full text-center lg:w-1-3 xl:w-1 border-2 border-transparent ${
-                route === "/"
-                  ? scrolled
-                    ? "text-primary hover:border-primary"
-                    : "text-white hover:bg-primary"
-                  : "text-primary hover:border-primary"
-              }`}
-              to={section.path}
-            >
-              {section.title}
-            </NavLink>
-          )
+          if (token && section.title === "Administrador") {
+            return (
+              <NavLink
+                key={section.id}
+                className={`ease-in-out duration-150 flex justify-center font-bold px-4 py-2 rounded-full text-center border-2 border-transparent ${
+                  route === "/"
+                    ? scrolled
+                      ? "text-primary hover:border-primary"
+                      : "text-white hover:bg-primary"
+                    : "text-primary hover:border-primary"
+                }`}
+                to={section.path}
+              >
+                <UserIcon width={25} />
+              </NavLink>
+            )
+          } else {
+            if (section.title !== "Administrador") {
+              return (
+                <NavLink
+                  key={section.id}
+                  className={`ease-in-out duration-150 sm:text-sm lg:text-base font-bold px-6 py-2 rounded-full text-center lg:w-1-3 xl:w-1 border-2 border-transparent ${
+                    route === "/"
+                      ? scrolled
+                        ? "text-primary hover:border-primary"
+                        : "text-white hover:bg-primary"
+                      : "text-primary hover:border-primary"
+                  }`}
+                  to={section.path}
+                >
+                  {section.title}
+                </NavLink>
+              )
+            }
+          }
         })}
       </nav>
     </header>
