@@ -4,6 +4,7 @@ import { create } from "zustand"
 export const useProductsStore = create((set, get) => ({
   products: [],
   productOfTheMonth: null,
+  imageHomeProductOfTheMonth: null,
 
   getProducts: async () => {
     const result = await fetch(`${API_URL}/products`, {
@@ -85,6 +86,37 @@ export const useProductsStore = create((set, get) => ({
     } else {
       await result.json()
       get().getProductOfTheMonth()
+    }
+  },
+
+  getImageHomeProductOfTheMonth: async () => {
+    const result = await fetch(`${API_URL}/products/favorite/previmage`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    if (!result.ok) {
+      throw new Error("Error fetching image of the month")
+    } else {
+      const data = await result.json()
+      set({ imageHomeProductOfTheMonth: data.image })
+    }
+  },
+
+  setImageHomeProductOfTheMonth: async (img) => {
+    const formData = new FormData()
+    formData.append("image", img)
+    const result = await fetch(`${API_URL}/products/favorite/previmage`, {
+      method: "POST",
+      body: formData,
+    })
+    if (!result.ok) {
+      const { message } = await result.json()
+      throw new Error(message)
+    } else {
+      await result.json()
+      get().getImageHomeProductOfTheMonth()
     }
   },
 

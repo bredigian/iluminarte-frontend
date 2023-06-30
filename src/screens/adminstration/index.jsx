@@ -1,14 +1,22 @@
+import { DecorativeAspects, Modal } from "../../components"
 import React, { useState } from "react"
 
 import { Link } from "react-router-dom"
-import { Modal } from "../../components"
+import { XMarkIcon } from "@heroicons/react/24/solid"
 import blogBg from "../../assets/images/blog/fondo.png"
+import monthImg from "../../assets/images/home/month/velaMonthBackground.png"
 import productsBg from "../../assets/images/products/header/fondo.png"
 import { useUserStore } from "../../store"
 
 const Administration = () => {
   const { user, logOut } = useUserStore()
   const [showModal, setShowModal] = useState(false)
+  const [showModalMonth, setShowModalMonth] = useState(false)
+
+  const handleModalMonth = () => {
+    setShowModalMonth(!showModalMonth)
+  }
+
   const openModal = () => {
     setShowModal(true)
   }
@@ -73,7 +81,7 @@ const Administration = () => {
               <Link
                 to={item?.path}
                 onClick={null}
-                className="absolute w-full h-full grid place-items-center cursor-pointer bg-transparent hover:bg-dark-transparent duration-150 ease-in-out"
+                className="absolute w-full h-full grid place-items-center cursor-pointer bg-transparent hover:bg-dark-transparent duration-150 ease-in-out backdrop-blur-sm"
               >
                 <h2 className="text-white font-serif text-3xl select-none">
                   {item?.name}
@@ -87,7 +95,35 @@ const Administration = () => {
             </div>
           )
         })}
+        <div className="administration-items__item relative flex items-center justify-center rounded-[33px] overflow-hidden">
+          <div
+            onClick={handleModalMonth}
+            className="absolute w-full h-full grid place-items-center cursor-pointer bg-transparent hover:bg-dark-transparent duration-150 ease-in-out backdrop-blur-sm"
+          >
+            <h2 className="text-white text-center font-serif text-3xl select-none">
+              Aspectos decorativos
+            </h2>
+          </div>
+          <img
+            className="h-[400px] w-[600px] object-cover object-left"
+            src={monthImg}
+            alt={`Imagen de administracion de la vela del mes`}
+          />
+        </div>
       </div>
+      <Modal show={showModalMonth}>
+        <div className="modal-addProduct flex flex-col items-center gap-4 bg-white py-6 px-6">
+          <div className="flex items-start justify-between w-full">
+            <h1 className="font-serif text-2xl text-dark">
+              Aspectos decorativos
+            </h1>
+            <button type="button" onClick={handleModalMonth}>
+              <XMarkIcon width={30} color="#292929" />
+            </button>
+          </div>
+          <DecorativeAspects handleModal={handleModalMonth} />
+        </div>
+      </Modal>
     </section>
   )
 }

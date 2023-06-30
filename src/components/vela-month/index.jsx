@@ -1,14 +1,17 @@
 import React, { useEffect } from "react"
 
-import monthImg1 from "../../assets/images/home/month/velaMonthBackground.png"
-import monthImg2 from "../../assets/images/home/month/velaMonthProduct.png"
 import { motion } from "framer-motion"
 import { useAnimation } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { useProductsStore } from "../../store"
 
 const VelaMonth = ({ navigate }) => {
-  const { productOfTheMonth, getProductOfTheMonth } = useProductsStore()
+  const {
+    productOfTheMonth,
+    getProductOfTheMonth,
+    imageHomeProductOfTheMonth,
+    getImageHomeProductOfTheMonth,
+  } = useProductsStore()
   const controls = useAnimation()
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -19,6 +22,7 @@ const VelaMonth = ({ navigate }) => {
   }
   useEffect(() => {
     getProductOfTheMonth()
+    getImageHomeProductOfTheMonth()
   }, [])
   useEffect(() => {
     if (inView) {
@@ -27,10 +31,10 @@ const VelaMonth = ({ navigate }) => {
   }, [controls, inView])
   return (
     <section className="home-month flex xs:flex-col lg:flex-row lg:justify-center lg:gap-10 items-center w-full overflow-hidden">
-      <div className="home-month__bg xs:w-full xs:h-mid lg:w-5 lg:h-[630px] overflow-hidden">
+      <div className="home-month__bg xs:w-full xs:h-mid lg:w-5 lg:max-h-[630px] overflow-hidden">
         <img
           className="hover:scale-zoom object-cover ease-in-out duration-300"
-          src={monthImg1}
+          src={imageHomeProductOfTheMonth || null}
           alt="Fondo de Vela del mes"
         />
       </div>
