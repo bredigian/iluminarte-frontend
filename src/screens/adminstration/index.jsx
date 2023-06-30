@@ -2,6 +2,7 @@ import { DecorativeAspects, Modal } from "../../components"
 import React, { useState } from "react"
 
 import { Link } from "react-router-dom"
+import { Pulsar } from "@uiball/loaders"
 import { XMarkIcon } from "@heroicons/react/24/solid"
 import blogBg from "../../assets/images/blog/fondo.png"
 import monthImg from "../../assets/images/home/month/velaMonthBackground.png"
@@ -12,6 +13,7 @@ const Administration = () => {
   const { user, logOut } = useUserStore()
   const [showModal, setShowModal] = useState(false)
   const [showModalMonth, setShowModalMonth] = useState(false)
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
 
   const handleModalMonth = () => {
     setShowModalMonth(!showModalMonth)
@@ -24,8 +26,10 @@ const Administration = () => {
     setShowModal(false)
   }
   const signOut = async () => {
+    setIsLoggingOut(true)
     await logOut()
     closeModal()
+    setIsLoggingOut(false)
   }
   const administrationItems = [
     { name: "Productos", path: "/administration/products", img: productsBg },
@@ -60,13 +64,19 @@ const Administration = () => {
               >
                 No
               </button>
-              <button
-                className="border-2 border-dark px-4 py-2 rounded-full w-0-8 text-dark font-bold hover:bg-dark hover:text-white duration-150 ease-in-out"
-                type="button"
-                onClick={signOut}
-              >
-                Sí
-              </button>
+              {isLoggingOut ? (
+                <div className="grid place-items-center w-0-8">
+                  <Pulsar size={45} color="#292929" />
+                </div>
+              ) : (
+                <button
+                  className="border-2 border-dark px-4 py-2 rounded-full w-0-8 text-dark font-bold hover:bg-dark hover:text-white duration-150 ease-in-out"
+                  type="button"
+                  onClick={signOut}
+                >
+                  Sí
+                </button>
+              )}
             </div>
           </div>
         </Modal>

@@ -3,6 +3,7 @@ import { useProductsStore, useUserStore } from "../../store"
 
 import Modal from "../modal"
 import ProductDetail from "../product-detail"
+import { Pulsar } from "@uiball/loaders"
 import { StarIcon } from "@heroicons/react/24/outline"
 import { XMarkIcon } from "@heroicons/react/24/solid"
 import { toast } from "sonner"
@@ -13,6 +14,7 @@ const ProductItem = ({ data, edit }) => {
 
   const [showModal, setShowModal] = useState(false)
   const [modalConfirmFavourite, setModalConfirmFavourite] = useState(false)
+  const [isUpdating, setIsUpdating] = useState(false)
 
   const [modalConfirmDelete, setModalConfirmDelete] = useState(false)
 
@@ -33,12 +35,15 @@ const ProductItem = ({ data, edit }) => {
   }
 
   const handleUpdate = async () => {
+    setIsUpdating(true)
     try {
       await setProductOfTheMonth(data?.CODIGO)
       toast.success("Producto actualizado correctamente")
       handleModalFavourite()
+      setIsUpdating(false)
     } catch {
       toast.error("Error al actualizar el producto")
+      setIsUpdating(false)
     }
   }
 
@@ -97,13 +102,19 @@ const ProductItem = ({ data, edit }) => {
               >
                 No
               </button>
-              <button
-                className="border-2 border-dark px-4 py-2 rounded-full w-0-8 text-dark font-bold hover:bg-dark hover:text-white duration-150 ease-in-out"
-                type="button"
-                onClick={handleDelete}
-              >
-                Sí
-              </button>
+              {isUpdating ? (
+                <div className="grid place-items-center w-0-8">
+                  <Pulsar size={45} color="#292929" />
+                </div>
+              ) : (
+                <button
+                  className="border-2 border-dark px-4 py-2 rounded-full w-0-8 text-dark font-bold hover:bg-dark hover:text-white duration-150 ease-in-out"
+                  type="button"
+                  onClick={handleDelete}
+                >
+                  Sí
+                </button>
+              )}
             </div>
           </div>
         </Modal>
@@ -123,13 +134,19 @@ const ProductItem = ({ data, edit }) => {
               >
                 No
               </button>
-              <button
-                className="border-2 border-dark px-4 py-2 rounded-full w-0-8 text-dark font-bold hover:bg-dark hover:text-white duration-150 ease-in-out"
-                type="button"
-                onClick={handleUpdate}
-              >
-                Sí
-              </button>
+              {isUpdating ? (
+                <div className="grid place-items-center w-0-8">
+                  <Pulsar size={45} color="#292929" />
+                </div>
+              ) : (
+                <button
+                  className="border-2 border-dark px-4 py-2 rounded-full w-0-8 text-dark font-bold hover:bg-dark hover:text-white duration-150 ease-in-out"
+                  type="button"
+                  onClick={handleUpdate}
+                >
+                  Sí
+                </button>
+              )}
             </div>
           </div>
         </Modal>
