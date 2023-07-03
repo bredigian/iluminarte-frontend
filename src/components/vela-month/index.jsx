@@ -29,6 +29,7 @@ const VelaMonth = ({ navigate }) => {
       controls.start("visible")
     }
   }, [controls, inView])
+  console.log(productOfTheMonth)
   return (
     <section className="home-month flex xs:flex-col lg:flex-row lg:justify-center lg:gap-10 items-center w-full overflow-hidden">
       <div className="home-month__bg xs:w-full xs:h-mid lg:w-5 lg:max-h-[630px] overflow-hidden">
@@ -55,7 +56,7 @@ const VelaMonth = ({ navigate }) => {
         <motion.div className="home-month__product-img">
           <img
             className="xs:w-2 sm:w-2 lg:w-2-5"
-            src={productOfTheMonth?.IMAGENES[0]?.url}
+            src={productOfTheMonth?.IMAGENES[0]?.IMAGEN}
             alt="Vela del mes"
           />
         </motion.div>

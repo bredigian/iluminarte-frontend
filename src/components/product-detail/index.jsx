@@ -5,6 +5,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline"
 
 const ProductDetail = ({ data, closeModal }) => {
   const [selectedImage, setSelectedImage] = useState(data?.IMAGENES[0])
+
   const handleSelectedImage = (image) => {
     setSelectedImage(image)
   }
@@ -14,8 +15,8 @@ const ProductDetail = ({ data, closeModal }) => {
         <img
           className="w-full h-full object-cover"
           style={{ backgroundColor: "transparent" }}
-          src={selectedImage?.url}
-          alt={`Vela de color ${selectedImage?.color}, imagen ${selectedImage?.url}`}
+          src={selectedImage?.IMAGEN}
+          alt={`Vela de color ${selectedImage?.CODIGO}, imagen ${selectedImage?.IMAGEN}`}
         />
       </div>
       <div className="item-info flex flex-col items-start gap-4 w-mid h-full p-8 overflow-y-auto overflow-x-hidden bg-tertiary-lighter">
@@ -32,7 +33,7 @@ const ProductDetail = ({ data, closeModal }) => {
         </div>
         <p>
           <b>Código: </b>
-          {data.CODIGO}
+          {selectedImage?.CODIGO || data.codigo}
         </p>
         <div className="item-info__detail flex items-start gap-4 flex-wrap h-full">
           <div className="item-info__detail-item flex flex-col items-start gap-2 w-[125px]">
@@ -80,8 +81,8 @@ const ProductDetail = ({ data, closeModal }) => {
                     "w-[20px] h-[20px] rounded-full border-2 border-[#00000075] cursor-pointer"
                   }
                   style={
-                    image.color !== "multicolor"
-                      ? { backgroundColor: image.color }
+                    image.COLOR !== "multicolor"
+                      ? { backgroundColor: image.COLOR }
                       : {
                           background:
                             "linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,146,0,1) 12%, rgba(215,255,0,1) 24%, rgba(0,255,239,1) 36%, rgba(0,229,255,1) 52%, rgba(64,0,255,1) 68%, rgba(255,0,147,1) 85%, rgba(255,0,0,1) 100%)",
@@ -143,23 +144,6 @@ const ProductDetail = ({ data, closeModal }) => {
             >
               <p className="flex-grow text-center">Sin aroma</p>
               {data.AROMA === 0 && <CheckIcon className="w-[15px] h-[15px]" />}
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col items-start gap-2">
-          <h2 className="text-dark text-xs font-bold">Otras caracteristicas</h2>
-          <div className="flex items-center gap-4">
-            <div
-              className={`w-[105px] ${
-                data?.PARA_NAVIDAD > 0
-                  ? "bg-tertiary text-white"
-                  : "bg-gray-light text-dark"
-              } flex items-center justify-between rounded-full text-xs px-3 py-1 w-[120px] font-bold`}
-            >
-              <p className="flex-grow text-center">Para navidad</p>
-              {data?.PARA_NAVIDAD > 0 && (
-                <CheckIcon className="w-[15px] h-[15px]" />
-              )}
             </div>
           </div>
         </div>

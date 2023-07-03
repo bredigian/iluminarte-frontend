@@ -36,11 +36,13 @@ const Header = ({ handleNavigator }) => {
         onClick={handleNavigator}
         className="xs:relative sm:hidden text-white w-0-3"
       />
-      <img
-        className="header-img xs:w-1 xl:w-logo"
-        src={route !== "/" ? svgLogoDark : scrolled ? svgLogoDark : svgLogo}
-        alt="Iluminarte Logo"
-      />
+      <NavLink to={"/"}>
+        <img
+          className="header-img xs:w-1 xl:w-logo"
+          src={route !== "/" ? svgLogoDark : scrolled ? svgLogoDark : svgLogo}
+          alt="Iluminarte Logo"
+        />
+      </NavLink>
       <nav className="xs:hidden header-navbar sm:flex sm:gap-2 lg:gap-4">
         {sections.map((section) => {
           if (token && section.title === "Administrador") {

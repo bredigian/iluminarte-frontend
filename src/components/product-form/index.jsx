@@ -11,7 +11,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
   const [selectedColors, setSelectedColors] = useState([])
   const [isUploading, setIsUploading] = useState(false)
   const initialState = {
-    codigo: "",
+    codigo_principal: "",
     nombre: "",
     peso: "",
     altura: "",
@@ -21,15 +21,16 @@ const ProductForm = ({ showMessage, handleModal }) => {
     mecha_ecologica: false,
     mecha_led: false,
     mecha_tradicional: false,
-    para_navidad: false,
     con_aroma: false,
     sin_aroma: false,
     tiempo_quemado: "",
     imagenes: [],
+    codigos: [],
     colores: [],
     etiquetas: [],
   }
   const [productData, setProductData] = useState(initialState)
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
     const newValue = type === "checkbox" ? checked : value
@@ -53,12 +54,19 @@ const ProductForm = ({ showMessage, handleModal }) => {
     }))
   }
 
-  const handleTagChange = (e) => {
+  const handleTagCodeChange = (e) => {
     const { value } = e.target
-    setProductData((prevData) => ({
-      ...prevData,
-      etiquetas: value.split(","),
-    }))
+    if (e.target.name === "etiquetas") {
+      setProductData((prevData) => ({
+        ...prevData,
+        etiquetas: value.split(","),
+      }))
+    } else {
+      setProductData((prevData) => ({
+        ...prevData,
+        codigos: value.split(","),
+      }))
+    }
   }
 
   const handleChangeColor = (e) => {
@@ -86,6 +94,8 @@ const ProductForm = ({ showMessage, handleModal }) => {
     }
   }
 
+  const isValidForm = selectedCategories.length > 0 && selectedColors.length > 0
+
   const onSubmit = async (e) => {
     e.preventDefault()
     setIsUploading(true)
@@ -112,23 +122,31 @@ const ProductForm = ({ showMessage, handleModal }) => {
   }, [])
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="w-full grid grid-cols-12 gap-2 max-w-lg"
-    >
+    <form onSubmit={onSubmit} className="w-full grid grid-cols-12 gap-2">
       <Input
-        styles={"bg-white-transparent text-xs col-span-6"}
-        value={productData.codigo}
+        styles={"bg-white-transparent text-xs col-span-8"}
+        value={productData.nombre}
         data={{
           type: "text",
-          placeholder: "Código",
+          placeholder: "Nombre",
         }}
         required
         onChangeValue={handleChange}
-        name={"codigo"}
+        name={"nombre"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-3"}
+        styles={"bg-white-transparent text-xs col-span-4"}
+        value={productData.codigo_principal}
+        data={{
+          type: "text",
+          placeholder: "Código principal",
+        }}
+        required
+        onChangeValue={handleChange}
+        name={"codigo_principal"}
+      />
+      <Input
+        styles={"bg-white-transparent text-xs col-span-4"}
         value={productData.peso}
         data={{
           type: "number",
@@ -140,7 +158,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
         name={"peso"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-3"}
+        styles={"bg-white-transparent text-xs col-span-4"}
         value={productData.altura}
         data={{
           type: "number",
@@ -152,41 +170,19 @@ const ProductForm = ({ showMessage, handleModal }) => {
         name={"altura"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-6"}
-        value={productData.nombre}
-        data={{
-          type: "text",
-          placeholder: "Nombre",
-        }}
-        required
-        onChangeValue={handleChange}
-        name={"nombre"}
-      />
-      <Input
-        styles={"bg-white-transparent text-xs col-span-3"}
-        value={productData.ancho}
-        data={{
-          type: "number",
-          step: "any",
-          placeholder: "Ancho",
-        }}
-        onChangeValue={handleChange}
-        name={"ancho"}
-      />
-      <Input
-        styles={"bg-white-transparent text-xs col-span-3"}
+        styles={"bg-white-transparent text-xs col-span-4"}
         value={productData.tiempo_quemado}
         data={{
           type: "number",
           step: "any",
-          placeholder: "Tie. quema",
+          placeholder: "Tiempo quemado",
         }}
         required
         onChangeValue={handleChange}
         name={"tiempo_quemado"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-6"}
+        styles={"bg-white-transparent text-xs col-span-4"}
         value={productData.diametro_superior}
         data={{
           type: "number",
@@ -197,7 +193,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
         name={"diametro_superior"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-6"}
+        styles={"bg-white-transparent text-xs col-span-4"}
         value={productData.diametro_inferior}
         data={{
           type: "number",
@@ -207,7 +203,22 @@ const ProductForm = ({ showMessage, handleModal }) => {
         onChangeValue={handleChange}
         name={"diametro_inferior"}
       />
-      <div className="flex flex-col gap-3 col-span-12">
+      <Input
+        styles={"bg-white-transparent text-xs col-span-4"}
+        value={productData.ancho}
+        data={{
+          type: "number",
+          step: "any",
+          placeholder: "Ancho",
+        }}
+        onChangeValue={handleChange}
+        name={"ancho"}
+      />
+      <div className="flex flex-col gap-1 col-span-12">
+        <p className="italic text-dark text-[0.7rem] ml-2">
+          Ingrese las etiquetas separadas por una coma (ej. etiqueta1,
+          etiqueta2)
+        </p>
         <Input
           styles={"bg-white-transparent text-xs"}
           value={productData.etiquetas}
@@ -215,15 +226,11 @@ const ProductForm = ({ showMessage, handleModal }) => {
             type: "textarea",
             placeholder: "Etiquetas",
           }}
-          onChangeValue={handleTagChange}
+          onChangeValue={handleTagCodeChange}
           name={"etiquetas"}
         />
-        <p className="italic text-dark text-[0.7rem]">
-          Ingrese las etiquetas separadas por una coma (ej. etiqueta1,
-          etiqueta2)
-        </p>
       </div>
-      <div className="flex items-center gap-3 col-span-6">
+      <div className="flex items-center gap-2 col-span-3">
         <input
           type="checkbox"
           id="mecha_ecologica"
@@ -235,19 +242,8 @@ const ProductForm = ({ showMessage, handleModal }) => {
           Mecha ecológica
         </label>
       </div>
-      <div className="flex items-center gap-3 col-span-6">
-        <input
-          type="checkbox"
-          id="con_aroma"
-          name="con_aroma"
-          checked={productData.con_aroma}
-          onChange={handleChange}
-        />
-        <label className="text-dark text-xs" htmlFor="con_aroma">
-          Con aroma
-        </label>
-      </div>
-      <div className="flex items-center gap-3 col-span-6">
+
+      <div className="flex items-center gap-2 col-span-3">
         <input
           type="checkbox"
           id="mecha_tradicional"
@@ -259,19 +255,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
           Mecha tradicional
         </label>
       </div>
-      <div className="flex items-center gap-3 col-span-6">
-        <input
-          type="checkbox"
-          id="sin_aroma"
-          name="sin_aroma"
-          checked={productData.sin_aroma}
-          onChange={handleChange}
-        />
-        <label className="text-dark text-xs" htmlFor="sin_aroma">
-          Sin aroma
-        </label>
-      </div>
-      <div className="flex items-center gap-3 col-span-6">
+      <div className="flex items-center gap-2 col-span-2">
         <input
           type="checkbox"
           id="mecha_led"
@@ -283,19 +267,31 @@ const ProductForm = ({ showMessage, handleModal }) => {
           Mecha LED
         </label>
       </div>
-      <div className="flex items-center gap-3 col-span-6">
+      <div className="flex items-center gap-2 col-span-2">
         <input
           type="checkbox"
-          id="para_navidad"
-          name="para_navidad"
-          checked={productData.para_navidad}
+          id="sin_aroma"
+          name="sin_aroma"
+          checked={productData.sin_aroma}
           onChange={handleChange}
         />
-        <label className="text-dark text-xs" htmlFor="para_navidad">
-          Para navidad
+        <label className="text-dark text-xs" htmlFor="sin_aroma">
+          Sin aroma
         </label>
       </div>
-      <div className="flex flex-col items-start gap-3 col-span-12">
+      <div className="flex items-center gap-2 col-span-2">
+        <input
+          type="checkbox"
+          id="con_aroma"
+          name="con_aroma"
+          checked={productData.con_aroma}
+          onChange={handleChange}
+        />
+        <label className="text-dark text-xs" htmlFor="con_aroma">
+          Con aroma
+        </label>
+      </div>
+      <div className="flex flex-col items-start gap-2 col-span-12">
         <label className="text-xs text-dark font-bold" htmlFor="imagenes">
           Imágenes
         </label>
@@ -310,14 +306,36 @@ const ProductForm = ({ showMessage, handleModal }) => {
           required
         />
       </div>
-      <div className="flex flex-col items-start gap-3 col-span-12">
-        <div className="flex items-center justify-between w-full">
+      <div className="flex flex-col items-start gap-2 col-span-12">
+        <div className="flex items-center w-full justify-between">
+          <label className="text-xs text-dark font-bold" htmlFor="codigos">
+            Códigos
+          </label>
+          <p className="text-[0.7rem] text-dark italic">
+            Ingrese los codigos en el orden que se encuentran las imagenes en su
+            computadora
+          </p>
+        </div>
+        <Input
+          styles={"bg-white-transparent text-xs w-full"}
+          value={productData.codigos}
+          data={{
+            type: "textarea",
+            placeholder: "Códigos de cada imágen separados por una coma",
+          }}
+          required
+          onChangeValue={handleTagCodeChange}
+          name={"codigos"}
+        />
+      </div>
+      <div className="flex flex-col items-start gap-2 col-span-12">
+        <div className="flex items-start justify-between w-full">
           <label className="text-xs text-dark font-bold" htmlFor="colores">
             Colores
           </label>
           <p className="italic text-dark text-[0.7rem]">
-            Seleccione los colores en el orden en el que se encuentran en su
-            computadora
+            Seleccione los colores en el orden que se encuentran las imagenes en
+            su computadora
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-start gap-2">
@@ -325,7 +343,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
             return (
               <div
                 key={color.nombre + color.valor}
-                className="flex items-center gap-3 col-span-6 w-[120px]"
+                className="flex items-center gap-2 col-span-6 w-[120px]"
               >
                 <input
                   type="checkbox"
@@ -343,14 +361,14 @@ const ProductForm = ({ showMessage, handleModal }) => {
           })}
         </div>
       </div>
-      <div className="flex flex-col items-start gap-3 col-span-6">
+      <div className="flex flex-col items-start gap-2 col-span-8">
         <label className="text-xs text-dark font-bold" htmlFor="categoria">
           Categorías
         </label>
-        <div className="grid grid-cols-6 gap-1 w-full">
+        <div className="grid grid-cols-8 gap-1 w-full">
           {categories?.map((category) => {
             return (
-              <div className="flex items-center gap-3 col-span-3">
+              <div className="flex items-center gap-2 col-span-2">
                 <input
                   type="checkbox"
                   id={category.VALOR}
@@ -367,7 +385,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
           })}
         </div>
       </div>
-      <div className="flex items-end w-full gap-4 justify-end col-span-6">
+      <div className="flex items-end w-full gap-4 justify-end col-span-4">
         <button
           onClick={() => setProductData(initialState)}
           className="bg-white-transparent text-sm hover:bg-dark hover:text-white text-dark font-bold py-2 px-4 w-[100px] rounded-full focus:outline-none focus:shadow-outline"
@@ -376,7 +394,10 @@ const ProductForm = ({ showMessage, handleModal }) => {
         </button>
         {!isUploading ? (
           <button
-            className="bg-white-transparent text-sm hover:bg-dark hover:text-white text-dark font-bold py-2 px-4 w-[100px] rounded-full focus:outline-none focus:shadow-outline"
+            disabled={!isValidForm}
+            className={`bg-white-transparent text-sm ${
+              isValidForm && "hover:bg-dark hover:text-white"
+            } text-dark font-bold py-2 px-4 w-[100px] rounded-full focus:outline-none focus:shadow-outline`}
             type="submit"
           >
             Guardar

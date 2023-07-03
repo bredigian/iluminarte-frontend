@@ -62,8 +62,8 @@ const ProductItem = ({ data, edit }) => {
       <div className="product-item__img w-3">
         <img
           className="w-full"
-          src={data?.IMAGENES[0]?.url}
-          alt={`Imagen de la vela ${data?.IMAGENES[0]?.color}`}
+          src={data?.IMAGENES[0]?.IMAGEN}
+          alt={`Imagen de la vela ${data?.IMAGENES[0]?.CODIGO}`}
         />
       </div>
       <h2 className="product-item__name text-dark text-lg font-bold max-w-xs text-center px-1">

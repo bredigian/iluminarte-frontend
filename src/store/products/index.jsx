@@ -16,7 +16,7 @@ export const useProductsStore = create((set, get) => ({
     if (!result.ok) {
       throw new Error("Error fetching products")
     } else {
-      const data = await result.json()
+      const data = await result?.json()
       set({ products: data })
     }
   },

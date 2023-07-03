@@ -95,8 +95,8 @@ const AdministrationProducts = () => {
           </div>
         )}
       </div>
-      <Modal show={showModal}>
-        <div className="modal-addProduct flex flex-col items-center gap-4 bg-white py-6 px-6">
+      <Modal show={showModal} width={"w-[850px]"}>
+        <div className="modal-addProduct w-full flex flex-col items-center gap-4 bg-white py-6 px-6">
           <div className="flex items-start justify-between w-full">
             <h1 className="font-serif text-2xl text-dark">Agregar producto</h1>
             <button type="button" onClick={handleModal}>
