@@ -28,7 +28,6 @@ const BlogItem = ({ data, openModal, showComplete, edit }) => {
       ? description?.substring(0, maxLength) + "..."
       : description
   const DESCRIPCION_FORMATED = data?.DESCRIPCION.replace(/\\n/g, "\n")
-  console.log(data)
   return (
     <div
       className={`blog-container__item w-[320px] h-[480px] bg-tertiary-lighter flex flex-col items-center ${

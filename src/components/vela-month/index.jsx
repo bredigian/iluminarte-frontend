@@ -29,7 +29,6 @@ const VelaMonth = ({ navigate }) => {
       controls.start("visible")
     }
   }, [controls, inView])
-  console.log(productOfTheMonth)
   return (
     <section className="home-month flex xs:flex-col lg:flex-row lg:justify-center lg:gap-10 items-center w-full overflow-hidden">
       <div className="home-month__bg xs:w-full xs:h-mid lg:w-5 lg:max-h-[630px] overflow-hidden">
