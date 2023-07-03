@@ -103,7 +103,7 @@ const ProductDetail = ({ data, closeModal }) => {
                   : "bg-gray-light text-dark"
               } flex items-center justify-between rounded-full text-xs px-3 py-1 w-[120px] font-bold`}
             >
-              <p className="flex-grow text-center">Ecólogica</p>
+              <p className="flex-grow text-center">Ecológica</p>
               {data.MECHA_ECOLOGICA === 1 && (
                 <CheckIcon className="w-[15px] h-[15px]" />
               )}
@@ -146,6 +146,12 @@ const ProductDetail = ({ data, closeModal }) => {
               {data.AROMA === 0 && <CheckIcon className="w-[15px] h-[15px]" />}
             </div>
           </div>
+        </div>
+        <div className="flex flex-col items-start gap-2">
+          <h2 className="text-dark text-xs font-bold">Nota</h2>
+          <p className="text-xs italic text-dark">
+            Consultá por otros colores y aromas disponibles
+          </p>
         </div>
       </div>
     </div>
