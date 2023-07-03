@@ -72,7 +72,7 @@ const Input = ({
       <textarea
         id={id}
         key={data.id}
-        className={`${styles} bg-[#FFFFFF65] p-4 rounded-xl outline-none col-span-3 min-h-[80px] text-base resize-none`}
+        className={`${styles} bg-[#FFFFFF65] p-4 rounded-xl outline-none col-span-3 text-base resize-none`}
         placeholder={data.placeholder}
         onChange={onChangeValue}
         value={value}

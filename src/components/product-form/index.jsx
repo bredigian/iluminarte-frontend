@@ -220,7 +220,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
           etiqueta2)
         </p>
         <Input
-          styles={"bg-white-transparent text-xs"}
+          styles={"bg-white-transparent text-xs min-h-[80px]"}
           value={productData.etiquetas}
           data={{
             type: "textarea",
@@ -317,7 +317,7 @@ const ProductForm = ({ showMessage, handleModal }) => {
           </p>
         </div>
         <Input
-          styles={"bg-white-transparent text-xs w-full"}
+          styles={"bg-white-transparent text-xs w-full min-h-[100px]"}
           value={productData.codigos}
           data={{
             type: "textarea",

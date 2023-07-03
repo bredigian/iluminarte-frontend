@@ -111,7 +111,9 @@ const Contact = () => {
               return (
                 <Input
                   key={field.id + field.name}
-                  styles={"placeholder:text-white text-white"}
+                  styles={`placeholder:text-white text-white ${
+                    field.id === "message" && "min-h-[200px]"
+                  }`}
                   data={field}
                   value={field.value}
                   id={field.id}

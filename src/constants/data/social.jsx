@@ -1,27 +1,27 @@
-import fbIcon from "../../assets/images/icons/fb-icon.png"
-import igIcon from "../../assets/images/icons/ig-icon.png"
-import pIcon from "../../assets/images/icons/pinterest-icon.png"
-import wazeIcon from "../../assets/images/icons/waze-icon.png"
+import { BsFacebook, BsInstagram } from "react-icons/bs"
+
+import { FaWaze } from "react-icons/fa"
+import { ImPinterest2 } from "react-icons/im"
 
 export const social = [
   {
     id: 1,
-    logo: <img className="xs:w-0-2 xl:w-0-3" src={fbIcon} alt="facebook" />,
+    logo: <BsFacebook size={40} color="#a87061" />,
     link: "https://www.facebook.com/VelasJesusNazareno",
   },
   {
     id: 2,
-    logo: <img className="xs:w-0-2 xl:w-0-3" src={igIcon} alt="instagram" />,
+    logo: <BsInstagram size={40} color="#a87061" />,
     link: "https://www.instagram.com/iluminartegt/",
   },
   {
     id: 3,
-    logo: <img className="xs:w-0-2 xl:w-0-3" src={pIcon} alt="pinterest" />,
+    logo: <ImPinterest2 size={40} color="#a87061" />,
     link: "https://www.pinterest.com/Iluminartegt/?invite_code=b2dc96b8d1f6413a98a11710ac3a5299&sender=1128785231512415350",
   },
   {
     id: 4,
-    logo: <img className="xs:w-0-2 xl:w-0-3" src={wazeIcon} alt="waze" />,
+    logo: <FaWaze size={40} color="#a87061" />,
     link: "https://www.waze.com/es-419/live-map/directions?to=ll.14.638746%2C-90.558522",
   },
 ]
