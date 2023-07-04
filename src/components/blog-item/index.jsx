@@ -3,22 +3,28 @@ import React, { useState } from "react"
 import { useBlogStore, useUserStore } from "../../store"
 
 import Modal from "../modal"
+import { Pulsar } from "@uiball/loaders"
 import { toast } from "sonner"
 
 const BlogItem = ({ data, openModal, showComplete, edit }) => {
   const { token } = useUserStore()
   const { deletePost } = useBlogStore()
   const [modalDelete, setModalDelete] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
+
   const handleModalDelete = () => {
     setModalDelete(!modalDelete)
   }
   const handleDelete = async () => {
+    setIsDeleting(true)
     try {
       await deletePost(data?.ID)
       toast.success("Post eliminado correctamente")
       handleModalDelete()
+      setIsDeleting(false)
     } catch (error) {
       toast.error("Error al eliminar el post")
+      setIsDeleting(false)
     }
   }
   const maxLength = 175
@@ -77,13 +83,19 @@ const BlogItem = ({ data, openModal, showComplete, edit }) => {
               >
                 No
               </button>
-              <button
-                className="border-2 border-dark px-4 py-2 rounded-full w-0-8 text-dark font-bold hover:bg-dark hover:text-white duration-150 ease-in-out"
-                type="button"
-                onClick={handleDelete}
-              >
-                Sí
-              </button>
+              {isDeleting ? (
+                <div className="grid place-items-center w-0-8">
+                  <Pulsar size={42} color="#292929" />
+                </div>
+              ) : (
+                <button
+                  className="border-2 border-dark px-4 py-2 rounded-full w-0-8 text-dark font-bold hover:bg-dark hover:text-white duration-150 ease-in-out"
+                  type="button"
+                  onClick={handleDelete}
+                >
+                  Sí
+                </button>
+              )}
             </div>
           </div>
         </Modal>

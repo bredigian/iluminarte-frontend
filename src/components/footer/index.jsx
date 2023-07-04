@@ -8,7 +8,7 @@ import { useUserStore } from "../../store"
 const Footer = () => {
   const { token } = useUserStore()
   return (
-    <footer className="footer bg-[#f4e5e1] flex xs:flex-col xs:items-start xs:gap-8 lg:flex-row lg:items-center justify-evenly w-full xs:py-10 xs:px-4 xl:py-xl">
+    <footer className="footer bg-[#f4e5e1] flex xs:flex-col xs:items-start xs:gap-8 lg:flex-row justify-evenly w-full xs:py-10 xs:px-4 xl:py-xl">
       <div className="footer-logo flex flex-col items-start gap-8 max-w-4">
         <div className="footer-logo__img xs:w-3 xl:w-3">
           <img className="w-full" src={svgLogo} alt="logo" />
@@ -17,6 +17,22 @@ const Footer = () => {
           Detrás de nuestras marcas, hay mucho más que velas, hay historia y
           tradición, y el deseo de iluminar cada momento de tu vida.
         </p>
+        <div className="flex flex-col items-start gap-2 mt-24">
+          <a
+            className="text-dark text-xs"
+            href="https://wa.me/50240037831"
+            target="_blank"
+          >
+            Designed with love by Azul Marino © 2023
+          </a>
+          <a
+            className="text-dark text-xs"
+            href="https://instagram.com/gianlucabredice"
+            target="_blank"
+          >
+            Gianluca Bredice Developer
+          </a>
+        </div>
       </div>
       <ul className="footer-sections flex flex-col items-start xs:gap-4 xl:gap-8">
         {sections.map((section) => {

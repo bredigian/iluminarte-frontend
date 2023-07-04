@@ -85,7 +85,7 @@ const ProductItem = ({ data, edit }) => {
           onClick={openModal}
         ></button>
       )}
-      <Modal show={showModal}>
+      <Modal show={showModal} width={"min-w-[900px]"}>
         <ProductDetail data={data} closeModal={closeModal} />
       </Modal>
       {token && edit && (
@@ -104,7 +104,7 @@ const ProductItem = ({ data, edit }) => {
               </button>
               {isUpdating ? (
                 <div className="grid place-items-center w-0-8">
-                  <Pulsar size={45} color="#292929" />
+                  <Pulsar size={42} color="#292929" />
                 </div>
               ) : (
                 <button
@@ -136,7 +136,7 @@ const ProductItem = ({ data, edit }) => {
               </button>
               {isUpdating ? (
                 <div className="grid place-items-center w-0-8">
-                  <Pulsar size={45} color="#292929" />
+                  <Pulsar size={42} color="#292929" />
                 </div>
               ) : (
                 <button

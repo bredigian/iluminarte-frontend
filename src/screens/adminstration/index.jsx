@@ -66,7 +66,7 @@ const Administration = () => {
               </button>
               {isLoggingOut ? (
                 <div className="grid place-items-center w-0-8">
-                  <Pulsar size={45} color="#292929" />
+                  <Pulsar size={42} color="#292929" />
                 </div>
               ) : (
                 <button

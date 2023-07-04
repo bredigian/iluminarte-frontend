@@ -64,9 +64,17 @@ const ProductDetail = ({ data, closeModal }) => {
             <h2 className="font-bold text-xs text-dark">Altura (cm)</h2>
             <p className="text-dark text-xs">{data.ALTURA}</p>
           </div>
-          <div className="item-info__detail-item flex flex-col items-start gap-2 w-[125px]">
-            <h2 className="font-bold text-xs text-dark">Etiqueta</h2>
-            <p className="text-dark text-xs">{data.ETIQUETAS || "N/A"}</p>
+          <div className="item-info__detail-item flex flex-col items-start gap-2 w-[125px] flex-grow">
+            <h2 className="font-bold text-xs text-dark">Etiquetas</h2>
+            <div className="flex flex-wrap gap-1">
+              {data?.ETIQUETAS !== null ? (
+                data?.ETIQUETAS?.map((tag) => {
+                  return <p className="w-fit text-dark text-xs">{tag}</p>
+                })
+              ) : (
+                <p className="w-fit text-dark text-xs">N/A</p>
+              )}
+            </div>
           </div>
         </div>
         <div className="item-colors flex items-center flex-wrap gap-4">
@@ -105,6 +113,18 @@ const ProductDetail = ({ data, closeModal }) => {
             >
               <p className="flex-grow text-center">Ecológica</p>
               {data.MECHA_ECOLOGICA === 1 && (
+                <CheckIcon className="w-[15px] h-[15px]" />
+              )}
+            </div>
+            <div
+              className={`w-[105px] ${
+                data.MECHA_TRADICIONAL === 1
+                  ? "bg-tertiary text-white"
+                  : "bg-gray-light text-dark"
+              } flex items-center justify-between rounded-full text-xs px-3 py-1 w-[120px] font-bold`}
+            >
+              <p className="flex-grow text-center">Tradicional</p>
+              {data.MECHA_TRADICIONAL === 1 && (
                 <CheckIcon className="w-[15px] h-[15px]" />
               )}
             </div>
