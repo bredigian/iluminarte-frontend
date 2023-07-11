@@ -38,8 +38,8 @@ const Contact = () => {
       if (!result.ok) {
         throw new Error(result.json())
       }
-      const data = await result.json()
-      toast.success(data.json())
+      const { message } = await result.json()
+      toast.success(message)
     } catch (error) {
       toast.error(error.message)
     }
@@ -122,7 +122,7 @@ const Contact = () => {
               )
             })}
             <button
-              className="bg-secondary w-fit place-self-center col-span-3 text-white text-lg font-bold px-20 py-1 rounded-full"
+              className="bg-secondary w-fit place-self-center col-span-3 text-white text-lg font-bold px-20 py-1 rounded-full hover:bg-white hover:text-secondary duration-150 ease-in-out"
               type="submit"
             >
               Enviar

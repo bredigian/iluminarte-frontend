@@ -5,16 +5,43 @@ import { XMarkIcon } from "@heroicons/react/24/outline"
 
 const ProductDetail = ({ data, closeModal }) => {
   const [selectedImage, setSelectedImage] = useState(data?.IMAGENES[0])
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
 
+  const handleHover = (event) => {
+    const container = event.currentTarget.getBoundingClientRect()
+    const x = event.clientX - container.left
+    const y = event.clientY - container.top
+    setCursorPosition({ x, y })
+  }
   const handleSelectedImage = (image) => {
     setSelectedImage(image)
   }
   return (
     <div className="item flex items-start max-w-[1200px] h-full bg-white">
-      <div className="item-img w-mid h-[450px] m-auto">
+      <div
+        onMouseMove={handleHover}
+        onMouseOut={() => setCursorPosition({ x: 0, y: 0 })}
+        className="item-img w-mid h-[450px] m-auto"
+      >
         <img
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover hover:cursor-crosshair"
           style={{ backgroundColor: "transparent" }}
+          src={selectedImage?.IMAGEN}
+          alt={`Vela de color ${selectedImage?.CODIGO}, imagen ${selectedImage?.IMAGEN}`}
+        />
+      </div>
+      <div
+        className={`image-zoom absolute right-[45px] shadow-2xl bg-white translate-y-20 rounded-3xl overflow-hidden ${
+          cursorPosition.x !== 0 && cursorPosition.y !== 0
+            ? "visible opacity-100"
+            : "invisible opacity-0"
+        } w-[40%] h-[400px]`}
+      >
+        <img
+          className="w-[170%] h-[170%] object-cover ml-52"
+          style={{
+            transform: `translate(-${cursorPosition.x}px, -${cursorPosition.y}px) scale(1.5)`,
+          }}
           src={selectedImage?.IMAGEN}
           alt={`Vela de color ${selectedImage?.CODIGO}, imagen ${selectedImage?.IMAGEN}`}
         />

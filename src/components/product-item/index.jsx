@@ -89,7 +89,7 @@ const ProductItem = ({ data, edit }) => {
         <ProductDetail data={data} closeModal={closeModal} />
       </Modal>
       {token && edit && (
-        <Modal show={modalConfirmDelete} minWidth={"min-w-"}>
+        <Modal show={modalConfirmDelete}>
           <div className="modal-delete flex flex-col items-center gap-8 bg-white p-8">
             <h1 className="font-serif text-3xl text-center">
               ¿Estás seguro que desea eliminar este producto?
