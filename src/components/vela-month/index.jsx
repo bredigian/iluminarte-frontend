@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 
+import { Pulsar } from "@uiball/loaders"
 import { motion } from "framer-motion"
 import { useAnimation } from "framer-motion"
 import { useInView } from "react-intersection-observer"
@@ -32,11 +33,15 @@ const VelaMonth = ({ navigate }) => {
   return (
     <section className="home-month flex xs:flex-col lg:flex-row lg:justify-center lg:gap-10 items-center w-full overflow-hidden">
       <div className="home-month__bg xs:w-full xs:h-mid lg:w-5 lg:max-h-[630px] overflow-hidden">
-        <img
-          className="hover:scale-zoom object-cover ease-in-out duration-300"
-          src={imageHomeProductOfTheMonth || null}
-          alt="Fondo de Vela del mes"
-        />
+        {!imageHomeProductOfTheMonth ? (
+          <Pulsar size={45} />
+        ) : (
+          <img
+            className="hover:scale-zoom object-cover ease-in-out duration-300"
+            src={imageHomeProductOfTheMonth || null}
+            alt="Fondo de Vela del mes"
+          />
+        )}
       </div>
       <motion.div
         ref={ref}
@@ -53,11 +58,15 @@ const VelaMonth = ({ navigate }) => {
           Vela del mes
         </motion.h1>
         <motion.div className="home-month__product-img">
-          <img
-            className="xs:w-2 sm:w-2 lg:w-2-5"
-            src={productOfTheMonth?.IMAGENES[0]?.IMAGEN}
-            alt="Vela del mes"
-          />
+          {!productOfTheMonth ? (
+            <Pulsar size={45} />
+          ) : (
+            <img
+              className="xs:w-2 sm:w-2 lg:w-2-5"
+              src={productOfTheMonth?.IMAGENES[0]?.IMAGEN}
+              alt="Vela del mes"
+            />
+          )}
         </motion.div>
         <motion.div className="home-month__product-info max-w-5 flex flex-col items-center gap-4">
           <motion.p className="xs:text-base sm:text-sm xl:text-xl font-bold text-center">
