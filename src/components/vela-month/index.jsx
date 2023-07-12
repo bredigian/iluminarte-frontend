@@ -59,7 +59,9 @@ const VelaMonth = ({ navigate }) => {
         </motion.h1>
         <motion.div className="home-month__product-img">
           {!productOfTheMonth ? (
-            <Pulsar size={45} />
+            <div className="h-[300px] grid place-items-center">
+              <Pulsar size={45} />
+            </div>
           ) : (
             <img
               className="xs:w-2 sm:w-2 lg:w-2-5"
