@@ -40,24 +40,24 @@ const Products = () => {
       id="products"
       className="products flex flex-col items-center w-full bg-white"
     >
-      <div className="products-categories flex items-center justify-evenly bg-products-section bg-cover bg-no-repeat bg-center w-full h-[300px]">
+      <div className="products-categories flex items-center flex-wrap justify-evenly xs:gap-2 sm:gap-0 bg-products-section bg-cover bg-no-repeat bg-center w-full xs:h-[120px] sm:h-[200px] lg:h-[300px]">
         {categories.map((category) => {
           return (
             <button
               onClick={() => handleCategory(category.VALOR)}
               type="button"
-              className={`text-white text-2xl ${
+              className={`text-white xs:text-sm sm:text-lg lg:text-2xl ${
                 selectedCategory === category.VALOR
                   ? "bg-secondary"
                   : "bg-[#ffffff48]"
-              } px-4 py-2 rounded-full duration-150 border-2 hover:bg-secondary hover:border-secondary w-2 text-center`}
+              } xs:px-2 xs:py-1 lg:px-4 lg:py-2 rounded-full duration-150 border-2 hover:bg-secondary hover:border-secondary xs:w-[120px] sm:w-[160px] lg:w-2 text-center`}
             >
               {category.NOMBRE}
             </button>
           )
         })}
       </div>
-      <div className="products-container flex items-center justify-center gap-4 flex-wrap p-8">
+      <div className="products-container flex items-center justify-center xs:gap-2 lg:gap-4 flex-wrap xs:p-4 lg:p-8">
         {filteredProducts.length === 0 && categories.length === 0 ? (
           <Pulsar color="#292929" size={50} />
         ) : filteredProducts.length > 0 ? (
@@ -65,16 +65,16 @@ const Products = () => {
             return <ProductItem key={product.CODIGO} data={product} />
           })
         ) : (
-          <p className="font-serif text-4xl text-dark">
+          <p className="font-serif xs:text-sm text-center lg:text-4xl text-dark">
             No se encontraron productos de la categoria seleccionada.
           </p>
         )}
       </div>
       <div className="products-footer flex flex-col items-center gap-8 w-full p-8">
-        <h1 className="font-serif text-[50px] font-bold">
+        <h1 className="font-serif xs:text-xl sm:text-4xl lg:text-[50px] font-bold">
           Descubre otros modelos
         </h1>
-        <div className="products-footer__items flex items-center justify-center gap-24 w-full">
+        <div className="products-footer__items flex items-center justify-center flex-wrap xs:gap-4 lg:gap-24 w-full">
           {categories.map((category) => {
             return (
               <button
@@ -84,7 +84,7 @@ const Products = () => {
                   selectedCategory === category.VALOR
                     ? "bg-secondary"
                     : "bg-[#e8cdd8]"
-                } hover:bg-secondary text-white text-2xl px-4 py-2 rounded-full duration-150 w-2 text-center`}
+                } hover:bg-secondary text-white xs:text-sm sm:text-lg lg:text-2xl xs:px-2 xs:py-1 lg:px-4 lg:py-2 rounded-full duration-150 xs:w-[120px] sm:w-[160px] lg:w-2 text-center`}
               >
                 {category.NOMBRE}
               </button>
@@ -94,9 +94,9 @@ const Products = () => {
       </div>
       <button
         onClick={scrollToTop}
-        className="fixed right-10 top-[50%] rounded-full border-[3px] p-4 border-primary w-fit"
+        className="fixed xs:right-5 lg:right-10 top-[50%] rounded-full xs:border-[2px] sm:border-[3px] xs:p-1 lg:p-4 border-primary w-fit"
       >
-        <ChevronUpIcon className="w-[50px] text-primary" />
+        <ChevronUpIcon className="xs:w-[20px] sm:w-[50px] text-primary" />
       </button>
     </section>
   )

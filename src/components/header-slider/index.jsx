@@ -17,7 +17,7 @@ const HeaderSlider = () => {
     const circles = Array.from({ length: slideCount }, (_, index) => (
       <div
         key={index}
-        className={`w-[20px] h-[20px] rounded-full cursor-pointer ${
+        className={`xs:w-[10px] xs:h-[10px] lg:w-[20px] lg:h-[20px] rounded-full cursor-pointer ${
           index === currentSlide ? "bg-primary" : "bg-[#ffffff65]"
         }`}
         onClick={() => goToSlide(index)}

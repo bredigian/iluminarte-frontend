@@ -38,12 +38,10 @@ const CategoryItem = ({ category }) => {
         />
       </div>
       <div className="categories-item__info absolute xs:bottom-4 xs:ml-4 lg:bottom-12 lg:ml-8">
-        <h3 className="font-serif text-white xs:text-sm sm:text-1xl lg:text-3xl font-bold">
+        <h3 className="font-serif text-white xs:text-sm sm:text-3xl font-bold">
           {name}
         </h3>
-        <p className="text-white xs:text-xs sm:text-sm lg:text-xl">
-          {description}
-        </p>
+        <p className="text-white xs:text-xs sm:text-xl">{description}</p>
       </div>
     </div>
   )

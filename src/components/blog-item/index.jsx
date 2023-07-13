@@ -36,7 +36,7 @@ const BlogItem = ({ data, openModal, showComplete, edit }) => {
   const DESCRIPCION_FORMATED = data?.DESCRIPCION.replace(/\\n/g, "\n")
   return (
     <div
-      className={`blog-container__item w-[320px] h-[480px] bg-tertiary-lighter flex flex-col items-center ${
+      className={`blog-container__item xs:w-[240px] lg:w-[320px] xs:h-[360px] lg:h-[480px] bg-tertiary-lighter flex flex-col items-center ${
         !showComplete ? "overflow-auto" : "overflow-hidden"
       } rounded-[33px] shadow-xl`}
     >
@@ -50,12 +50,16 @@ const BlogItem = ({ data, openModal, showComplete, edit }) => {
       <div className="blog-container__item-img w-full">
         <img className="w-full" src={data?.IMG} alt="" />
       </div>
-      <div className="blog-container__item-information h-full flex flex-col items-start gap-1 p-4">
-        <h2 className="font-bold text-dark text-lg">{data?.TITULO}</h2>
+      <div className="blog-container__item-information h-full flex flex-col items-start  gap-1 p-4">
+        <h2 className="font-bold text-dark xs:text-sm lg:text-lg">
+          {data?.TITULO}
+        </h2>
         {!showComplete ? (
-          <p className="text-dark text-xs">{truncatedDescription}</p>
+          <p className="text-dark xs:text-[10px] lg:text-xs xs:max-h-[58px] lg:max-h-full overflow-auto">
+            {truncatedDescription}
+          </p>
         ) : (
-          <p className="text-dark text-xs h-[110px] overflow-auto">
+          <p className="text-dark xs:text-[10px] lg:text-xs h-[110px] overflow-auto">
             {DESCRIPCION_FORMATED}
           </p>
         )}

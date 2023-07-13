@@ -11,7 +11,6 @@ const Input = ({
   required,
   isAuth,
   hasError,
-  clicked,
   id,
 }) => {
   if (data.type !== "textarea") {
@@ -26,12 +25,12 @@ const Input = ({
           value={value}
           step={step}
           autoComplete={(data.type === "email") & "true"}
-          className={`bg-[#FFFFFF65] px-4 py-2 text-base ${styles} rounded-full outline-none ${
+          className={`bg-[#FFFFFF65] px-4 py-2 xs:text-sm sm:text-base ${styles} rounded-full outline-none ${
             data.type === "tel"
-              ? "col-span-1"
+              ? "xs:col-span-4 md:col-span-1"
               : data.type === "email"
-              ? "col-span-2"
-              : "col-span-3"
+              ? "xs:col-span-4 md:col-span-2"
+              : "xs:col-span-4 md:col-span-3"
           }`}
           type={data.type}
           placeholder={data.placeholder}
@@ -51,10 +50,10 @@ const Input = ({
             autoComplete={(data.type === "email") & "true"}
             className={`bg-[#FFFFFF65] px-4 py-2 text-base ${styles} rounded-full outline-none ${
               data.type === "tel"
-                ? "col-span-1"
+                ? "xs:col-span-4 md:col-span-1"
                 : data.type === "email"
-                ? "col-span-2"
-                : "col-span-3"
+                ? "xs:col-span-4 md:col-span-2"
+                : "xs:col-span-4 md:col-span-3"
             }`}
             type={data.type}
             placeholder={data.placeholder}
@@ -72,7 +71,7 @@ const Input = ({
       <textarea
         id={id}
         key={data.id}
-        className={`${styles} bg-[#FFFFFF65] p-4 rounded-xl outline-none col-span-3 text-base resize-none`}
+        className={`${styles} bg-[#FFFFFF65] p-4 rounded-xl outline-none xs:col-span-4 md:col-span-3 xs:text-sm md:text-base resize-none`}
         placeholder={data.placeholder}
         onChange={onChangeValue}
         value={value}

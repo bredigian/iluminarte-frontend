@@ -8,16 +8,16 @@ import { useUserStore } from "../../store"
 const Footer = () => {
   const { token } = useUserStore()
   return (
-    <footer className="footer bg-[#f4e5e1] flex xs:flex-col xs:items-start xs:gap-8 lg:flex-row justify-evenly w-full xs:py-10 xs:px-4 xl:py-xl">
-      <div className="footer-logo flex flex-col items-start gap-8 max-w-4">
-        <div className="footer-logo__img xs:w-3 xl:w-3">
+    <footer className="footer bg-[#f4e5e1] flex xs:flex-col xs:items-center xs:gap-8 lg:items-start lg:flex-row lg:justify-evenly w-full xs:py-10 xs:px-4 xl:py-xl">
+      <div className="footer-logo flex flex-col xs:w-full xs:items-center lg:items-start gap-8 max-w-4">
+        <div className="footer-logo__img xs:w-[200px] xl:w-3">
           <img className="w-full" src={svgLogo} alt="logo" />
         </div>
-        <p className="text-dark xs:text-base xl:text-xl">
+        <p className="text-dark xs:text-center lg:text-start xs:text-sm xl:text-xl">
           Detrás de nuestras marcas, hay mucho más que velas, hay historia y
           tradición, y el deseo de iluminar cada momento de tu vida.
         </p>
-        <div className="flex flex-col items-start gap-2 mt-24">
+        <div className="xs:hidden lg:flex flex-col items-start gap-2 mt-24">
           <a
             className="text-dark text-xs"
             href="https://wa.me/50240037831"
@@ -34,7 +34,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <ul className="footer-sections flex flex-col items-start xs:gap-4 xl:gap-8">
+      <ul className="footer-sections flex flex-col xs:w-full lg:w-fit xs:justify-center xs:items-center lg:items-start xs:gap-4 xl:gap-8">
         {sections.map((section) => {
           if (token) {
             return (
@@ -59,8 +59,8 @@ const Footer = () => {
           }
         })}
       </ul>
-      <aside className="footer-contact flex flex-col items-start gap-4">
-        <div className="footer-contact__info flex flex-col items-start">
+      <aside className="footer-contact flex flex-col xs:w-full lg:w-max xs:justify-center xs:items-center lg:items-start gap-4">
+        <div className="footer-contact__info flex flex-col xs:items-center xs:gap-1 lg:gap-0 lg:items-start">
           <a
             className="text-dark xs:text-xs lg:text-sm xl:text-lg font-bold"
             href="tel:+50222264600"
@@ -84,6 +84,22 @@ const Footer = () => {
           })}
         </ul>
       </aside>
+      <div className="lg:hidden flex flex-col items-center w-full gap-2 mt-12">
+        <a
+          className="text-dark text-xs"
+          href="https://wa.me/50240037831"
+          target="_blank"
+        >
+          Designed with love by Azul Marino © 2023
+        </a>
+        <a
+          className="text-dark text-xs"
+          href="https://instagram.com/gianlucabredice"
+          target="_blank"
+        >
+          Gianluca Bredice Developer
+        </a>
+      </div>
     </footer>
   )
 }

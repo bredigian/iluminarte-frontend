@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useProductsStore, useUserStore } from "../../store"
 
 import Modal from "../modal"
@@ -57,16 +57,27 @@ const ProductItem = ({ data, edit }) => {
     }
   }
 
+  const [width, setWidth] = useState(window.innerWidth)
+  const handleWidth = () => {
+    setWidth(window.innerWidth)
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWidth)
+    return () => {
+      window.removeEventListener("resize", handleWidth)
+    }
+  }, [])
+
   return (
-    <div className="product-item relative flex flex-col items-center gap-4 flex-wrap h-[420px] w-[300px] rounded-xl">
-      <div className="product-item__img w-3">
+    <div className="product-item relative flex flex-col items-center gap-4 flex-wrap xs:h-[200px] xs:w-[140px] sm:h-[320px] sm:w-[220px] lg:h-[420px] lg:w-[300px] rounded-xl">
+      <div className="product-item__img xs:w-[110px] sm:w-[200px] lg:w-3">
         <img
           className="w-full"
           src={data?.IMAGENES[0]?.IMAGEN}
           alt={`Imagen de la vela ${data?.IMAGENES[0]?.CODIGO}`}
         />
       </div>
-      <h2 className="product-item__name text-dark text-lg font-bold max-w-xs text-center px-1">
+      <h2 className="product-item__name text-dark xs:text-xs sm:text-base lg:text-lg font-bold max-w-xs text-center px-1">
         {data?.NOMBRE}
       </h2>
       {edit ? (
@@ -85,11 +96,11 @@ const ProductItem = ({ data, edit }) => {
           onClick={openModal}
         ></button>
       )}
-      <Modal show={showModal} width={"min-w-[900px]"}>
+      <Modal show={showModal} width={"xs:min-w-[400px] lg:min-w-[900px]"}>
         <ProductDetail data={data} closeModal={closeModal} />
       </Modal>
       {token && edit && (
-        <Modal show={modalConfirmDelete}>
+        <Modal show={modalConfirmDelete && width >= 970}>
           <div className="modal-delete flex flex-col items-center gap-8 bg-white p-8">
             <h1 className="font-serif text-3xl text-center">
               ¿Estás seguro que desea eliminar este producto?
@@ -120,7 +131,7 @@ const ProductItem = ({ data, edit }) => {
         </Modal>
       )}
       {token && edit && (
-        <Modal show={modalConfirmFavourite}>
+        <Modal show={modalConfirmFavourite && width >= 970}>
           <div className="modal-fav flex flex-col items-center gap-8 bg-white p-8">
             <h1 className="font-serif text-3xl text-center">
               ¿Estás seguro que desea marcar como "Vela del mes" a este

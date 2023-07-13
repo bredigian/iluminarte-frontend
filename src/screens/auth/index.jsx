@@ -18,6 +18,17 @@ const Auth = () => {
     onInputChange(type, value, dispatchFormState, formState)
   }
 
+  const [width, setWidth] = useState(window.innerWidth)
+  const handleWidth = () => {
+    setWidth(window.innerWidth)
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWidth)
+    return () => {
+      window.removeEventListener("resize", handleWidth)
+    }
+  }, [])
+
   const labels = [
     {
       id: "label_email",
@@ -54,20 +65,35 @@ const Auth = () => {
     verifyToken()
     if (token) navigate("/administration")
   }, [token])
-  return (
-    <div className="auth grid place-items-center p-8">
-      <div className="auth-container flex flex-col items-center gap-6 bg-[#f4e5e1] rounded-[33px] w-5 h-[300px] p-8">
-        <h1 className="font-serif text-4xl text-dark">Autenticación</h1>
-        <AuthForm
-          labels={labels}
-          handleSubmit={handleSubmit}
-          isLogging={isLogging}
-          onHandleChangeInput={onHandleChangeInput}
-          formState={formState}
-        />
+
+  if (width <= 970) {
+    return (
+      <div className="auth flex flex-col items-center gap-4 p-8">
+        <h2 className="xs:text-xl md:text-2xl text-center font-serif font-bold">
+          Funciones administrativas deshabilitadas
+        </h2>
+        <p className="xs:text-base md:text-lg text-center italic">
+          Para acceder a las funciones administrativas se debe acceder desde un
+          navegador de Escritorio.
+        </p>
       </div>
-    </div>
-  )
+    )
+  } else {
+    return (
+      <div className="auth grid place-items-center p-8">
+        <div className="auth-container flex flex-col items-center gap-6 bg-[#f4e5e1] rounded-[33px] w-5 h-[300px] p-8">
+          <h1 className="font-serif text-4xl text-dark">Autenticación</h1>
+          <AuthForm
+            labels={labels}
+            handleSubmit={handleSubmit}
+            isLogging={isLogging}
+            onHandleChangeInput={onHandleChangeInput}
+            formState={formState}
+          />
+        </div>
+      </div>
+    )
+  }
 }
 
 export default Auth

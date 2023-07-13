@@ -38,12 +38,12 @@ const Blog = () => {
   }, [])
   return (
     <section className="blog flex flex-col items-center">
-      <div className="blog-header bg-blog-section bg-center bg-cover grid place-items-center h-2 w-full">
-        <h1 className="text-white font-serif text-6xl font-bold ">
+      <div className="blog-header bg-blog-section bg-center bg-cover grid place-items-center xs:h-[200px] lg:h-2 w-full">
+        <h1 className="text-white font-serif xs:text-4xl lg:text-6xl font-bold ">
           Nuestro blog
         </h1>
       </div>
-      <div className="blog-container flex items-center gap-12 flex-wrap p-8">
+      <div className="blog-container flex xs:justify-center lg:justify-start items-center gap-12 flex-wrap p-8">
         {blog?.length > 0 ? (
           blog?.map((post, index) => {
             return (
@@ -68,6 +68,7 @@ const Blog = () => {
           speed={0}
           dragging={false}
           className="h-full"
+          swiping={false}
         >
           {blog?.map((post) => {
             return (

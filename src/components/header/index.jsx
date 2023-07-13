@@ -10,8 +10,11 @@ import { useUserStore } from "../../store"
 
 const Header = ({ handleNavigator }) => {
   const route = useLocation().pathname
+
   const { token } = useUserStore()
+
   const [scrolled, setScrolled] = useState(false)
+
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 100
@@ -22,6 +25,21 @@ const Header = ({ handleNavigator }) => {
       window.removeEventListener("scroll", handleScroll)
     }
   }, [])
+
+  const [screenSize, setScreenSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  })
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize({ width: window.innerWidth, height: window.innerHeight })
+    }
+    window.addEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
+
   return (
     <header
       className={`xs:flex xs:justify-between xs:sticky xs:top-0 sm:px-4 xs:bg-primary xs:p-6 ${
@@ -39,7 +57,15 @@ const Header = ({ handleNavigator }) => {
       <NavLink to={"/"}>
         <img
           className="header-img xs:w-1 xl:w-logo"
-          src={route !== "/" ? svgLogoDark : scrolled ? svgLogoDark : svgLogo}
+          src={
+            screenSize.width >= 768
+              ? route !== "/"
+                ? svgLogoDark
+                : scrolled
+                ? svgLogoDark
+                : svgLogo
+              : svgLogo
+          }
           alt="Iluminarte Logo"
         />
       </NavLink>

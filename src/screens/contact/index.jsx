@@ -76,36 +76,38 @@ const Contact = () => {
     },
   ]
   return (
-    <section className="contact flex flex-col items-center">
-      <div className="flex items-center justify-center gap-32 bg-contact-section bg-no-repeat bg-auto bg-center w-full p-8">
-        <div className="contact-icons flex flex-col items-center gap-16">
+    <section className="contact flex flex-col items-center w-full">
+      <div className="flex xs:flex-col-reverse md:flex-row items-center md:justify-center xs:gap-16 md:gap-32 bg-contact-section bg-no-repeat bg-auto bg-center xs:w-full p-8">
+        <div className="contact-icons flex flex-col items-center xs:gap-8 md:gap-16">
           {contact.map((item) => {
             return (
               <a
                 key={item.id}
                 target="_blank"
                 href={item.url}
-                className="contact-icons__item flex flex-col justify-end items-center gap-8 p-4 rounded-2xl bg-[#00000095] w-[200px] h-[80px]"
+                className="contact-icons__item flex flex-col justify-end items-center gap-8 p-4 rounded-2xl bg-[#00000095] xs:w-[160px] md:w-[200px] xs:h-[70px] md:h-[80px]"
               >
                 <div
                   className={`contact-icons__item-icon absolute ${
                     item.id === 1 ? "bg-[#e8cdd8]" : "bg-[#efdbc7]"
-                  } rounded-full -translate-y-[40px] p-2`}
+                  } rounded-full xs:-translate-y-[30px] md:-translate-y-[40px] p-2`}
                 >
                   {item.icon}
                 </div>
-                <h3 className="text-white font-bold text-base">{item.value}</h3>
+                <h3 className="text-white font-bold xs:text-xs md:text-base">
+                  {item.value}
+                </h3>
               </a>
             )
           })}
         </div>
-        <div className="contact-form flex flex-col items-center gap-8">
-          <h1 className="text-6xl text-white font-bold font-serif">
+        <div className="contact-form flex flex-col items-center gap-8 xs:w-full md:w-fit">
+          <h1 className="xs:text-4xl md:text-6xl text-white font-bold font-serif">
             Contáctanos
           </h1>
           <form
             onSubmit={onSubmit}
-            className="grid grid-cols-3 gap-8 max-w-[600px]"
+            className="grid xs:grid-cols-4 sm:grid-cols-3 xs:gap-6 sm:gap-8 xs:w-[85%] md:max-w-[600px]"
           >
             {fields.map((field) => {
               return (
@@ -122,7 +124,7 @@ const Contact = () => {
               )
             })}
             <button
-              className="bg-secondary w-fit place-self-center col-span-3 text-white text-lg font-bold px-20 py-1 rounded-full hover:bg-white hover:text-secondary duration-150 ease-in-out"
+              className="bg-secondary place-self-center xs:col-span-4 md:col-span-3 text-white xs:text-base md:text-lg font-bold xs:px-16 md:px-20 py-1 rounded-full hover:bg-white hover:text-secondary duration-150 ease-in-out"
               type="submit"
             >
               Enviar
@@ -131,7 +133,9 @@ const Contact = () => {
         </div>
       </div>
       <div className="contact-social w-full flex items-center justify-center gap-8 p-8">
-        <h1 className="text-dark text-4xl font-bold">Síguenos en</h1>
+        <h1 className="text-dark xs:text-xl md:text-4xl text-center font-bold">
+          Síguenos en
+        </h1>
         <div className="contact-social__container flex items-start gap-4 border-2 p-4 rounded-full border-[#a87061]">
           {social.map((s) => {
             return (
