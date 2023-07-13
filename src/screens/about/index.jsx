@@ -5,22 +5,13 @@ import Carousel from "nuka-carousel"
 import { ChevronRightIcon } from "@heroicons/react/24/solid"
 import img1 from "../../assets/images/about/somos-iluminarte.png"
 import { motion } from "framer-motion"
+import useWidth from "../../hooks/useWidth"
 import { years } from "../../constants"
 
 const About = () => {
   const indexMax = years.length
   const [slideIndex, setSlideIndex] = useState(0)
-
-  const [width, setWidth] = useState(window.innerWidth)
-  const handleWidth = () => {
-    setWidth(window.innerWidth)
-  }
-  useEffect(() => {
-    window.addEventListener("resize", handleWidth)
-    return () => {
-      window.removeEventListener("resize", handleWidth)
-    }
-  }, [])
+  const width = useWidth()
 
   const handleNextSlide = () => {
     if (slideIndex < indexMax) {

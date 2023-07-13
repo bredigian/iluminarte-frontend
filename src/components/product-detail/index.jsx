@@ -2,21 +2,13 @@ import React, { useEffect, useState } from "react"
 
 import { CheckIcon } from "@heroicons/react/24/solid"
 import { XMarkIcon } from "@heroicons/react/24/outline"
+import useWidth from "../../hooks/useWidth"
 
 const ProductDetail = ({ data, closeModal }) => {
+  const width = useWidth()
+
   const [selectedImage, setSelectedImage] = useState(data?.IMAGENES[0])
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
-
-  const [width, setWidth] = useState(window.innerWidth)
-  const handleWidth = () => {
-    setWidth(window.innerWidth)
-  }
-  useEffect(() => {
-    window.addEventListener("resize", handleWidth)
-    return () => {
-      window.removeEventListener("resize", handleWidth)
-    }
-  }, [])
 
   const handleHover = (event) => {
     const container = event.currentTarget.getBoundingClientRect()

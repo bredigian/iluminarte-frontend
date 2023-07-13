@@ -8,6 +8,7 @@ import { useEffect } from "react"
 
 const Blog = () => {
   const { blog, getBlog } = useBlogStore()
+
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
   const indexMax = blog?.length - 1
@@ -29,6 +30,7 @@ const Blog = () => {
     setModalIsOpen(true)
     setSlideIndex(index)
   }
+
   const closeModal = () => {
     setModalIsOpen(false)
   }
@@ -36,6 +38,7 @@ const Blog = () => {
   useEffect(() => {
     getBlog()
   }, [])
+
   return (
     <section className="blog flex flex-col items-center">
       <div className="blog-header bg-blog-section bg-center bg-cover grid place-items-center xs:h-[200px] lg:h-2 w-full">

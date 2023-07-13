@@ -7,6 +7,7 @@ import { useUserStore } from "../../store"
 
 const Footer = () => {
   const { token } = useUserStore()
+
   return (
     <footer className="footer bg-[#f4e5e1] flex xs:flex-col xs:items-center xs:gap-8 lg:items-start lg:flex-row lg:justify-evenly w-full xs:py-10 xs:px-4 xl:py-xl">
       <div className="footer-logo flex flex-col xs:w-full xs:items-center lg:items-start gap-8 max-w-4">

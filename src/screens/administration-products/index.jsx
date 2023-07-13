@@ -5,9 +5,13 @@ import { Pulsar } from "@uiball/loaders"
 import { XMarkIcon } from "@heroicons/react/24/solid"
 import { toast } from "sonner"
 import { useProductsStore } from "../../store"
+import useWidth from "../../hooks/useWidth"
 
 const AdministrationProducts = () => {
+  const width = useWidth()
+
   const { products, getProducts } = useProductsStore()
+
   const [loading, setLoading] = useState(true)
   const [filteredProducts, setFilteredProducts] = useState([])
   const [search, setSearch] = useState("")
@@ -19,17 +23,6 @@ const AdministrationProducts = () => {
     })
     setFilteredProducts(productsFiltered)
   }
-
-  const [width, setWidth] = useState(window.innerWidth)
-  const handleWidth = () => {
-    setWidth(window.innerWidth)
-  }
-  useEffect(() => {
-    window.addEventListener("resize", handleWidth)
-    return () => {
-      window.removeEventListener("resize", handleWidth)
-    }
-  }, [])
 
   const handleModal = () => {
     setShowModal(!showModal)

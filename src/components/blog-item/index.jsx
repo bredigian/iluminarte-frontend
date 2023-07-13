@@ -8,13 +8,16 @@ import { toast } from "sonner"
 
 const BlogItem = ({ data, openModal, showComplete, edit }) => {
   const { token } = useUserStore()
+
   const { deletePost } = useBlogStore()
+
   const [modalDelete, setModalDelete] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
 
   const handleModalDelete = () => {
     setModalDelete(!modalDelete)
   }
+
   const handleDelete = async () => {
     setIsDeleting(true)
     try {
@@ -27,13 +30,16 @@ const BlogItem = ({ data, openModal, showComplete, edit }) => {
       setIsDeleting(false)
     }
   }
+
   const maxLength = 175
   const description = data?.DESCRIPCION
   const truncatedDescription =
     description?.length > maxLength
       ? description?.substring(0, maxLength) + "..."
       : description
+
   const DESCRIPCION_FORMATED = data?.DESCRIPCION.replace(/\\n/g, "\n")
+
   return (
     <div
       className={`blog-container__item xs:w-[240px] lg:w-[320px] xs:h-[360px] lg:h-[480px] bg-tertiary-lighter flex flex-col items-center ${

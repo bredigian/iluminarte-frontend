@@ -75,6 +75,7 @@ const Contact = () => {
       value: message,
     },
   ]
+
   return (
     <section className="contact flex flex-col items-center w-full">
       <div className="flex xs:flex-col-reverse md:flex-row items-center md:justify-center xs:gap-16 md:gap-32 bg-contact-section bg-no-repeat bg-auto bg-center xs:w-full p-8">

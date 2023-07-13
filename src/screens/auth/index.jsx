@@ -7,27 +7,20 @@ import { toast } from "sonner"
 import { useNavigate } from "react-router-dom"
 import { useReducer } from "react"
 import { useUserStore } from "../../store"
+import useWidth from "../../hooks/useWidth"
 
 const Auth = () => {
-  const { logIn, verifyToken, token } = useUserStore()
+  const width = useWidth()
   const navigate = useNavigate()
+
+  const { logIn, verifyToken, token } = useUserStore()
+
   const [isLogging, setIsLogging] = useState(false)
 
   const [formState, dispatchFormState] = useReducer(formStore, initialState)
   const onHandleChangeInput = (value, type) => {
     onInputChange(type, value, dispatchFormState, formState)
   }
-
-  const [width, setWidth] = useState(window.innerWidth)
-  const handleWidth = () => {
-    setWidth(window.innerWidth)
-  }
-  useEffect(() => {
-    window.addEventListener("resize", handleWidth)
-    return () => {
-      window.removeEventListener("resize", handleWidth)
-    }
-  }, [])
 
   const labels = [
     {

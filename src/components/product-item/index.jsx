@@ -7,8 +7,11 @@ import { Pulsar } from "@uiball/loaders"
 import { StarIcon } from "@heroicons/react/24/outline"
 import { XMarkIcon } from "@heroicons/react/24/solid"
 import { toast } from "sonner"
+import useWidth from "../../hooks/useWidth"
 
 const ProductItem = ({ data, edit }) => {
+  const width = useWidth()
+
   const { deleteProduct, setProductOfTheMonth } = useProductsStore()
   const { token } = useUserStore()
 
@@ -56,17 +59,6 @@ const ProductItem = ({ data, edit }) => {
       toast.error("Error al eliminar el producto")
     }
   }
-
-  const [width, setWidth] = useState(window.innerWidth)
-  const handleWidth = () => {
-    setWidth(window.innerWidth)
-  }
-  useEffect(() => {
-    window.addEventListener("resize", handleWidth)
-    return () => {
-      window.removeEventListener("resize", handleWidth)
-    }
-  }, [])
 
   return (
     <div className="product-item relative flex flex-col items-center gap-4 flex-wrap xs:h-[200px] xs:w-[140px] sm:h-[320px] sm:w-[220px] lg:h-[420px] lg:w-[300px] rounded-xl">

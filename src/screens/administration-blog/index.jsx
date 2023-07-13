@@ -4,14 +4,20 @@ import React, { useEffect, useState } from "react"
 import { Pulsar } from "@uiball/loaders"
 import { XMarkIcon } from "@heroicons/react/24/solid"
 import { useBlogStore } from "../../store"
+import useWidth from "../../hooks/useWidth"
 
 const AdministrationBlog = () => {
+  const width = useWidth()
+
   const { blog, getBlog } = useBlogStore()
+
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
+
   const handleModal = () => {
     setShowModal(!showModal)
   }
+
   useEffect(() => {
     getBlog()
     setTimeout(() => {
@@ -19,16 +25,6 @@ const AdministrationBlog = () => {
     }, 1000)
   }, [])
 
-  const [width, setWidth] = useState(window.innerWidth)
-  const handleWidth = () => {
-    setWidth(window.innerWidth)
-  }
-  useEffect(() => {
-    window.addEventListener("resize", handleWidth)
-    return () => {
-      window.removeEventListener("resize", handleWidth)
-    }
-  }, [])
   if (width <= 970) {
     return (
       <div className="auth flex flex-col items-center gap-4 p-8">

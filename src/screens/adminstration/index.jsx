@@ -8,44 +8,41 @@ import blogBg from "../../assets/images/blog/fondo.png"
 import monthImg from "../../assets/images/home/month/velaMonthBackground.png"
 import productsBg from "../../assets/images/products/header/fondo.png"
 import { useUserStore } from "../../store"
+import useWidth from "../../hooks/useWidth"
 
 const Administration = () => {
+  const width = useWidth()
+
   const { user, logOut } = useUserStore()
+
   const [showModal, setShowModal] = useState(false)
   const [showModalMonth, setShowModalMonth] = useState(false)
   const [isLoggingOut, setIsLoggingOut] = useState(false)
+
+  const administrationItems = [
+    { name: "Productos", path: "/administration/products", img: productsBg },
+    { name: "Blog", path: "/administration/blog", img: blogBg },
+  ]
 
   const handleModalMonth = () => {
     setShowModalMonth(!showModalMonth)
   }
 
-  const [width, setWidth] = useState(window.innerWidth)
-  const handleWidth = () => {
-    setWidth(window.innerWidth)
-  }
-  useEffect(() => {
-    window.addEventListener("resize", handleWidth)
-    return () => {
-      window.removeEventListener("resize", handleWidth)
-    }
-  }, [])
-
   const openModal = () => {
     setShowModal(true)
   }
+
   const closeModal = () => {
     setShowModal(false)
   }
+
   const signOut = async () => {
     setIsLoggingOut(true)
     await logOut()
     closeModal()
     setIsLoggingOut(false)
   }
-  const administrationItems = [
-    { name: "Productos", path: "/administration/products", img: productsBg },
-    { name: "Blog", path: "/administration/blog", img: blogBg },
-  ]
+
   return (
     <section className="flex flex-col p-8">
       <div className="administracion-header flex xs:flex-col-reverse md:flex-row justify-around xs:items-center md:items-start xs:gap-8 md:gap-0">
@@ -64,7 +61,7 @@ const Administration = () => {
             Cerrar sesión
           </button>
         </div>
-        <Modal show={showModal} minWidth={"min-w-"}>
+        <Modal show={showModal}>
           <div className="modal-signout flex flex-col items-center gap-8 bg-white p-8">
             <h1 className="font-serif xs:text-lg text-center md:text-xl lg:text-3xl">
               ¿Estás seguro que desea cerrar sesión?
