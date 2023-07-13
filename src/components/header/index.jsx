@@ -7,10 +7,12 @@ import { sections } from "../../constants"
 import svgLogo from "../../assets/images/logos/logo_blanco.svg"
 import svgLogoDark from "../../assets/images/logos/logo_morado.svg"
 import { useUserStore } from "../../store"
+import useWidth from "../../hooks/useWidth"
 
 const Header = ({ handleNavigator }) => {
-  const route = useLocation().pathname
+  const width = useWidth()
 
+  const route = useLocation().pathname
   const { token } = useUserStore()
 
   const [scrolled, setScrolled] = useState(false)
@@ -26,23 +28,9 @@ const Header = ({ handleNavigator }) => {
     }
   }, [])
 
-  const [screenSize, setScreenSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  })
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenSize({ width: window.innerWidth, height: window.innerHeight })
-    }
-    window.addEventListener("resize", handleResize)
-    return () => {
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [])
-
   return (
     <header
-      className={`xs:flex xs:justify-between xs:sticky xs:top-0 sm:px-4 xs:bg-primary xs:p-6 ${
+      className={`xs:flex xs:justify-between xs:sticky xs:top-0 sm:px-4 xs:bg-[#f4e5e1] xs:p-6 ${
         route !== "/"
           ? `sm:sticky sm:bg-white`
           : scrolled
@@ -52,19 +40,19 @@ const Header = ({ handleNavigator }) => {
     >
       <Bars3Icon
         onClick={handleNavigator}
-        className="xs:relative sm:hidden text-white w-0-3"
+        className="xs:relative sm:hidden text-primary w-0-3"
       />
       <NavLink to={"/"}>
         <img
           className="header-img xs:w-1 xl:w-logo"
           src={
-            screenSize.width >= 768
+            width >= 768
               ? route !== "/"
                 ? svgLogoDark
                 : scrolled
                 ? svgLogoDark
                 : svgLogo
-              : svgLogo
+              : svgLogoDark
           }
           alt="Iluminarte Logo"
         />
