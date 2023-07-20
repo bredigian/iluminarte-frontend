@@ -4,6 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "http://iluminarte.azulmarinogt.com",
+  "author": {
+    "name": "Gianluca Bredice Developer",
+    "email": "bredicegian@gmail.com"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
