@@ -124,7 +124,8 @@ const ProductForm = ({ showMessage, handleModal }) => {
   return (
     <form onSubmit={onSubmit} className="w-full grid grid-cols-12 gap-2">
       <Input
-        styles={"bg-white-transparent text-xs col-span-8"}
+        styles={"bg-white-transparent text-xs"}
+        colSpan={"lg:col-span-8"}
         value={productData.nombre}
         data={{
           type: "text",
@@ -135,7 +136,8 @@ const ProductForm = ({ showMessage, handleModal }) => {
         name={"nombre"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-4"}
+        styles={"bg-white-transparent text-xs"}
+        colSpan={"lg:col-span-4"}
         value={productData.codigo_principal}
         data={{
           type: "text",
@@ -146,7 +148,8 @@ const ProductForm = ({ showMessage, handleModal }) => {
         name={"codigo_principal"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-4"}
+        styles={"bg-white-transparent text-xs"}
+        colSpan={"lg:col-span-4"}
         value={productData.peso}
         data={{
           type: "number",
@@ -158,7 +161,8 @@ const ProductForm = ({ showMessage, handleModal }) => {
         name={"peso"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-4"}
+        styles={"bg-white-transparent text-xs"}
+        colSpan={"lg:col-span-4"}
         value={productData.altura}
         data={{
           type: "number",
@@ -170,7 +174,8 @@ const ProductForm = ({ showMessage, handleModal }) => {
         name={"altura"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-4"}
+        styles={"bg-white-transparent text-xs"}
+        colSpan={"lg:col-span-4"}
         value={productData.tiempo_quemado}
         data={{
           type: "number",
@@ -182,7 +187,8 @@ const ProductForm = ({ showMessage, handleModal }) => {
         name={"tiempo_quemado"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-4"}
+        styles={"bg-white-transparent text-xs"}
+        colSpan={"lg:col-span-4"}
         value={productData.diametro_superior}
         data={{
           type: "number",
@@ -193,7 +199,8 @@ const ProductForm = ({ showMessage, handleModal }) => {
         name={"diametro_superior"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-4"}
+        styles={"bg-white-transparent text-xs"}
+        colSpan={"lg:col-span-4"}
         value={productData.diametro_inferior}
         data={{
           type: "number",
@@ -204,7 +211,8 @@ const ProductForm = ({ showMessage, handleModal }) => {
         name={"diametro_inferior"}
       />
       <Input
-        styles={"bg-white-transparent text-xs col-span-4"}
+        styles={"bg-white-transparent text-xs"}
+        colSpan={"lg:col-span-4"}
         value={productData.ancho}
         data={{
           type: "number",

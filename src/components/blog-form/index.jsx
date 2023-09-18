@@ -58,7 +58,8 @@ const BlogForm = ({ handleModal }) => {
       className="grid grid-cols-8 grid-rows-8 gap-4 w-[600px] h-[400px]"
     >
       <Input
-        styles={"bg-white-transparent text-sm w-full col-span-8 row-span-1"}
+        styles={"bg-white-transparent text-sm w-full row-span-1"}
+        colSpan={"lg:col-span-8"}
         value={blogData.titulo}
         data={{
           type: "text",

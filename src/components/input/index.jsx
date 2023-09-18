@@ -4,6 +4,7 @@ import React from "react"
 const Input = ({
   data,
   styles,
+  colSpan,
   name,
   value,
   step,
@@ -25,12 +26,12 @@ const Input = ({
           value={value}
           step={step}
           autoComplete={(data.type === "email") & "true"}
-          className={`bg-[#FFFFFF65] px-4 py-2 xs:text-sm sm:text-base ${styles} rounded-full outline-none ${
+          className={`bg-[#FFFFFF65] ${styles} px-4 py-2 xs:text-sm rounded-full outline-none ${
             data.type === "tel"
               ? "xs:col-span-4 md:col-span-1"
               : data.type === "email"
               ? "xs:col-span-4 md:col-span-2"
-              : "xs:col-span-4 md:col-span-3"
+              : `xs:col-span-4 md:col-span-3 ${colSpan}`
           }`}
           type={data.type}
           placeholder={data.placeholder}
@@ -71,7 +72,7 @@ const Input = ({
       <textarea
         id={id}
         key={data.id}
-        className={`${styles} bg-[#FFFFFF65] p-4 rounded-xl outline-none xs:col-span-4 md:col-span-3 xs:text-sm md:text-base resize-none`}
+        className={`${styles} bg-[#FFFFFF65] p-4 rounded-xl outline-none xs:col-span-4 md:col-span-3 lg:col-span-8 xs:text-sm resize-none`}
         placeholder={data.placeholder}
         onChange={onChangeValue}
         value={value}
