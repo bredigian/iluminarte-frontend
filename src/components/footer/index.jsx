@@ -26,13 +26,6 @@ const Footer = () => {
           >
             Designed with love by Azul Marino © 2023
           </a>
-          <a
-            className="text-dark text-xs"
-            href="https://instagram.com/gianlucabredice"
-            target="_blank"
-          >
-            Gianluca Bredice Developer
-          </a>
         </div>
       </div>
       <ul className="footer-sections flex flex-col xs:w-full lg:w-fit xs:justify-center xs:items-center lg:items-start xs:gap-4 xl:gap-8">
