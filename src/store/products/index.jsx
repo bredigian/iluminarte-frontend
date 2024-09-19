@@ -6,8 +6,11 @@ export const useProductsStore = create((set, get) => ({
   productOfTheMonth: null,
   imageHomeProductOfTheMonth: null,
 
-  getProducts: async () => {
-    const result = await fetch(`${API_URL}/products`, {
+  currentPage: 0,
+  totalPages: 0,
+
+  getProducts: async (page) => {
+    const result = await fetch(`${API_URL}/products?page=${page}&limit=30`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +20,8 @@ export const useProductsStore = create((set, get) => ({
       throw new Error("Error fetching products")
     } else {
       const data = await result?.json()
-      set({ products: data })
+      const { products, totalPages, currentPage } = data
+      set({ products, totalPages, currentPage })
     }
   },
 

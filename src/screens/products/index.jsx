@@ -6,8 +6,14 @@ import { Pulsar } from "@uiball/loaders"
 import { useProductsStore } from "../../store"
 
 const Products = () => {
-  const { products, getProducts, categories, getCategories } =
-    useProductsStore()
+  const {
+    products,
+    totalPages,
+    currentPage,
+    getProducts,
+    categories,
+    getCategories,
+  } = useProductsStore()
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [filteredProducts, setFilteredProducts] = useState([])
 
@@ -26,14 +32,19 @@ const Products = () => {
     setSelectedCategory(category)
     setFilteredProducts(await filterProducts(category))
   }
-  useEffect(() => {
-    getCategories()
-    getProducts()
-  }, [])
+
+  const changePage = async (page) => {
+    await getProducts(page)
+  }
 
   useEffect(() => {
     setFilteredProducts(products)
   }, [products])
+
+  useEffect(() => {
+    getCategories()
+    getProducts()
+  }, [])
 
   return (
     <section
@@ -70,6 +81,23 @@ const Products = () => {
           </p>
         )}
       </div>
+      <footer className="w-full flex items-center justify-center xs:gap-2 sm:gap-6">
+        {Array.from({ length: totalPages }, (_, i) => i + 1)?.map((item) => (
+          <button
+            key={"pagination__button__" + item}
+            className={`hover:bg-secondary-light w-[30px] h-[30px] rounded-full ${
+              item === currentPage ? "bg-secondary-light" : "bg-transparent"
+            }`}
+            onClick={() => {
+              window.scrollTo({ top: 0 })
+              setSelectedCategory(null)
+              changePage(item)
+            }}
+          >
+            {item}
+          </button>
+        ))}
+      </footer>
       <div className="products-footer flex flex-col items-center gap-8 w-full p-8">
         <h1 className="font-serif xs:text-xl sm:text-4xl lg:text-[50px] font-bold">
           Descubre otros modelos
