@@ -6,6 +6,7 @@ import { useUserStore } from "../../store"
 const RoutePrivate = ({ children, route }) => {
   const { token, verifyToken } = useUserStore()
   const [verifyingToken, setVerifyingToken] = useState(true)
+
   useEffect(() => {
     const verify = async () => {
       await verifyToken()
@@ -13,10 +14,13 @@ const RoutePrivate = ({ children, route }) => {
     }
     verify()
   }, [verifyToken])
+
   if (verifyingToken) return null
+
   if (!token) {
     return <Navigate to={route} />
   }
+
   return children
 }
 

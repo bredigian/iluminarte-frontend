@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom"
+import { Link, ScrollRestoration, useLocation } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 
 import { Bars3Icon } from "@heroicons/react/24/solid"
@@ -42,7 +42,7 @@ const Header = ({ handleNavigator }) => {
         onClick={handleNavigator}
         className="xs:relative sm:hidden text-primary w-0-3"
       />
-      <NavLink to={"/"}>
+      <Link to={"/"}>
         <img
           className="header-img xs:w-1 xl:w-logo"
           src={
@@ -56,12 +56,12 @@ const Header = ({ handleNavigator }) => {
           }
           alt="Iluminarte Logo"
         />
-      </NavLink>
+      </Link>
       <nav className="xs:hidden header-navbar sm:flex sm:gap-2 lg:gap-4">
         {sections.map((section) => {
           if (token && section.title === "Administrador") {
             return (
-              <NavLink
+              <Link
                 key={section.id}
                 className={`ease-in-out duration-150 flex justify-center font-bold px-4 py-2 rounded-full text-center border-2 border-transparent ${
                   route === "/"
@@ -73,12 +73,12 @@ const Header = ({ handleNavigator }) => {
                 to={section.path}
               >
                 <UserIcon width={25} />
-              </NavLink>
+              </Link>
             )
           } else {
             if (section.title !== "Administrador") {
               return (
-                <NavLink
+                <Link
                   key={section.id}
                   className={`ease-in-out duration-150 sm:text-sm lg:text-base font-bold px-6 py-2 rounded-full text-center lg:w-1-3 xl:w-1 border-2 border-transparent ${
                     route === "/"
@@ -90,12 +90,13 @@ const Header = ({ handleNavigator }) => {
                   to={section.path}
                 >
                   {section.title}
-                </NavLink>
+                </Link>
               )
             }
           }
         })}
       </nav>
+      <ScrollRestoration />
     </header>
   )
 }
