@@ -17,8 +17,8 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [filteredProducts, setFilteredProducts] = useState([])
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
+  const scrollToTop = (withAnimation) => {
+    window.scrollTo({ top: 0, behavior: withAnimation ? "smooth" : "instant" })
   }
 
   const filterProducts = async (category) => {
@@ -89,7 +89,7 @@ const Products = () => {
               item === currentPage ? "bg-secondary-light" : "bg-transparent"
             }`}
             onClick={async () => {
-              window.scrollTo({ top: 0 })
+              scrollToTop(false)
               setSelectedCategory(null)
               await changePage(item)
             }}
@@ -106,7 +106,10 @@ const Products = () => {
           {categories.map((category) => {
             return (
               <button
-                onClick={() => handleCategory(category.VALOR)}
+                onClick={() => {
+                  scrollToTop(false)
+                  handleCategory(category.VALOR)
+                }}
                 type="button"
                 className={`${
                   selectedCategory === category.VALOR
@@ -121,7 +124,7 @@ const Products = () => {
         </div>
       </div>
       <button
-        onClick={scrollToTop}
+        onClick={() => scrollToTop(true)}
         className="fixed xs:right-5 lg:right-10 top-[50%] rounded-full xs:border-[2px] sm:border-[3px] xs:p-1 lg:p-4 border-primary w-fit"
       >
         <ChevronUpIcon className="xs:w-[20px] sm:w-[50px] text-primary" />
