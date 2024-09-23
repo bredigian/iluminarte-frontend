@@ -1,80 +1,40 @@
 import { API_URL, contact } from "../../constants"
 
-import { Input } from "../../components"
 import React from "react"
 import { social } from "../../constants"
 import { toast } from "sonner"
-import { useState } from "react"
+import { useForm } from "react-hook-form"
 
 const Contact = () => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
-  const [message, setMessage] = useState("")
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, errors },
+  } = useForm()
 
-  const handleChange = (e) => {
-    if (e.target.id === "name") setName(e.target.value)
-    if (e.target.id === "email") setEmail(e.target.value)
-    if (e.target.id === "phone") setPhone(e.target.value)
-    if (e.target.id === "message") setMessage(e.target.value)
-  }
-
-  const onSubmit = async (e) => {
-    e.preventDefault()
-    const dataForm = {
-      name,
-      email,
-      phone,
-      message,
-    }
+  const onSubmit = async (values) => {
     try {
-      const result = await fetch(`${API_URL}/contact`, {
+      const res = await fetch(`${API_URL}/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(dataForm),
+        body: JSON.stringify(values),
       })
-      if (!result.ok) {
-        throw new Error(result.json())
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        console.log(data)
+        throw new Error(data.message)
       }
-      const { message } = await result.json()
+
+      const { message } = data
       toast.success(message)
     } catch (error) {
       toast.error(error.message)
     }
   }
-
-  const fields = [
-    {
-      id: "name",
-      type: "text",
-      placeholder: "Nombre completo",
-      name: "name",
-      value: name,
-    },
-    {
-      id: "phone",
-      type: "tel",
-      placeholder: "Teléfono",
-      name: "phone",
-      value: phone,
-    },
-    {
-      id: "email",
-      type: "email",
-      placeholder: "Correo electrónico",
-      name: "email",
-      value: email,
-    },
-    {
-      id: "message",
-      type: "textarea",
-      placeholder: "Mensaje",
-      name: "message",
-      value: message,
-    },
-  ]
 
   return (
     <section className="contact flex flex-col items-center w-full">
@@ -102,33 +62,94 @@ const Contact = () => {
             )
           })}
         </div>
-        <div className="contact-form flex flex-col items-center gap-8 xs:w-full md:w-fit">
+        <div className="contact-form flex flex-col items-center gap-8 xs:w-full md:max-w-[600px]">
           <h1 className="xs:text-4xl md:text-6xl text-white font-bold font-serif">
             Contáctanos
           </h1>
           <form
-            onSubmit={onSubmit}
-            className="grid xs:grid-cols-4 sm:grid-cols-3 xs:gap-6 sm:gap-8 xs:w-[85%] md:max-w-[600px]"
+            onSubmit={handleSubmit(onSubmit)}
+            className="grid grid-cols-4 gap-6 xs:w-[85%] md:w-full"
           >
-            {fields.map((field) => {
-              return (
-                <Input
-                  key={field.id + field.name}
-                  styles={`placeholder:text-white text-white ${
-                    field.id === "message" && "min-h-[200px]"
-                  }`}
-                  data={field}
-                  value={field.value}
-                  id={field.id}
-                  onChangeValue={(e) => handleChange(e)}
-                />
-              )
-            })}
+            <div className="col-span-full flex flex-col gap-2">
+              <input
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: "El nombre es requerido.",
+                  },
+                  minLength: {
+                    value: 4,
+                    message: "Debe contener al menos 4 caracteres.",
+                  },
+                })}
+                placeholder="Nombre completo"
+                className="w-full bg-[#ffffff65] rounded-full text-sm outline-none px-4 py-2 text-white placeholder:text-white"
+              />
+              {errors?.name && (
+                <small className="text-white">{errors.name?.message}</small>
+              )}
+            </div>
+            <div className="col-span-full flex flex-col gap-2 lg:col-span-2">
+              <input
+                {...register("phone", {
+                  required: {
+                    value: true,
+                    message: "El teléfono es requerido.",
+                  },
+                })}
+                type="number"
+                placeholder="Teléfono"
+                className="w-full bg-[#ffffff65] rounded-full text-sm outline-none px-4 py-2 text-white placeholder:text-white"
+              />
+              {errors?.phone && (
+                <small className="text-white">{errors.phone?.message}</small>
+              )}
+            </div>
+            <div className="col-span-full flex flex-col gap-2 lg:col-span-2">
+              <input
+                {...register("email", {
+                  required: {
+                    value: true,
+                    message: "El email es requerido.",
+                  },
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "El email no es válido.",
+                  },
+                })}
+                type="email"
+                placeholder="Correo electrónico"
+                className="w-full bg-[#ffffff65] rounded-full text-sm outline-none px-4 py-2 text-white placeholder:text-white"
+              />
+              {errors?.email && (
+                <small className="text-white">{errors.email?.message}</small>
+              )}
+            </div>
+            <div className="col-span-full flex flex-col gap-2">
+              <textarea
+                {...register("message", {
+                  required: {
+                    value: true,
+                    message: "El mensaje es requerido.",
+                  },
+                  minLength: {
+                    value: 10,
+                    message: "Debe contener al menos 10 caracteres.",
+                  },
+                })}
+                placeholder="Mensaje"
+                className="resize-none w-full bg-[#ffffff65] rounded-xl text-sm outline-none px-4 text-white placeholder:text-white py-4 h-48"
+              />
+              {errors?.phone && (
+                <small className="text-white">{errors.phone?.message}</small>
+              )}
+            </div>
             <button
-              className="bg-secondary place-self-center xs:col-span-4 md:col-span-3 text-white xs:text-base md:text-lg font-bold xs:px-16 md:px-20 py-1 rounded-full hover:bg-white hover:text-secondary duration-150 ease-in-out"
+              disabled={isSubmitting}
+              className="bg-secondary place-self-center md:place-self-end md:col-span-full xs:col-span-4 text-white xs:text-base md:text-lg font-bold xs:px-16 md:px-20 py-1 rounded-full hover:bg-white hover:text-secondary duration-150 ease-in-out"
               type="submit"
             >
-              Enviar
+              {!isSubmitting ? "Enviar" : "Enviando..."}
             </button>
           </form>
         </div>
