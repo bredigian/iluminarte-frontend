@@ -88,10 +88,10 @@ const Products = () => {
             className={`hover:bg-secondary-light w-[30px] h-[30px] rounded-full ${
               item === currentPage ? "bg-secondary-light" : "bg-transparent"
             }`}
-            onClick={() => {
+            onClick={async () => {
               window.scrollTo({ top: 0 })
               setSelectedCategory(null)
-              changePage(item)
+              await changePage(item)
             }}
           >
             {item}

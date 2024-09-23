@@ -10,7 +10,7 @@ import useWidth from "../../hooks/useWidth"
 const AdministrationProducts = () => {
   const width = useWidth()
 
-  const { products, getProducts } = useProductsStore()
+  const { totalPages, currentPage, products, getProducts } = useProductsStore()
 
   const [loading, setLoading] = useState(true)
   const [filteredProducts, setFilteredProducts] = useState([])
@@ -34,6 +34,10 @@ const AdministrationProducts = () => {
     } else {
       toast.error(message)
     }
+  }
+
+  const changePage = async (page) => {
+    await getProducts(page)
   }
 
   useEffect(() => {
@@ -115,6 +119,22 @@ const AdministrationProducts = () => {
             </div>
           )}
         </div>
+        <footer className="w-full flex items-center justify-center xs:gap-2 sm:gap-6">
+          {Array.from({ length: totalPages }, (_, i) => i + 1)?.map((item) => (
+            <button
+              key={"pagination__button__" + item}
+              className={`hover:bg-secondary-light w-[30px] h-[30px] rounded-full ${
+                item === currentPage ? "bg-secondary-light" : "bg-transparent"
+              }`}
+              onClick={async () => {
+                window.scrollTo({ top: 0 })
+                await changePage(item)
+              }}
+            >
+              {item}
+            </button>
+          ))}
+        </footer>
         <Modal show={showModal && width > 970} width={"w-[850px]"}>
           <div className="modal-addProduct w-full flex flex-col items-center gap-4 bg-white py-6 px-6">
             <div className="flex items-start justify-between w-full">
